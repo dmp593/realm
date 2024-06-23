@@ -1,0 +1,10 @@
+[
+    {
+        "model": "houses.district",
+        "pk": 1,
+        "fields": {
+            "name": "Leiria",
+            "country": 1
+        }
+    }
+]

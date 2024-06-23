@@ -1,0 +1,23 @@
+[
+    {
+        "model": "houses.housetype",
+        "pk": 1,
+        "fields": {
+            "name": "Apartamento"
+        }
+    },
+    {
+        "model": "houses.housetype",
+        "pk": 2,
+        "fields": {
+            "name": "Moradia Isolada"
+        }
+    },
+    {
+        "model": "houses.housetype",
+        "pk": 3,
+        "fields": {
+            "name": "Moradia Geminada"
+        }
+    }
+]

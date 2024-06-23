@@ -1,0 +1,58 @@
+{% load static %}
+
+<form x-data="{ showAdvancedFilters: JSON.parse(localStorage.getItem('houses:filters:show-advanced') || false) }" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="relative md:col-span-2">
+      <input type="text" name="search" placeholder="Procurar por referência, título, morada ou código-postal..." class="p-2 border border-gray-300 rounded w-full" value="{{ request.GET.search|default_if_none:'' }}">
+      <button type="button" class="absolute right-2 top-1/2 transform -translate-y-1/2" @click="showAdvancedFilters = !showAdvancedFilters; localStorage.setItem('houses:filters:show-advanced', JSON.stringify(showAdvancedFilters))">
+        <i x-show="!showAdvancedFilters" class="ph-bold ph-arrow-down"></i>
+        <i x-show="showAdvancedFilters" class="ph-bold ph-arrow-up"></i>
+      </button>
+    </div>
+    
+    <!-- Advanced Filters -->
+    <div x-show="showAdvancedFilters" class="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <select id="district-select" name="district" class="p-2 border border-gray-300 rounded">
+            <option disabled value="" {% if not request.GET.district %}selected{% endif %}>Distrito</option>
+            {% for district in districts %}
+            <option value="{{ district.pk }}" {% if request.GET.district == district.pk|stringformat:'s' %}selected{% endif %}>{{ district.name }}</option>
+            {% endfor %}
+        </select>
+        <select id="municipality-select" name="municipality" class="p-2 border border-gray-300 rounded">
+            <option disabled value="" {% if not request.GET.municipality %}selected{% endif %}>Município</option>
+            {% for municipality in municipalities %}
+            <option value="{{ municipality.pk }}" {% if request.GET.municipality == municipality.pk|stringformat:'s' %}selected{% endif %} data-district="{{ municipality.district.pk }}">{{ municipality.name }}</option>
+            {% endfor %}
+        </select>
+        <select id="parish-select" name="parish" class="p-2 border border-gray-300 rounded">
+            <option disabled value="" {% if not request.GET.parish %}selected{% endif %}>Freguesia</option>
+            {% for parish in parishes %}
+            <option value="{{ parish.pk }}" {% if request.GET.parish == parish.pk|stringformat:'s' %}selected{% endif %} data-municipality="{{ parish.municipality.pk }}">{{ parish.name }}</option>
+            {% endfor %}
+        </select>
+        <select id="locale-select" name="locale" class="p-2 border border-gray-300 rounded">
+          <option disabled value="" {% if not request.GET.locale %}selected{% endif %}>Zona</option>
+          {% for locale in locales %}
+          <option value="{{ locale.pk }}" {% if request.GET.locale == locale.pk|stringformat:'s' %}selected{% endif %} data-parish="{{ locale.parish.pk }}">{{ locale.name }}</option>
+          {% endfor %}
+      </select>
+        <select id="type-select" name="type" class="p-2 border border-gray-300 rounded">
+            <option disabled value="" {% if not request.GET.type %}selected{% endif %}>Tipo</option>
+            {% for type in types %}
+            <option value="{{ type.pk }}" {% if request.GET.type == type.pk|stringformat:'s' %}selected{% endif %}>{{ type.name }}</option>
+            {% endfor %}
+        </select>
+        <select id="typology-select" name="type" class="p-2 border border-gray-300 rounded">
+          <option disabled value=""  {% if not request.GET.typology %}selected{% endif %}>Tipologia</option>
+          {% for typology in typologies %}
+          <option value="{{ typology.pk }}" {% if request.GET.typology == typology.pk|stringformat:'s' %}selected{% endif %}>{{ typology.name }}</option>
+          {% endfor %}
+      </select>
+    </div>
+    
+    <button id="reset-filters" type="reset" class="col-span-1 md:col-span-1 bg-purple-500 text-white py-2 rounded hover:bg-purple-700">Limpar</button>
+    <button type="submit" class="col-span-1 md:col-span-1 bg-pink-500 text-white py-2 rounded hover:bg-pink-700">Filtrar</button>
+</form>
+
+{% block script %}
+<script src="{% static 'js/houses/house_list_filters.js' %}"></script>
+{% endblock %}

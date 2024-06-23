@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load custom_formats %}
+
+{% block content %}
+<main class="px-0 pt-14 flex-grow">
+  <div class="w-full">
+    <h1 class="text-5xl font-bold text-center text-gray-800">Bem-vindo(a) a Alcina Imóveis</h1>
+    <p class="text-xl mt-3 font-light text-center text-gray-600">Encontra a tua casa de sonho comigo</p>
+    
+    <!-- Swiper -->
+    <div class="swiper mt-10">
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        {% for house in houses %}
+        <div class="swiper-slide bg-white border-y shadow-lg overflow-hidden">
+          <img class="w-full h-48 md:h-64 lg:h-80 object-cover" src="{{ house.cover.file.url }}" alt="House 1">
+          <div class="p-6">
+            {% include "houses/components/house_card_header.html" %}
+            {% include "houses/components/house_card_summary.html" %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+      <!-- Add Navigation -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+    
+    <div class="flex justify-center items-center py-5">
+      <a href="{% url 'house_list' %}" class="text-white bg-pink-500 hover:bg-pink-700 font-bold py-2 px-4 rounded-lg">Explorar mais casas</a>
+    </div>
+  </div>
+</main>
+{% endblock %}

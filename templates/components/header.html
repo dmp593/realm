@@ -1,0 +1,42 @@
+<header x-data="{ open: false }">
+    <nav class="flex px-8 py-4 shadow-md bg-pink-400 justify-between">
+        <div class="flex items-center space-x-8">
+            <a href="{% url 'home' %}" class="block self-start"><span class="text-2xl font-bold">Alcina Imóveis</span></a>
+            <a href="{% url 'house_list' %}" class="hidden md:block hover:text-indigo-900">Casas</a>
+            <a href="{% url 'contacts' %}" class="hidden md:block hover:text-indigo-900">Contactos</a>
+        </div>
+        <div class="flex items-center space-x-8">
+            <a href="{% url 'admin:index' %}" class="hidden md:block hover:text-indigo-900">
+                <i class="ph-bold ph-sign-in"></i>
+            </a>
+        </div>
+        <div class="md:hidden flex flex-col items-end">
+            <button x-on:click="open = !open" class="outline-none menu-button">
+                <svg viewBox="0 0 80 65" width="30" height="30">
+                    <rect width="80" height="15"></rect>
+                    <rect y="25" width="80" height="15"></rect>
+                    <rect y="50" width="80" height="15"></rect>
+                </svg>
+            </button>
+            <div x-show="open" x-transition:enter.duration.750ms x-transition:leave.duration.500ms>
+                <ul class="text-right text-xl py-2 space-y-2">
+                    <li>
+                        <a href="{% url 'house_list' %}">
+                            Casas
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contacts' %}">
+                            Contactos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'admin:index' %}" class="text-sm">
+                            Área Reservada
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

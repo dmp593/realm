@@ -1,0 +1,58 @@
+[
+    {
+        "model": "houses.housetypology",
+        "pk": 1,
+        "fields": {
+            "name": "T0",
+            "order": 0
+        }
+    },
+    {
+        "model": "houses.housetypology",
+        "pk": 2,
+        "fields": {
+            "name": "T1",
+            "order": 1
+        }
+    },
+    {
+        "model": "houses.housetypology",
+        "pk": 3,
+        "fields": {
+            "name": "T2",
+            "order": 2
+        }
+    },
+    {
+        "model": "houses.housetypology",
+        "pk": 4,
+        "fields": {
+            "name": "T3",
+            "order": 3
+        }
+    },
+    {
+        "model": "houses.housetypology",
+        "pk": 5,
+        "fields": {
+            "name": "T4",
+            "order": 4
+        }
+    },
+    {
+        "model": "houses.housetypology",
+        "pk": 6,
+        "fields": {
+            "name": "T5",
+            "order": 5
+        }
+    },
+    {
+        "model": "houses.housetypology",
+        "pk": 7,
+        "fields": {
+            "name": "T5+",
+            "order": 6
+        }
+    }
+]

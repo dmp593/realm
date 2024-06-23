@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <title>{% block title %}Alcina Imóveis{% endblock %}</title>
+
+        <link href="{% static 'css/index.css' %}" rel="stylesheet">
+        {% block link %}{% endblock %}
+    </head>
+
+    <body class="flex flex-col h-screen">
+        {% include "components/header.html" %}
+        {% block content %}{% endblock %}
+        {% include "components/footer.html" %}
+        
+        <script defer src="{% static 'js/index.js' %}"></script>
+        {% block script %}{% endblock %}
+    </body>
+</html>

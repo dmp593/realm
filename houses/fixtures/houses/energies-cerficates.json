@@ -1,0 +1,58 @@
+[
+    {
+        "model": "houses.energycertificate",
+        "pk": 1,
+        "fields": {
+            "name": "A+",
+            "order": 1
+        }
+    },
+    {
+        "model": "houses.energycertificate",
+        "pk": 2,
+        "fields": {
+            "name": "A",
+            "order": 2
+        }
+    },
+    {
+        "model": "houses.energycertificate",
+        "pk": 3,
+        "fields": {
+            "name": "B",
+            "order": 3
+        }
+    },
+    {
+        "model": "houses.energycertificate",
+        "pk": 4,
+        "fields": {
+            "name": "C",
+            "order": 4
+        }
+    },
+    {
+        "model": "houses.energycertificate",
+        "pk": 5,
+        "fields": {
+            "name": "D",
+            "order": 5
+        }
+    },
+    {
+        "model": "houses.energycertificate",
+        "pk": 6,
+        "fields": {
+            "name": "E",
+            "order": 6
+        }
+    },
+    {
+        "model": "houses.energycertificate",
+        "pk": 7,
+        "fields": {
+            "name": "F",
+            "order": 7
+        }
+    }
+]

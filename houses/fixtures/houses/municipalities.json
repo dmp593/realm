@@ -1,0 +1,18 @@
+[
+    {
+        "model": "houses.municipality",
+        "pk": 1,
+        "fields": {
+            "name": "Marinha Grande",
+            "district": 1
+        }
+    },
+    {
+        "model": "houses.municipality",
+        "pk": 2,
+        "fields": {
+            "name": "Leiria",
+            "district": 1
+        }
+    }
+]

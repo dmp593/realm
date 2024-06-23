@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load custom_formats %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/house_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="flex-grow">
+  <div class="container mx-auto px-4 py-10">
+    <div class="bg-white {% if house.highlighted %}shadow-gold{% else %}shadow-lg{% endif %} overflow-hidden">
+      <div x-data="{ tab: 'images' }" class="tabs">
+        <ul class="flex justify-center md:justify-end border-b">
+          {% if house.images %}
+          <li class="mr-1">
+            <a :class="{ 'border-pink-500 text-pink-500 border-b-2': tab === 'images' }"
+              class="bg-white inline-block py-2 px-4 hover:text-pink-800 font-semibold transition-colors duration-300"
+              href="#" @click.prevent="tab = 'images'">Imagens</a>
+          </li>
+          {% endif %}
+          {% if house.videos %}
+          <li class="mr-1">
+            <a :class="{ 'border-pink-500 text-pink-500 border-b-2': tab === 'videos' }"
+              class="bg-white inline-block py-2 px-4 hover:text-pink-800 font-semibold transition-colors duration-300"
+              href="#" @click.prevent="tab = 'videos'">Vídeos</a>
+          </li>
+          {% endif %}
+        </ul>
+        {% if house.images %}
+        <div x-show="tab === 'images'" class="tab-content">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              {% for image in house.images %}
+              <div class="swiper-slide">
+                <img src="{{ image.file.url }}" alt="{{ image.description }}" class="w-full h-auto object-cover">
+              </div>
+              {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+        {% endif %}
+        {% if house.videos %}
+        <div x-show="tab === 'videos'" class="tab-content">
+          <video controls class="w-full h-auto">
+            <source src="{{ house.videos.0.file.url }}" type="{{ house.videos.0.content_type }}">
+            O navegador não suporta vídeo.
+          </video>
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="p-6">
+        {% include "houses/components/house_card_header.html" %}
+
+        <div class="grid grid-cols-1 pt-10 md:grid-cols-2 gap-4">
+          <div class="mb-4">
+            <span class="font-bold">Endereço:</span> {{ house.address|default:"(Ausente / Não Aplicável)" }}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Código Postal:</span> {{ house.postal_code|default:"(Ausente / Não Aplicável)" }}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Área Bruta Privativa:</span> {{ house.gross_private_area_in_square_meters|default:"(Ausente / Não Aplicável)" }} m²
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Área Útil:</span> {{ house.net_internal_area_in_square_meters|default:"(Ausente / Não Aplicável)" }} m²
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Ano de Construção:</span> {{ house.construction_year|default:"(Ausente / Não Aplicável)" }}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Número de Quartos:</span> {{ house.number_of_rooms|default:"(Ausente / Não Aplicável)" }}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Número de Casas de Banho:</span> {{ house.number_of_bathrooms|default:"(Ausente / Não Aplicável)" }}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Tem Garagem:</span> {{ house.has_garage|yesno:"Sim,Não" }}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Certificado Energético:</span> {{ house.energy_certificate.name|default:"(Ausente / Não Aplicável)" }}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Condição:</span> {{ house.condition.name|default:"(Ausente / Não Aplicável)" }}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Tipo:</span> {{ house.type.name|default:"(Ausente / Não Aplicável)" }}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Tipologia:</span> {{ house.typology.name|default:"(Ausente / Não Aplicável)" }}
+          </div>
+        </div>
+
+        <pre class="text-gray-700 pt-10 mb-4 text-center md:text-left">{{ house.description }}</pre>
+
+        <div id="map-container" class="w-full h-[300px] hidden">
+          <iframe id="openstreetmap" title="Map of the House Address" width="100%" height="100%"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/+351912728880" target="_blank" class="button-floating button-floating-whatsapp">
+  <i class="ph ph-whatsapp-logo"></i>
+</a>
+
+<!-- Floating Share Link Button -->
+<a id="share-house" class="button-floating button-floating-share">
+  <i class="ph ph-share-network"></i>
+</a>
+
+<!-- Toast for Floating Share Link Button when copied to clipboard -->
+<div id="toast-link-shared"
+  class="hidden fixed justify-items-center content-center bottom-[7rem] right-[5rem] bg-gray-800 text-white py-2 px-4 rounded-lg shadow-lg">
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/houses/house_detail.js' %}"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    setupMapAddress("{{ house.address }}, {{ house.locale.parish.name }}, {{ house.locale.parish.municipality.district.name }}, {{ house.locale.parish.municipality.district.country.name }}")
+  })
+</script>
+{% endblock %}

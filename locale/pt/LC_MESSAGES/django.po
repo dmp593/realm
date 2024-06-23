@@ -1,0 +1,237 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-23 12:03+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: houses/models.py:36 houses/models.py:51 houses/models.py:75
+#: houses/models.py:99 houses/models.py:128 houses/models.py:161
+#: houses/models.py:179 houses/models.py:202 houses/models.py:225
+msgid "name"
+msgstr "nome"
+
+#: houses/models.py:43 houses/models.py:57
+msgid "country"
+msgstr "país"
+
+#: houses/models.py:44
+msgid "countries"
+msgstr "paises"
+
+#: houses/models.py:64 houses/models.py:81
+msgid "district"
+msgstr "distrito"
+
+#: houses/models.py:65
+msgid "districts"
+msgstr "distritos"
+
+#: houses/models.py:88 houses/models.py:105
+msgid "municipality"
+msgstr "município"
+
+#: houses/models.py:89
+msgid "municipalities"
+msgstr "municípios"
+
+#: houses/models.py:112 houses/models.py:134
+msgid "parish"
+msgstr "freguesia"
+
+#: houses/models.py:113
+msgid "parishes"
+msgstr "freguesias"
+
+#: houses/models.py:141 houses/models.py:276
+msgid "locale"
+msgstr "zona"
+
+#: houses/models.py:142
+msgid "locales"
+msgstr "zonas"
+
+#: houses/models.py:168
+msgid "house type"
+msgstr "tipo de casa"
+
+#: houses/models.py:169
+msgid "house types"
+msgstr "tipos de casa"
+
+#: houses/models.py:184 houses/models.py:207 houses/models.py:230
+#: houses/models.py:411 houses/models.py:473
+msgid "order"
+msgstr "ordem"
+
+#: houses/models.py:191
+msgid "house typology"
+msgstr "tipologia de casa"
+
+#: houses/models.py:192
+msgid "house typologies"
+msgstr "tipologias de casa"
+
+#: houses/models.py:214
+msgid "house condition"
+msgstr "condição da casa"
+
+#: houses/models.py:215
+msgid "house conditions"
+msgstr "condições de casa"
+
+#: houses/models.py:237 houses/models.py:376
+msgid "energy certificate"
+msgstr "certificado energético"
+
+#: houses/models.py:238
+msgid "energy certificates"
+msgstr "certificados energéticos"
+
+#: houses/models.py:246
+msgid "title"
+msgstr "título"
+
+#: houses/models.py:251 houses/models.py:450
+msgid "description"
+msgstr "descrição"
+
+#: houses/models.py:257
+msgid "address"
+msgstr "morada"
+
+#: houses/models.py:265
+msgid "Not a valid postal-code. Pattern must be: XXXX-XXX"
+msgstr "Não é um código de postal valido. Padrão deve ser: XXXX-XXX"
+
+#: houses/models.py:269
+msgid "postal code"
+msgstr "código postal"
+
+#: houses/models.py:283
+msgid "type"
+msgstr "tipo"
+
+#: houses/models.py:290
+msgid "price in euros"
+msgstr "preço em euros"
+
+#: houses/models.py:298
+#, fuzzy
+#| msgid "price in euros"
+msgid "discount in euros"
+msgstr "desconto em euros"
+
+#: houses/models.py:306
+#, fuzzy
+#| msgid "house typology"
+msgid "typology"
+msgstr "tipologia de casa"
+
+#: houses/models.py:314
+#, fuzzy
+#| msgid "house condition"
+msgid "condition"
+msgstr "condição da casa"
+
+#: houses/models.py:325
+msgid "gross private area in square meters"
+msgstr "area bruta em metros quadrados"
+
+#: houses/models.py:336
+msgid "net internal area in square meters"
+msgstr "area útil em metros quadrados"
+
+#: houses/models.py:345
+msgid "construction year"
+msgstr "ano de construção"
+
+#: houses/models.py:354
+msgid "number of rooms"
+msgstr "número de quartos"
+
+#: houses/models.py:363
+msgid "number of bathrooms"
+msgstr "número de casas de banho"
+
+#: houses/models.py:368
+msgid "has garage"
+msgstr "tem garagem"
+
+#: houses/models.py:381
+msgid "highlighted"
+msgstr "destacado"
+
+#: houses/models.py:386
+msgid "reserved"
+msgstr "reservado"
+
+#: houses/models.py:391
+msgid "active"
+msgstr "ativo"
+
+#: houses/models.py:397
+msgid "sold at"
+msgstr "vendido a"
+
+#: houses/models.py:405
+msgid "sold for"
+msgstr "vendido por"
+
+#: houses/models.py:428 houses/models.py:438
+msgid "house"
+msgstr "casa"
+
+#: houses/models.py:429
+msgid "houses"
+msgstr "casas"
+
+#: houses/models.py:444
+msgid "file"
+msgstr "ficheiro"
+
+#: houses/models.py:455
+msgid "notes"
+msgstr "notas"
+
+#: houses/models.py:461
+msgid "filename"
+msgstr "nome do ficheiro"
+
+#: houses/models.py:467
+#, fuzzy
+#| msgid "house type"
+msgid "content type"
+msgstr "tipo de casa"
+
+#: houses/models.py:480
+msgid "house file"
+msgstr "ficheiro da casa"
+
+#: houses/models.py:481
+msgid "house files"
+msgstr "ficheiros da casa"
+
+#: realm/settings.py:121
+msgid "English"
+msgstr "inglês"
+
+#: realm/settings.py:122
+msgid "Portuguese"
+msgstr "português"
+
+#~ msgid "is public"
+#~ msgstr "é público"

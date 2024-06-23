@@ -1,0 +1,42 @@
+[
+    {
+        "model": "houses.housecondition",
+        "pk": 1,
+        "fields": {
+            "name": "Em Construção",
+            "order": 0
+        }
+    },
+    {
+        "model": "houses.housecondition",
+        "pk": 1,
+        "fields": {
+            "name": "Novo",
+            "order": 1
+        }
+    },
+    {
+        "model": "houses.housecondition",
+        "pk": 2,
+        "fields": {
+            "name": "Semi-Novo",
+            "order": 2
+        }
+    },
+    {
+        "model": "houses.housecondition",
+        "pk": 3,
+        "fields": {
+            "name": "Usado",
+            "order": 3
+        }
+    },
+    {
+        "model": "houses.housecondition",
+        "pk": 4,
+        "fields": {
+            "name": "Por Restaurar",
+            "order": 4
+        }
+    }
+]

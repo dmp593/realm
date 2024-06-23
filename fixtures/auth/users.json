@@ -1,0 +1,17 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "username": "admin",
+            "password": "pbkdf2_sha256$720000$9wqD5e4cnR8DKJ0v6RCuvm$PiaODaCwfuqncqV+ZXRrKc7Bcof3QgTqwsDsXOvmCv4=",
+            "email": "admin@realm.earth",
+            "is_active": true,
+            "is_staff": true,
+            "is_superuser": true,
+            "first_name": "Alcina",
+            "last_name": "Roque",
+            "date_joined": "2024-01-01T00:00:00Z"
+        }
+    }
+]

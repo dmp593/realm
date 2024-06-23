@@ -1,0 +1,22 @@
+{% load custom_formats %}
+
+<div class="flex flex-col justify-between items-center mb-4">
+    <h1 class="text-xl md:text-2xl xl:text-4xl font-bold break-words text-left w-full">
+        <span class="text-pink-400">#{{ house.pk }}</span> {{ house.title }}
+        {% if house.reserved %}
+        <span style="padding: 0.3rem 0.5rem;" class="bg-yellow-300 text-gray-600 text-sm italic border-lg rounded-lg shadow-lg bg-orange-300">Reservado</span>
+        {% endif %}
+    </h1>
+    <div class="mt-2 text-center w-full">
+        <div class="flex flex-col items-end space-y-2">
+            {% if house.discount_in_euros > 0 %}
+            <span class="italic text-gray-500 text-xs">Antes:
+                <span class="line-through bg-gray-200 font-semibold shadow-sm p-2 rounded-lg">{{ house.price_in_euros|format_number }} €</span>
+            </span>
+            <span class="italic text-green-500 text-xs">Desconto: <span
+                class="bg-green-200 font-semibold shadow-sm p-2 rounded-lg">{{ house.discount_in_euros|format_number }} €</span></span>
+            {% endif %}
+            <span class="text-xl font-bold"><span class="text-white bg-pink-500 shadow-md p-2 rounded-lg">{{ house.current_price_in_euros|format_number }} €</span></span>
+        </div>
+    </div>
+</div>

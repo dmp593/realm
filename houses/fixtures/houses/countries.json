@@ -1,0 +1,9 @@
+[
+    {
+        "model": "houses.country",
+        "pk": 1,
+        "fields": {
+            "name": "Portugal"
+        }
+    }
+]

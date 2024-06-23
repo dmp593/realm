@@ -1,0 +1,58 @@
+[
+    {
+        "model": "houses.parish",
+        "pk": 1,
+        "fields": {
+            "name": "Marinha Grande",
+            "municipality": 1
+        }
+    },
+    {
+        "model": "houses.parish",
+        "pk": 2,
+        "fields": {
+            "name": "Vieira de Leiria",
+            "municipality": 1
+        }
+    },
+    {
+        "model": "houses.parish",
+        "pk": 3,
+        "fields": {
+            "name": "Moita",
+            "municipality": 1
+        }
+    },
+    {
+        "model": "houses.parish",
+        "pk": 4,
+        "fields": {
+            "name": "Leiria, Pousos, Barreira e Cortes",
+            "municipality": 2
+        }
+    },
+    {
+        "model": "houses.parish",
+        "pk": 5,
+        "fields": {
+            "name": "Amor",
+            "municipality": 2
+        }
+    },
+    {
+        "model": "houses.parish",
+        "pk": 6,
+        "fields": {
+            "name": "Marrazes e Barosa",
+            "municipality": 2
+        }
+    },
+    {
+        "model": "houses.parish",
+        "pk": 7,
+        "fields": {
+            "name": "Santa Eufémia e Boavista",
+            "municipality": 2
+        }
+    }
+]

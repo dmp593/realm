@@ -1,0 +1,18 @@
+[
+    {
+        "model": "houses.locale",
+        "pk": 1,
+        "fields": {
+            "name": "Cidade da Marinha Grande",
+            "parish": 1
+        }
+    },
+    {
+        "model": "houses.locale",
+        "pk": 2,
+        "fields": {
+            "name": "S. Pedro de Moel",
+            "parish": 1
+        }
+    }
+]
