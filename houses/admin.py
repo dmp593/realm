@@ -15,7 +15,7 @@ admin.site.register(models.HouseTypology)
 admin.site.register(models.EnergyCertificate)
 
 
-class HouseFileAdmin(admin.TabularInline):
+class HouseFileAdmin(admin.StackedInline):
     model = models.HouseFile
 
 

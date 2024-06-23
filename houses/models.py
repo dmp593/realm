@@ -450,11 +450,6 @@ class HouseFile(models.Model):
         verbose_name=_('description'),
     )
 
-    notes = models.TextField(
-        blank=True,
-        verbose_name=_('notes'),
-    )
-
     filename = models.CharField(
         max_length=255,
         editable=False,

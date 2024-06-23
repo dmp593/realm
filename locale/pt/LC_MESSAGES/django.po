@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-23 12:03+0000\n"
+"POT-Creation-Date: 2024-06-23 14:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,7 +73,7 @@ msgid "house types"
 msgstr "tipos de casa"
 
 #: houses/models.py:184 houses/models.py:207 houses/models.py:230
-#: houses/models.py:411 houses/models.py:473
+#: houses/models.py:411 houses/models.py:468
 msgid "order"
 msgstr "ordem"
 
@@ -203,35 +203,31 @@ msgstr "casas"
 msgid "file"
 msgstr "ficheiro"
 
-#: houses/models.py:455
-msgid "notes"
-msgstr "notas"
-
-#: houses/models.py:461
+#: houses/models.py:456
 msgid "filename"
 msgstr "nome do ficheiro"
 
-#: houses/models.py:467
+#: houses/models.py:462
 #, fuzzy
 #| msgid "house type"
 msgid "content type"
 msgstr "tipo de casa"
 
-#: houses/models.py:480
+#: houses/models.py:475
 msgid "house file"
 msgstr "ficheiro da casa"
 
-#: houses/models.py:481
+#: houses/models.py:476
 msgid "house files"
 msgstr "ficheiros da casa"
 
-#: realm/settings.py:121
+#: realm/settings.py:132
 msgid "English"
-msgstr "inglês"
+msgstr "Inglês"
 
-#: realm/settings.py:122
+#: realm/settings.py:133
 msgid "Portuguese"
-msgstr "português"
+msgstr "Português"
 
 #~ msgid "is public"
 #~ msgstr "é público"

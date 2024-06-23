@@ -8,7 +8,7 @@ rm -rf houses/migrations/0*.py
 poetry run python manage.py makemigrations
 poetry run python manage.py migrate
 
-# poetry run python manage.py loaddata auth/users
+poetry run python manage.py loaddata auth/users
 
 poetry run python manage.py loaddata houses/countries
 poetry run python manage.py loaddata houses/districts
