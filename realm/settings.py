@@ -10,21 +10,35 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
+import environ
+
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 
+
+env = environ.Env(
+    # set casting, default value
+    SECRET_KEY=(str, 'django-insecure-fx5nvn8o06=a0h($53#6th6u-kffxe6zfq_h(_d+dcu1@0emr1'),
+    DEBUG=(bool, False),
+    DATABASE_URL=(str, 'sqlite:///db.sqlite3')
+)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Take environment variables from .env file
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-fx5nvn8o06=a0h($53#6th6u-kffxe6zfq_h(_d+dcu1@0emr1'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -83,10 +97,7 @@ WSGI_APPLICATION = 'realm.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': env.db()
 }
 
 
