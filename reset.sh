@@ -19,7 +19,7 @@ poetry run python manage.py loaddata houses/locales
 poetry run python manage.py loaddata houses/conditions
 poetry run python manage.py loaddata houses/types
 poetry run python manage.py loaddata houses/typologies
-poetry run python manage.py loaddata houses/energies-cerficates.json
+poetry run python manage.py loaddata houses/energies-cerficates
 
 # poetry run python manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@realm.earth', 'secret', first_name='Alcina', last_name='Roque')"
 
