@@ -5529,9 +5529,6 @@ select {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.whitespace-pre {
-  white-space: pre;
-}
 .whitespace-pre-wrap {
   white-space: pre-wrap;
 }
@@ -5934,10 +5931,6 @@ select {
 
   .md\:justify-end {
     justify-content: flex-end;
-  }
-
-  .md\:text-left {
-    text-align: left;
   }
 
   .md\:text-2xl {
