@@ -10,6 +10,7 @@ admin.site.register(models.Municipality)
 admin.site.register(models.District)
 admin.site.register(models.Country)
 
+admin.site.register(models.HouseCondition)
 admin.site.register(models.HouseType)
 admin.site.register(models.HouseTypology)
 admin.site.register(models.EnergyCertificate)
