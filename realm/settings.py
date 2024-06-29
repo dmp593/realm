@@ -17,16 +17,19 @@ from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
 env = environ.Env(
     # set casting, default value
     SECRET_KEY=(str, 'django-insecure-fx5nvn8o06=a0h($53#6th6u-kffxe6zfq_h(_d+dcu1@0emr1'),
     DEBUG=(bool, False),
     ALLOWED_HOSTS=(list, ['*']),
-    DATABASE_URL=(str, 'sqlite:///db.sqlite3')
+    DATABASE_URL=(str, 'sqlite:///db.sqlite3'),
+    STATIC_ROOT=(str, BASE_DIR / 'static/'),
+    MEDIA_ROOT=(str, BASE_DIR / 'media/')
 )
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Take environment variables from .env file
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
@@ -148,6 +151,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+STATIC_ROOT = env('STATIC_ROOT')
+
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
@@ -157,7 +162,7 @@ STATICFILES_DIRS = [
 # Media files (Uploaded files)
 # https://docs.djangoproject.com/en/5.0/ref/settings/#media-root
 # https://docs.djangoproject.com/en/5.0/ref/settings/#media-url
-MEDIA_ROOT = BASE_DIR / 'media/'
+MEDIA_ROOT = env('MEDIA_ROOT')
 
 MEDIA_URL = 'media/'
 
