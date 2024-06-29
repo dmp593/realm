@@ -166,7 +166,7 @@ class HouseType(models.Model):
 
     class Meta:
         verbose_name = _('house type')
-        verbose_name_plural = _('house types')
+        verbose_name_plural = _('houses types')
         ordering = ['name']
 
 
@@ -189,7 +189,7 @@ class HouseTypology(models.Model):
 
     class Meta:
         verbose_name = _('house typology')
-        verbose_name_plural = _('house typologies')
+        verbose_name_plural = _('houses typologies')
         ordering = ['order', 'name',]
 
 

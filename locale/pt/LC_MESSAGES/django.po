@@ -1,23 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Daniel Pinto <dmp593@gmail.com>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-23 14:16+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Project-Id-Version: realm 1.0.0\n"
+"Report-Msgid-Bugs-To: Daniel Mendes Pinto <dmp593@gmail.com>\n"
+"POT-Creation-Date: 2024-06-29 00:50+0000\n"
+"PO-Revision-Date: 2024-06-29 01:55+0000\n"
+"Last-Translator: Daniel Mendes Pinto <dmp593@gmail.com>\n"
+"Language-Team: Portuguese Team <LL@li.org>\n"
+"Language: Portuguese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
 #: houses/models.py:36 houses/models.py:51 houses/models.py:75
 #: houses/models.py:99 houses/models.py:128 houses/models.py:161
 #: houses/models.py:179 houses/models.py:202 houses/models.py:225
@@ -30,7 +28,7 @@ msgstr "país"
 
 #: houses/models.py:44
 msgid "countries"
-msgstr "paises"
+msgstr "países"
 
 #: houses/models.py:64 houses/models.py:81
 msgid "district"
@@ -42,11 +40,11 @@ msgstr "distritos"
 
 #: houses/models.py:88 houses/models.py:105
 msgid "municipality"
-msgstr "município"
+msgstr "concelho"
 
 #: houses/models.py:89
 msgid "municipalities"
-msgstr "municípios"
+msgstr "concelhos"
 
 #: houses/models.py:112 houses/models.py:134
 msgid "parish"
@@ -58,19 +56,19 @@ msgstr "freguesias"
 
 #: houses/models.py:141 houses/models.py:276
 msgid "locale"
-msgstr "zona"
+msgstr "localidade"
 
 #: houses/models.py:142
 msgid "locales"
-msgstr "zonas"
+msgstr "localidades"
 
 #: houses/models.py:168
 msgid "house type"
 msgstr "tipo de casa"
 
 #: houses/models.py:169
-msgid "house types"
-msgstr "tipos de casa"
+msgid "houses types"
+msgstr "tipos de casas"
 
 #: houses/models.py:184 houses/models.py:207 houses/models.py:230
 #: houses/models.py:411 houses/models.py:468
@@ -79,11 +77,11 @@ msgstr "ordem"
 
 #: houses/models.py:191
 msgid "house typology"
-msgstr "tipologia de casa"
+msgstr "tipologia da casa"
 
 #: houses/models.py:192
-msgid "house typologies"
-msgstr "tipologias de casa"
+msgid "houses typologies"
+msgstr "tipologias das casas"
 
 #: houses/models.py:214
 msgid "house condition"
@@ -91,7 +89,7 @@ msgstr "condição da casa"
 
 #: houses/models.py:215
 msgid "house conditions"
-msgstr "condições de casa"
+msgstr "condições da casa"
 
 #: houses/models.py:237 houses/models.py:376
 msgid "energy certificate"
@@ -111,11 +109,11 @@ msgstr "descrição"
 
 #: houses/models.py:257
 msgid "address"
-msgstr "morada"
+msgstr "endereço"
 
 #: houses/models.py:265
 msgid "Not a valid postal-code. Pattern must be: XXXX-XXX"
-msgstr "Não é um código de postal valido. Padrão deve ser: XXXX-XXX"
+msgstr "Código postal inválido. O padrão deve ser: XXXX-XXX"
 
 #: houses/models.py:269
 msgid "postal code"
@@ -130,30 +128,24 @@ msgid "price in euros"
 msgstr "preço em euros"
 
 #: houses/models.py:298
-#, fuzzy
-#| msgid "price in euros"
 msgid "discount in euros"
 msgstr "desconto em euros"
 
 #: houses/models.py:306
-#, fuzzy
-#| msgid "house typology"
 msgid "typology"
-msgstr "tipologia de casa"
+msgstr "tipologia"
 
 #: houses/models.py:314
-#, fuzzy
-#| msgid "house condition"
 msgid "condition"
-msgstr "condição da casa"
+msgstr "condição"
 
 #: houses/models.py:325
 msgid "gross private area in square meters"
-msgstr "area bruta em metros quadrados"
+msgstr "área bruta privativa em m²"
 
 #: houses/models.py:336
 msgid "net internal area in square meters"
-msgstr "area útil em metros quadrados"
+msgstr "área interna líquida em m²"
 
 #: houses/models.py:345
 msgid "construction year"
@@ -208,10 +200,8 @@ msgid "filename"
 msgstr "nome do ficheiro"
 
 #: houses/models.py:462
-#, fuzzy
-#| msgid "house type"
 msgid "content type"
-msgstr "tipo de casa"
+msgstr "tipo de conteúdo"
 
 #: houses/models.py:475
 msgid "house file"
@@ -228,6 +218,3 @@ msgstr "Inglês"
 #: realm/settings.py:133
 msgid "Portuguese"
 msgstr "Português"
-
-#~ msgid "is public"
-#~ msgstr "é público"
