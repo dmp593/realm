@@ -21,6 +21,7 @@ env = environ.Env(
     # set casting, default value
     SECRET_KEY=(str, 'django-insecure-fx5nvn8o06=a0h($53#6th6u-kffxe6zfq_h(_d+dcu1@0emr1'),
     DEBUG=(bool, False),
+    ALLOWED_HOSTS=(list, ['*']),
     DATABASE_URL=(str, 'sqlite:///db.sqlite3')
 )
 
@@ -40,9 +41,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = [
-    '*'
-]
+ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 
 # Application definition
