@@ -27,7 +27,7 @@ env = environ.Env(
     DEBUG=(bool, False),
     ALLOWED_HOSTS=(list, ['*']),
     DATABASE_URL=(str, 'sqlite:///db.sqlite3'),
-    STATIC_ROOT=(str, BASE_DIR / 'static/'),
+    STATIC_ROOT=(str, None),
     MEDIA_ROOT=(str, BASE_DIR / 'media/')
 )
 
