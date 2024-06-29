@@ -27,8 +27,7 @@ class Command(BaseCommand):
             '-p',
             '--password',
             type=str,
-            default='.2048#Delfim10diana*',
-            help='Password for the superuser (default: ********************)'
+            help='Password for the superuser'
         )
         
         parser.add_argument(
@@ -50,8 +49,14 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         # Handle user arguments with defaults
         username = kwargs.get('username', 'alcinaroque')
+        
+        if 'password' not in kwargs:
+            raise CommandError('You must provide a password for the super user')
+        
+        password = kwargs.get('password')
+        
         email = kwargs.get('email', 'alcinaroque@alcinaroque.pt')
-        password = kwargs.get('password', '.2048#Delfim10diana*')
+        
         first_name = kwargs.get('first_name', 'Alcina')
         last_name = kwargs.get('last_name', 'Roque')
 
