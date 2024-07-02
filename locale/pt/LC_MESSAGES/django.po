@@ -109,7 +109,7 @@ msgstr "descrição"
 
 #: houses/models.py:257
 msgid "address"
-msgstr "endereço"
+msgstr "morada"
 
 #: houses/models.py:265
 msgid "Not a valid postal-code. Pattern must be: XXXX-XXX"

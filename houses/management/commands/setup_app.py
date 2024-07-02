@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User
 from django.core.management import call_command
@@ -27,6 +29,8 @@ class Command(BaseCommand):
             '-p',
             '--password',
             type=str,
+            required=not settings.DEBUG,
+            default='secret',
             help='Password for the superuser'
         )
         
@@ -48,20 +52,17 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         # Handle user arguments with defaults
-        username = kwargs.get('username', 'alcinaroque')
-        
-        if 'password' not in kwargs:
-            raise CommandError('You must provide a password for the super user')
-        
+        username = kwargs.get('username')
         password = kwargs.get('password')
         
-        email = kwargs.get('email', 'alcinaroque@alcinaroque.pt')
+        email = kwargs.get('email')
         
-        first_name = kwargs.get('first_name', 'Alcina')
-        last_name = kwargs.get('last_name', 'Roque')
+        first_name = kwargs.get('first_name')
+        last_name = kwargs.get('last_name')
 
         # Call migrate command
         self.stdout.write(self.style.NOTICE('Running migrate...'))
+        
         try:
             call_command('migrate')
         except CommandError as e:
@@ -92,7 +93,7 @@ class Command(BaseCommand):
         # Final success message
         self.stdout.write(
             self.style.SUCCESS(
-                'Initialization completed successfully.'
+                'Initialization completed successfully. '
                 'Migrations applied, initial data loaded, and superuser created.'
             )
         )

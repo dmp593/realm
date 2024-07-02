@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_styles %}
+
+{% block content %}
+<main class="flex-grow bg-gray-100 py-10">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+      <div class="p-6">
+        <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Adicionar Nova Casa</h2>
+        <form id="house-form" method="post" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {% csrf_token %}
+          {{ form.non_field_errors }}
+          <div class="col-span-1 md:col-span-2">
+            <label for="{{ form.title.id_for_label }}" class="block text-sm font-medium text-gray-700">Título</label>
+            {{ form.title|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.title.errors }}
+          </div>
+          <div class="col-span-1 md:col-span-2">
+            <label for="{{ form.description.id_for_label }}" class="block text-sm font-medium text-gray-700">Descrição</label>
+            {{ form.description|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.description.errors }}
+          </div>
+          <div class="col-span-1 md:col-span-2">
+            <label for="{{ form.address.id_for_label }}" class="block text-sm font-medium text-gray-700">Morada</label>
+            {{ form.address|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.address.errors }}
+          </div>
+          <div>
+            <label for="{{ form.postal_code.id_for_label }}" class="block text-sm font-medium text-gray-700">Código Postal</label>
+            {{ form.postal_code|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.postal_code.errors }}
+          </div>
+          <div>
+            <label for="{{ form.price_in_euros.id_for_label }}" class="block text-sm font-medium text-gray-700">Preço em Euros</label>
+            {{ form.price_in_euros|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.price_in_euros.errors }}
+          </div>
+          <div>
+            <label for="{{ form.discount_in_euros.id_for_label }}" class="block text-sm font-medium text-gray-700">Desconto em Euros</label>
+            {{ form.discount_in_euros|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.discount_in_euros.errors }}
+          </div>
+          <div>
+            <label for="{{ form.locale.id_for_label }}" class="block text-sm font-medium text-gray-700">Zona</label>
+            {{ form.locale|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.locale.errors }}
+          </div>
+          <div>
+            <label for="{{ form.type.id_for_label }}" class="block text-sm font-medium text-gray-700">Tipo</label>
+            {{ form.type|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.type.errors }}
+          </div>
+          <div>
+            <label for="{{ form.typology.id_for_label }}" class="block text-sm font-medium text-gray-700">Tipologia</label>
+            {{ form.typology|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.typology.errors }}
+          </div>
+          <div>
+            <label for="{{ form.condition.id_for_label }}" class="block text-sm font-medium text-gray-700">Condição</label>
+            {{ form.condition|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.condition.errors }}
+          </div>
+          <div>
+            <label for="{{ form.energy_certificate.id_for_label }}" class="block text-sm font-medium text-gray-700">Certificado Energético</label>
+            {{ form.energy_certificate|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.energy_certificate.errors }}
+          </div>
+          <div>
+            <label for="{{ form.gross_private_area_in_square_meters.id_for_label }}" class="block text-sm font-medium text-gray-700">Área Bruta Privativa (m²)</label>
+            {{ form.gross_private_area_in_square_meters|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.gross_private_area_in_square_meters.errors }}
+          </div>
+          <div>
+            <label for="{{ form.net_internal_area_in_square_meters.id_for_label }}" class="block text-sm font-medium text-gray-700">Área Útil (m²)</label>
+            {{ form.net_internal_area_in_square_meters|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.net_internal_area_in_square_meters.errors }}
+          </div>
+          <div>
+            <label for="{{ form.construction_year.id_for_label }}" class="block text-sm font-medium text-gray-700">Ano de Construção</label>
+            {{ form.construction_year|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.construction_year.errors }}
+          </div>
+          <div>
+            <label for="{{ form.number_of_rooms.id_for_label }}" class="block text-sm font-medium text-gray-700">Número de Quartos</label>
+            {{ form.number_of_rooms|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.number_of_rooms.errors }}
+          </div>
+          <div>
+            <label for="{{ form.number_of_bathrooms.id_for_label }}" class="block text-sm font-medium text-gray-700">Número de Casas de Banho</label>
+            {{ form.number_of_bathrooms|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.number_of_bathrooms.errors }}
+          </div>
+          <div>
+            <label for="{{ form.has_garage.id_for_label }}" class="block text-sm font-medium text-gray-700">Tem Garagem?</label>
+            {{ form.has_garage|add_class:"mt-1 block w-6 h-6 text-pink-500 border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.has_garage.errors }}
+          </div>
+          <div class="col-span-1 md:col-span-2">
+            <label for="files" class="block text-sm font-medium text-gray-700">Imagens e Vídeos</label>
+            <input type="file" name="files" id="files" multiple class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-pink-500 focus:border-pink-500">
+            <div id="preview-container" class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+            <div id="progress-container" class="mt-4">
+              <div id="progress-bar" class="h-2 bg-pink-500 rounded-full" style="width: 0%;"></div>
+            </div>
+          </div>
+          <div class="col-span-1 md:col-span-2">
+            <label for="{{ form.active.id_for_label }}" class="block text-sm font-medium text-gray-700">Ativo</label>
+            {{ form.active|add_class:"mt-1 block w-6 h-6 text-pink-500 border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.active.errors }}
+          </div>
+          <div class="col-span-1 md:col-span-2">
+            <label for="{{ form.highlighted.id_for_label }}" class="block text-sm font-medium text-gray-700">Destacado</label>
+            {{ form.highlighted|add_class:"mt-1 block w-6 h-6 text-pink-500 border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.highlighted.errors }}
+          </div>
+          <div class="col-span-1 md:col-span-2">
+            <label for="{{ form.reserved.id_for_label }}" class="block text-sm font-medium text-gray-700">Reservado</label>
+            {{ form.reserved|add_class:"mt-1 block w-6 h-6 text-pink-500 border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500" }}
+            {{ form.reserved.errors }}
+          </div>
+          <div class="col-span-1 md:col-span-2 flex justify-end">
+            <button type="submit" class="relative flex bg-pink-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-pink-700 transition-colors duration-300">
+                Adicionar Casa
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block script %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const dataTransfer = new DataTransfer();
+    const progressBar = document.getElementById('progress-bar');
+    const submitButton = document.querySelector('button[type="submit"]');
+
+    const maxVideoPreviewFileSize = 250 * 1024 * 1024; // 250MB
+
+    document.getElementById('files').addEventListener('change', function(event) {
+        const previewContainer = document.getElementById('preview-container');
+        Array.from(event.target.files).forEach((file, index) => {
+            dataTransfer.items.add(file);
+            const previewElement = document.createElement('div');
+            previewElement.classList.add('relative', 'w-full', 'h-32', 'rounded-lg', 'shadow-md', 'overflow-hidden');
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.classList.add('w-full', 'h-full', 'object-cover');
+                    previewElement.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            } else if (file.type.startsWith('video/')) {
+                if (file.size < maxVideoPreviewFileSize) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const video = document.createElement('video');
+                        video.src = e.target.result;
+                        video.classList.add('w-full', 'h-full', 'object-cover');
+                        video.controls = true; // Add controls to the video
+                        previewElement.appendChild(video);
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    const icon = document.createElement('i');
+                    icon.classList.add('ph-bold', 'ph-video', 'text-4xl', 'text-gray-500', 'flex', 'items-center', 'justify-center', 'w-full', 'h-full');
+                    previewElement.appendChild(icon);
+                }
+            } else {
+                const icon = document.createElement('i');
+                icon.classList.add('ph-bold', 'ph-file', 'text-4xl', 'text-gray-500', 'flex', 'items-center', 'justify-center', 'w-full', 'h-full');
+                previewElement.appendChild(icon);
+            }
+            const removeButton = document.createElement('span');
+            removeButton.innerHTML = '<i class="ph-bold ph-x"></i>';
+            removeButton.classList.add('absolute', 'top-1', 'right-1', 'bg-red-500', 'text-white', 'rounded-full', 'w-6', 'h-6', 'flex', 'items-center', 'justify-center', 'cursor-pointer', 'z-50');
+            removeButton.addEventListener('click', function() {
+                previewElement.remove();
+                dataTransfer.items.remove(index);
+                event.target.files = dataTransfer.files;
+            });
+            previewElement.appendChild(removeButton);
+            previewContainer.appendChild(previewElement);
+        });
+        event.target.files = dataTransfer.files;
+    });
+
+    function uploadFiles(houseId) {
+        return new Promise((resolve, reject) => {
+            const files = dataTransfer.files;
+            const chunkSize = 1024 * 1024; // 1MB
+            const maxConcurrentUploads = 3; // Limit the number of concurrent uploads
+            let activeUploads = 0;
+            const queue = [];
+            let totalUploaded = 0;
+            const totalSize = Array.from(files).reduce((acc, file) => acc + file.size, 0);
+
+            function uploadChunk(file, chunkIndex, totalChunks, fileId, houseId, filename, order) {
+                const chunk = file.slice(chunkIndex * chunkSize, (chunkIndex + 1) * chunkSize);
+                const formData = new FormData();
+                formData.append('file', chunk);
+                formData.append('chunkIndex', chunkIndex);
+                formData.append('totalChunks', totalChunks);
+                formData.append('fileId', fileId);
+                formData.append('houseId', houseId);
+                formData.append('filename', filename);
+                formData.append('order', order);
+
+                fetch("{% url 'upload_chunk' %}", {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    }
+                }).then(response => response.json()).then(data => {
+                    if (data.status === 'ok') {
+                        totalUploaded += chunk.size;
+                        progressBar.style.width = `${(totalUploaded / totalSize) * 100}%`;
+                        if (chunkIndex === totalChunks - 1) {
+                            console.log(`File ${filename} uploaded successfully.`);
+                        }
+                    }
+                    activeUploads--;
+                    processQueue();
+                }).catch(error => {
+                    console.error('Error uploading chunk:', error);
+                    activeUploads--;
+                    processQueue();
+                });
+            }
+
+            function processQueue() {
+                while (activeUploads < maxConcurrentUploads && queue.length > 0) {
+                    const { file, chunkIndex, totalChunks, fileId, houseId, filename, order } = queue.shift();
+                    activeUploads++;
+                    uploadChunk(file, chunkIndex, totalChunks, fileId, houseId, filename, order);
+                }
+                if (queue.length === 0 && activeUploads === 0) {
+                    resolve();
+                }
+            }
+
+            Array.from(files).forEach((file, index) => {
+                const totalChunks = Math.ceil(file.size / chunkSize);
+                const fileId = `house_${index}`;
+                for (let i = 0; i < totalChunks; i++) {
+                    queue.push({
+                        file,
+                        chunkIndex: i,
+                        totalChunks,
+                        fileId,
+                        houseId,
+                        filename: file.name,
+                        order: index + 1
+                    });
+                }
+            });
+
+            processQueue();
+        });
+    }
+
+    document.getElementById('house-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        submitButton.classList.add('disabled');
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'A processar...';
+
+        const formData = new FormData(this);
+        fetch("{% url 'house_create' %}", {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        }).then(response => response.json()).then(data => {
+            if (data.house_id) {
+                const houseId = data.house_id;
+                // submitButton.disabled = false;
+                // submitButton.innerHTML = 'Adicionar Casa';
+                uploadFiles(houseId).then(() => {
+                    window.location.href = data.success_url;
+                });
+            }
+        }).catch(error => {
+            console.error('Error creating house:', error);
+        });
+    });
+});
+</script>
+{% endblock %}

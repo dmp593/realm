@@ -24,6 +24,7 @@ const HTML = {
     // House Detail
     '../houses/templates/houses/components/house_card_header.html': 'src/templates/houses/components/house_card_header.html',
     '../houses/templates/houses/components/house_card_summary.html': 'src/templates/houses/components/house_card_summary.html',
+    '../houses/templates/houses/house_create.html': 'src/templates/houses/house_create.html',
     '../houses/templates/houses/house_detail.html': 'src/templates/houses/house_detail.html',
 }
 

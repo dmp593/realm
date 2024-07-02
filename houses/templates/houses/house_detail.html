@@ -5,6 +5,7 @@
 
 {% block link %}
 <link rel="stylesheet" href="{% static 'css/house_detail.css' %}">
+<link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
 {% endblock %}
 
 {% block content %}
@@ -46,10 +47,10 @@
         {% endif %}
         {% if house.videos %}
         <div x-show="tab === 'videos'" class="tab-content">
-          <video controls class="w-full h-auto">
-            <source src="{{ house.videos.0.file.url }}" type="{{ house.videos.0.content_type }}">
-            O navegador não suporta vídeo.
-          </video>
+            <video id="player" playsinline controls class="w-full h-auto">
+              <source src="{{ house.videos.0.file.url }}" type="{{ house.videos.0.content_type }}" />
+              O navegador não suporta vídeo.
+            </video>
         </div>
         {% endif %}
       </div>
@@ -59,7 +60,7 @@
 
         <div class="grid grid-cols-1 pt-10 md:grid-cols-2 gap-4">
           <div class="mb-4">
-            <span class="font-bold">Endereço:</span> {{ house.address|default:"(Ausente / Não Aplicável)" }}
+            <span class="font-bold">Morada:</span> {{ house.address|default:"(Ausente / Não Aplicável)" }}
           </div>
           <div class="mb-4">
             <span class="font-bold">Código Postal:</span> {{ house.postal_code|default:"(Ausente / Não Aplicável)" }}
@@ -80,7 +81,7 @@
             <span class="font-bold">Número de Casas de Banho:</span> {{ house.number_of_bathrooms|default:"(Ausente / Não Aplicável)" }}
           </div>
           <div class="mb-4">
-            <span class="font-bold">Tem Garagem:</span> {{ house.has_garage|yesno:"Sim,Não" }}
+            <span class="font-bold">Garagem:</span> {{ house.has_garage|yesno:"Sim,Não" }}
           </div>
           <div class="mb-4">
             <span class="font-bold">Certificado Energético:</span> {{ house.energy_certificate.name|default:"(Ausente / Não Aplicável)" }}
@@ -125,9 +126,11 @@
 
 {% block script %}
 <script src="{% static 'js/houses/house_detail.js' %}"></script>
-
+<script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const player = new Plyr('#player');
+
     setupMapAddress("{{ house.address }}, {{ house.locale.parish.name }}, {{ house.locale.parish.municipality.district.name }}, {{ house.locale.parish.municipality.district.country.name }}")
   })
 </script>

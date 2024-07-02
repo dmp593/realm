@@ -6,6 +6,9 @@
             <a href="{% url 'contacts' %}" class="hidden md:block hover:text-indigo-900">Contactos</a>
         </div>
         <div class="flex items-center space-x-8">
+            {% if user.is_authenticated and user.is_staff %}
+            <a href="{% url 'house_create' %}" class="hidden md:block hover:text-indigo-900 font-bold">Publicar Casa</a>
+            {% endif %}
             <a href="{% url 'admin:index' %}" class="hidden md:block hover:text-indigo-900">
                 <i class="ph-bold ph-sign-in"></i>
             </a>
@@ -30,6 +33,13 @@
                             Contactos
                         </a>
                     </li>
+                    {% if user.is_authenticated and user.is_staff %}
+                        <li>
+                            <a href="{% url 'house_create' %}" class="text-sm">
+                                Publicar Casa
+                            </a>
+                        </li>
+                    {% endif %}
                     <li>
                         <a href="{% url 'admin:index' %}" class="text-sm">
                             Área Reservada
