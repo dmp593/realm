@@ -7,10 +7,11 @@
 
         <title>{% block title %}Alcina Imóveis{% endblock %}</title>
 
+        <style>[x-cloak]{display:none;}</style>
         {% block link %}{% endblock %}
     </head>
 
-    <body class="flex flex-col h-screen" style="display: none">
+    <body class="flex flex-col h-screen" x-cloak>
         {% include "components/header.html" %}
 
         {% block content %}{% endblock %}

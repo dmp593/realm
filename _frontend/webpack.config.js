@@ -118,11 +118,7 @@ module.exports = (env, argv) => {
                     },
                 },
             },
-        },
-        performance: {
-            maxAssetSize: 512000, // 500 KiB
-            maxEntrypointSize: 512000, // 500 KiB
-        },
+        }
     }
 }
 

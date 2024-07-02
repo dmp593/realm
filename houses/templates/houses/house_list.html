@@ -17,7 +17,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {% for house in houses %}
       <div class="bg-white rounded-lg {% if house.highlighted %}shadow-gold{% else %}shadow-lg{% endif %}">
-        <img src="{{ house.cover.file.url }}" alt="Casa" class="w-full h-48 object-cover rounded-t-lg">
+        <img loading="lazy" src="{{ house.cover.file.url }}" alt="Casa" class="w-full h-48 object-cover rounded-t-lg">
         <div class="p-6">          
           {% include "houses/components/house_card_header.html" %}
           {% include "houses/components/house_card_summary.html" %}

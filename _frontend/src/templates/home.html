@@ -15,7 +15,7 @@
         <!-- Slides -->
         {% for house in houses %}
         <div class="swiper-slide bg-white border-y shadow-lg overflow-hidden">
-          <img class="w-full h-48 md:h-64 lg:h-80 object-cover" src="{{ house.cover.file.url }}" alt="House 1">
+          <img loading="lazy" src="{{ house.cover.file.url }}" class="w-full h-48 md:h-64 lg:h-80 object-cover"  alt="House Cover">
           <div class="p-6">
             {% include "houses/components/house_card_header.html" %}
             {% include "houses/components/house_card_summary.html" %}

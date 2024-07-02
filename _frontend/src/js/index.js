@@ -38,8 +38,3 @@ import('alpinejs').then(module => {
     const Alpine = module.default;
     Alpine.start();
 });
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    document.body.removeAttribute('style')
-})
