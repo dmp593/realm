@@ -1,6 +1,5 @@
 import('@phosphor-icons/web/regular');
-
-import '../../css/house_detail.css';
+import('../../css/house_detail.css');
 
 function setMapCoords(lat, lon, layer) {
     const container = document.getElementById('map-container');

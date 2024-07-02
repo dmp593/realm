@@ -1,5 +1,5 @@
 /* Import base CSS */
-import '../css/index.css';
+import ('../css/index.css');
 
 
 /* Dynamically import Swiper JS */
