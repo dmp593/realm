@@ -128,6 +128,14 @@ class HouseCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     def test_func(self):
         return self.request.user.is_staff
 
+    def form_invalid(self, form):
+        response = {
+            'errors': form.errors,
+            'non_field_errors': form.non_field_errors(),
+        }
+        
+        return JsonResponse(response, status=400)
+
     def form_valid(self, form):
         self.object = form.save()
 

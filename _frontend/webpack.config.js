@@ -1,6 +1,9 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+
 
 
 const HTML = {
@@ -43,37 +46,72 @@ const JS = {
     }
 }
 
-module.exports = {
-    mode: 'production',
-    entry: Object.fromEntries(
-        new Map(
-            Object.keys(JS).map(k => [k, JS[k].src])
-        ).entries()
-    ),
-    output: {
-        filename: (pathData) => {
-            console.log(JS[pathData.chunk.name].out)
-            return JS[pathData.chunk.name].out
+module.exports = (env, argv) => {
+    const isProduction = argv.mode === 'production';
+
+    return {
+        entry: Object.fromEntries(
+            new Map(
+                Object.keys(JS).map(k => [k, JS[k].src])
+            ).entries()
+        ),
+        output: {
+            filename: (pathData) => {
+                console.log(JS[pathData.chunk.name].out)
+                return JS[pathData.chunk.name].out
+            },
+            path: path.resolve(__dirname, '../static'),
         },
-        path: path.resolve(__dirname, '../static'),
-    },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: 'css/[name].css',
-        }),
-        ...Object.keys(HTML).map(k => new HtmlWebpackPlugin({ 
-            filename: k,
-            template: HTML[k],
-            inject: false,
-            minify: false,
-        }))
-    ],
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
-            }
-        ]
-    },
-};
+        plugins: [
+            new MiniCssExtractPlugin({
+                filename: 'css/[name].css',
+            }),
+            ...Object.keys(HTML).map(k => new HtmlWebpackPlugin({
+                filename: k,
+                template: HTML[k],
+                inject: false,
+                minify: false,
+            }))
+        ],
+        module: {
+            rules: [
+                {
+                    test: /\.js$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env']
+                        }
+                    }
+                },
+                {
+                    test: /\.css$/,
+                    use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
+                }
+            ]
+        },
+        optimization: {
+            minimize: true,
+            minimizer: [
+                new TerserPlugin(),
+                new CssMinimizerPlugin(),
+            ],
+            splitChunks: {
+                chunks: 'all',
+                cacheGroups: {
+                    vendors: {
+                        test: /[\\/]node_modules[\\/]/,
+                        name: 'vendors',
+                        chunks: 'all',
+                    },
+                },
+            },
+        },
+        performance: {
+            maxAssetSize: 512000, // 500 KiB
+            maxEntrypointSize: 512000, // 500 KiB
+        },
+    }
+}
+
