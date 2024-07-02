@@ -1,7 +1,7 @@
 {% load custom_formats %}
 
 <div class="flex flex-col justify-between items-center mb-4">
-    <h1 class="text-xl md:text-2xl xl:text-4xl font-bold break-words text-left w-full">
+    <h1 class="text-xl md:text-2xl font-bold break-words text-left w-full">
         <span class="text-pink-400">#{{ house.pk }}</span> {{ house.title }}
         {% if house.reserved %}
         <span style="padding: 0.3rem 0.5rem;" class="bg-yellow-300 text-gray-600 text-sm italic border-lg rounded-lg shadow-lg bg-orange-300">Reservado</span>
