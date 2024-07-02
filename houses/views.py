@@ -6,7 +6,7 @@ from django.db.models.base import Model
 from django.db.models.query import QuerySet
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import View, ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView
 from django.http import JsonResponse
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
@@ -133,7 +133,7 @@ class HouseCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
             'errors': form.errors,
             'non_field_errors': form.non_field_errors(),
         }
-        
+
         return JsonResponse(response, status=400)
 
     def form_valid(self, form):
@@ -145,13 +145,14 @@ class HouseCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         })
 
 
-class ChunkedUploadView(View):
+class ChunkedUploadView(DetailView):
+    queryset = models.House.objects_selling.all()
+
     def post(self, request, *args, **kwargs):
         file = request.FILES['file']
         chunk_index = int(request.POST['chunkIndex'])
         total_chunks = int(request.POST['totalChunks'])
         file_id = request.POST['fileId']
-        house_id = request.POST['houseId']
         filename = request.POST['filename']
         order = request.POST['order']
 
@@ -170,7 +171,7 @@ class ChunkedUploadView(View):
 
             # Create the HouseFile instance
             house_file = models.HouseFile(
-                house_id=house_id,
+                house_id=self.get_object().pk,
                 filename=filename,
                 order=order
             )
