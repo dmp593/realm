@@ -1,5 +1,5 @@
-/* Import CSS */
-import '../css/index.css';
+/* Import base CSS */
+import ('../css/index.css');
 
 
 /* Dynamically import Swiper JS */
@@ -7,7 +7,7 @@ import('swiper/bundle').then(module => {
     const Swiper = module.default;
     import('swiper/swiper-bundle.css');
 
-    document.addEventListener('DOMContentLoaded', function () {
+    function initSwiper() {
         const swiper = new Swiper('.swiper', {
             loop: true,
             pagination: {
@@ -19,14 +19,18 @@ import('swiper/bundle').then(module => {
                 prevEl: '.swiper-button-prev',
             },
         });
-    });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSwiper);
+    } else {
+        initSwiper();
+    }
 });
 
 
 /* Dynamically import Phosphor Icons */
-import('@phosphor-icons/web/bold').then(module => {
-    // You can use the icons here if needed
-});
+import('@phosphor-icons/web/bold');
 
 
 /* Dynamically import Alpine JS */

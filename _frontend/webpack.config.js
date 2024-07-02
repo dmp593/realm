@@ -40,6 +40,10 @@ const JS = {
         src: './src/js/houses/house_list_filters.js',
         out: 'js/houses/house_list_filters.js'
     },
+    house_create: {
+        src: './src/js/houses/house_create.js',
+        out: 'js/houses/house_create.js'
+    },
     house_detail: {
         src: './src/js/houses/house_detail.js',
         out: 'js/houses/house_detail.js'
@@ -61,6 +65,7 @@ module.exports = (env, argv) => {
                 return JS[pathData.chunk.name].out
             },
             path: path.resolve(__dirname, '../static'),
+            clean: true,
         },
         plugins: [
             new MiniCssExtractPlugin({
@@ -94,7 +99,13 @@ module.exports = (env, argv) => {
         optimization: {
             minimize: isProduction,
             minimizer: [
-                new TerserPlugin(),
+                new TerserPlugin({
+                    terserOptions: {
+                        compress: {
+                            drop_console: true,
+                        },
+                    },
+                }),
                 new CssMinimizerPlugin(),
             ],
             splitChunks: {

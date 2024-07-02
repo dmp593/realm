@@ -12,7 +12,7 @@
 <main class="flex-grow">
   <div class="container mx-auto px-4 py-10">
     <div class="bg-white {% if house.highlighted %}shadow-gold{% else %}shadow-lg{% endif %} overflow-hidden">
-      <div x-data="{ tab: 'images' }" class="tabs">
+      <div x-data="{ tab: {% if house.images %} 'images' {% elif house.videos %} 'videos' {% else %} '' {% endif %} }" class="tabs">
         <ul class="flex justify-center md:justify-end border-b">
           {% if house.images %}
           <li class="mr-1">
