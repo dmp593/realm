@@ -209,7 +209,7 @@ msgstr "ficheiro da casa"
 
 #: houses/models.py:476
 msgid "house files"
-msgstr "ficheiros da casa"
+msgstr "ficheiros das casas"
 
 #: realm/settings.py:132
 msgid "English"

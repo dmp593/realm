@@ -1,5 +1,7 @@
 from django.contrib import admin
 
+from django.db.models import FileField
+from image_uploader_widget.widgets import ImageUploaderWidget
 from image_uploader_widget.admin import OrderedImageUploaderInline
 
 from houses import models
@@ -17,14 +19,20 @@ admin.site.register(models.HouseTypology)
 admin.site.register(models.EnergyCertificate)
 
 
-class HouseFileAdmin(OrderedImageUploaderInline):
-    accept = "image/*,video/*"
+@admin.register(models.HouseFile)
+class HouseFileAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        FileField: {'widget': ImageUploaderWidget},
+    }
+
+
+class HouseFileInlineAdmin(OrderedImageUploaderInline):
     model = models.HouseFile
 
 
 @admin.register(models.House)
 class HouseAdmin(admin.ModelAdmin):
-    inlines = [HouseFileAdmin]
+    inlines = [HouseFileInlineAdmin]
 
     list_display = (
         'title',
