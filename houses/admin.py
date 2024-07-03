@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from image_uploader_widget.admin import OrderedImageUploaderInline
 
 from houses import models
 
@@ -16,7 +17,8 @@ admin.site.register(models.HouseTypology)
 admin.site.register(models.EnergyCertificate)
 
 
-class HouseFileAdmin(admin.StackedInline):
+class HouseFileAdmin(OrderedImageUploaderInline):
+    accept = "image/*,video/*"
     model = models.HouseFile
 
 
