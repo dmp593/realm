@@ -13,6 +13,7 @@ window.setupCreateHouse = function (csrfToken) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     const img = document.createElement('img');
+                    img.loading = 'lazy';
                     img.src = e.target.result;
                     img.classList.add('w-full', 'h-full', 'object-cover');
                     previewElement.appendChild(img);
