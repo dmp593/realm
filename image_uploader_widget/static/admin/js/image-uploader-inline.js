@@ -1,22 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     let DRAGGING_EDITOR = null;
     let DRAGGING_COUNTER = 0;
-
-    const DELETE_ICON = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="100%" height="100%">
-            <path xmlns="http://www.w3.org/2000/svg" d="m289.94 256 95-95A24 24 0 0 0 351 127l-95 95-95-95a24 24 0 0 0-34 34l95 95-95 95a24 24 0 1 0 34 34l95-95 95 95a24 24 0 0 0 34-34z"></path>
-        </svg>
-        `
-
-    const PREVIEW_ICON = `
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="100%" height="100%">
-            <path xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"></path>
-            <path xmlns="http://www.w3.org/2000/svg" d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"></path>
-            <path xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z"></path>
-        </svg>
-    `
-
     window.uploaderEditors = {};
+    const DELETE_ICON = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="100%" height="100%"><path xmlns="http://www.w3.org/2000/svg" d="m289.94 256 95-95A24 24 0 0 0 351 127l-95 95-95-95a24 24 0 0 0-34 34l95 95-95 95a24 24 0 1 0 34 34l95-95 95 95a24 24 0 0 0 34-34z"></path></svg>';
+    const PREVIEW_ICON = '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="100%" height="100%"><path xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"></path><path xmlns="http://www.w3.org/2000/svg" d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"></path><path xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z"></path></svg>';
 
     const REGEX_VIDEO_EXTENSIONS = /\.(mp4|webm|ogg|mov)$/;
 
@@ -36,17 +23,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function getManagementInputs(prefix) {
+        const totalForms = document.querySelector('#id_' + prefix + '-TOTAL_FORMS');
+        const initialForms = document.querySelector('#id_' + prefix + '-INITIAL_FORMS');
+        const minNumForms = document.querySelector('#id_' + prefix + '-MIN_NUM_FORMS');
+        const maxNumForms = document.querySelector('#id_' + prefix + '-MAX_NUM_FORMS');
         return {
-            totalForms: document.querySelector(`#id_${prefix}-TOTAL_FORMS`),
-            initialForms: document.querySelector(`#id_${prefix}-INITIAL_FORMS`),
-            minNumForms: document.querySelector(`#id_${prefix}-MIN_NUM_FORMS`),
-            maxNumForms: document.querySelector(`#id_${prefix}-MAX_NUM_FORMS`),
-        }
+            totalForms: totalForms,
+            initialForms: initialForms,
+            minNumForms: minNumForms,
+            maxNumForms: maxNumForms,
+        };
     }
 
     function getFromEmptyTemplate(editor) {
         const template = editor.element.querySelector('.inline-related.empty-form');
-
         if (!template) {
             return null;
         }
@@ -82,14 +72,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!url) {
             const inputOrder = editor.orderField ? ' , .field-' + editor.orderField + ' input' : '';
             const inputs = element.querySelectorAll('input[type=hidden], input[type=checkbox], input[type=file]' + inputOrder);
-
             for (const item of inputs) {
                 item.parentElement.removeChild(item);
             }
-
             url = getAndUpdateDataRaw(element);
             element.innerHTML = '';
-
             for (const item of inputs) {
                 element.appendChild(item)
             }
@@ -99,43 +86,59 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const related = django.jQuery(element).closest('.inline-related')
+        let deleteIcon = null;
+        const related = element.closest('.inline-related');
 
-        related.on('click', (e) => handleItemPreviewClick(e, mediatype))
-
+        related.addEventListener('click', (e) => {
+            handleItemPreviewClick(e, mediatype);
+        });
         if (editor.orderField) {
-            related.on('dragstart', handleItemPreviewDragStart)
-            related.on('dragend', handleItemPreviewDragEnd)
+            related.addEventListener('dragstart', handleItemPreviewDragStart);
+            related.addEventListener('dragend', handleItemPreviewDragEnd);
         }
 
-        django.jQuery('input[type=file]', related).on('change', handleItemPreviewFileChange)
+        related.querySelector('input[type=file]').addEventListener('change', handleItemPreviewFileChange);
 
-        const canDelete = related.data('candelete')
-        if (canDelete) {
-            django.jQuery(element).append(`
-                <span class="iuw-delete-icon">
-                    ${DELETE_ICON}
-                </span>
-            `)
+        if (related.getAttribute('data-candelete') === 'true') {
+            deleteIcon = document.createElement('span');
+            deleteIcon.classList.add('iuw-delete-icon');
+            deleteIcon.innerHTML = DELETE_ICON;
         }
 
         if (editor.canPreview) {
-            django.jQuery(element).append(`
-                <span class="iuw-preview-icon ${!canDelete ? 'iuw-only-preview' : ''}">
-                    ${PREVIEW_ICON}
-                </span>
-            `);
+            const span = document.createElement('span');
+            span.classList.add('iuw-preview-icon');
+            if (related.getAttribute('data-candelete') !== 'true') {
+                span.classList.add('iuw-only-preview');
+            }
+            span.innerHTML = PREVIEW_ICON;
+            element.appendChild(span);
         }
 
         if (!mediatype) {
-            mediatype = url.match(REGEX_VIDEO_EXTENSIONS) ? 'video/*' : 'image/*'
+            if (url.match(REGEX_VIDEO_EXTENSIONS)) {
+                mediatype = 'video/*'
+            } else {
+                mediatype = 'image/*'
+            }
         }
 
-        django.jQuery(element).append(
-            mediatype.startsWith('video/')
-                ? `<video src="${url}" controls></video>`
-                : `<img loading="lazy" src="${url}" alt="preview">`
-        )
+        if (mediatype.startsWith('video/')) {
+            const video = document.createElement('video');
+            video.controls = true;
+            video.src = url;
+            element.appendChild(video);
+        } else {
+            // default is image... even if media type is not.
+            const img = document.createElement('img');
+            img.loading = 'lazy';
+            img.src = url;
+            element.appendChild(img);
+        }
+
+        if (deleteIcon) {
+            element.appendChild(deleteIcon);
+        }
     }
 
     function handleItemPreviewDragStart(e) {
@@ -159,15 +162,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const fileInput = e.target;
         const files = fileInput.files;
-
         if (!files.length) {
             return;
         }
 
-        const mediatype = files[0].type
-        const lookup = `> .inline-related ${mediatype.startsWith('video/') ? 'video' : 'img'}`
-        debugger
-        django.jQuery(lookup, fileInput).attr('src', URL.createObjectURL(files[0]))
+        const mediatype = files[0].type;
+        const mediatTag = fileInput.closest('.inline-related').querySelector(mediatype.startsWith('video/') ? 'video' : 'img');
+
+        if (mediatTag) {
+            mediatTag.src = URL.createObjectURL(files[0]);
+        }
     }
 
     function handleItemPreviewRemove(editor, element) {
@@ -588,11 +592,19 @@ document.addEventListener('DOMContentLoaded', function() {
         updateEmptyState(editor);
         updateAllIndexes(editor);
 
-        django.jQuery('.inline-related:not(#housefile_set-empty):not(:has([data-raw]))').each((i, elem) => elem.remove())
-        django.jQuery('.inline-related').each((i, elem) => updatePreviewState(editor, elem))
+        const related = element.querySelectorAll('.inline-related');
+        for (const item of related) {
+            updatePreviewState(editor, item);
+            if (item.id !== 'housefile_set-empty' && !item.dataset.raw) {
+                item.remove()
+            }
+        }
 
         bindEvents(editor);
     }
 
-    django.jQuery('.iuw-inline-root').each((i, elem) => buildInlineEditor(elem))
+    const elements = document.querySelectorAll('.iuw-inline-root');
+    for (const element of elements) {
+        buildInlineEditor(element);
+    }
 });
