@@ -1,10 +1,6 @@
 from django.contrib import admin
 
-from django.db.models import FileField
-from image_uploader_widget.widgets import ImageUploaderWidget
-from image_uploader_widget.admin import OrderedImageUploaderInline
-
-from houses import models
+from houses import models, forms
 
 
 admin.site.register(models.Locale)
@@ -21,18 +17,17 @@ admin.site.register(models.EnergyCertificate)
 
 @admin.register(models.HouseFile)
 class HouseFileAdmin(admin.ModelAdmin):
-    formfield_overrides = {
-        FileField: {'widget': ImageUploaderWidget},
-    }
+    form = forms.HouseFileForm
 
 
-class HouseFileInlineAdmin(OrderedImageUploaderInline):
+class HouseFileStackedInline(admin.StackedInline):
     model = models.HouseFile
+    form = forms.HouseFileForm
 
 
 @admin.register(models.House)
 class HouseAdmin(admin.ModelAdmin):
-    inlines = [HouseFileInlineAdmin]
+    inlines = [HouseFileStackedInline]
 
     list_display = (
         'title',

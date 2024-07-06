@@ -15,12 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.utils.translation import gettext_lazy as _
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from realm.views import HomePageView, ContactsPageView
+from realm.views import HomePageView, ContactsPageView, FileUploadView
 
 
 urlpatterns = [
@@ -31,5 +30,7 @@ urlpatterns = [
     
     path('admin/', admin.site.urls),
     path('houses/', include('houses.urls')),
+
+    path('upload/', FileUploadView.as_view(), name='upload'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

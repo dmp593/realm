@@ -27,7 +27,6 @@ const HTML = {
     // House Detail
     '../houses/templates/houses/components/house_card_header.html': 'src/templates/houses/components/house_card_header.html',
     '../houses/templates/houses/components/house_card_summary.html': 'src/templates/houses/components/house_card_summary.html',
-    '../houses/templates/houses/house_create.html': 'src/templates/houses/house_create.html',
     '../houses/templates/houses/house_detail.html': 'src/templates/houses/house_detail.html',
 }
 
@@ -39,10 +38,6 @@ const JS = {
     house_list_filters: {
         src: './src/js/houses/house_list_filters.js',
         out: 'js/houses/house_list_filters.js'
-    },
-    house_create: {
-        src: './src/js/houses/house_create.js',
-        out: 'js/houses/house_create.js'
     },
     house_detail: {
         src: './src/js/houses/house_detail.js',

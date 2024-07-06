@@ -1,36 +1,45 @@
+import shutil
+import mimetypes
+
+from pathlib import Path
+from urllib.parse import unquote
+
 from django import forms
-from houses.models import House
+from django.conf import settings
+from django.core.files.storage import default_storage
+
+from houses.models import House, HouseFile
+from houses.widgets import FilePreviewWidget
+
+LEN_MEDIA_URL = len(settings.MEDIA_URL)
 
 
-class HouseForm(forms.ModelForm):
+class HouseFileForm(forms.ModelForm):
+    file = forms.FileField(widget=FilePreviewWidget, required=False)
+    tmp_file = forms.CharField(widget=forms.HiddenInput(), required=False)
+
     class Meta:
-        model = House
-        fields = [
-            'title',
-            'description',
+        model = HouseFile
+        fields = '__all__'
 
-            'address',
-            'postal_code',
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
-            'price_in_euros',
-            'discount_in_euros',
+    def save(self, commit=True):
+        tmp_file = self.cleaned_data.get('tmp_file')
 
-            'locale',
-            'type',
-            'typology',
-            'condition',
-            'energy_certificate',
+        if tmp_file:
+            if self.instance.file and default_storage.exists(self.instance.file.name):
+                default_storage.delete(self.instance.file.name)
 
-            'gross_private_area_in_square_meters',
-            'net_internal_area_in_square_meters',
+            tmp_file = Path(default_storage.location).joinpath(unquote(tmp_file)[LEN_MEDIA_URL:])
 
-            'construction_year',
+            self.instance.filename = tmp_file.name
+            self.instance.content_type = mimetypes.guess_type(self.instance.filename)[0]
 
-            'number_of_rooms',
-            'number_of_bathrooms',
-            'has_garage',
+            with open(tmp_file, 'rb') as f:
+                self.instance.file.save(self.instance.filename, f)
 
-            'active',
-            'highlighted',
-            'reserved',
-        ]
+            shutil.rmtree(tmp_file.parent)
+
+        return super().save(commit)

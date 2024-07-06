@@ -5,14 +5,9 @@ from django.core.paginator import Paginator
 from django.db.models.base import Model
 from django.db.models.query import QuerySet
 from django.db.models import Q
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, CreateView
-from django.http import JsonResponse
-from django.core.files.base import ContentFile
-from django.core.files.storage import default_storage
-from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView
 
-from houses import models, forms
+from houses import models
 
 
 class HouseListView(ListView):
@@ -117,73 +112,3 @@ class HouseDetailView(DetailView):
                 obj.videos.append(file)
 
         return obj
-
-
-class HouseCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
-    model = models.House
-    form_class = forms.HouseForm
-    template_name = 'houses/house_create.html'
-    success_url = reverse_lazy('house_list')
-
-    def test_func(self):
-        return self.request.user.is_staff
-
-    def form_invalid(self, form):
-        response = {
-            'errors': form.errors,
-            'non_field_errors': form.non_field_errors(),
-        }
-
-        return JsonResponse(response, status=400)
-
-    def form_valid(self, form):
-        self.object = form.save()
-
-        return JsonResponse({
-            'house_id': self.object.pk,
-            'success_url': self.get_success_url()
-        })
-
-
-class ChunkedUploadView(DetailView):
-    queryset = models.House.objects_selling.all()
-
-    def post(self, request, *args, **kwargs):
-        file = request.FILES['file']
-        chunk_index = int(request.POST['chunkIndex'])
-        total_chunks = int(request.POST['totalChunks'])
-        file_id = request.POST['fileId']
-        filename = request.POST['filename']
-        order = request.POST['order']
-
-        chunk_name = f"{file_id}_chunk_{chunk_index}"
-        default_storage.save(chunk_name, ContentFile(file.read()))
-
-        if chunk_index == total_chunks - 1:
-            # Combine chunks
-            final_file = ContentFile(b'')
-            for i in range(total_chunks):
-                chunk_name = f"{file_id}_chunk_{i}"
-                chunk_file = default_storage.open(chunk_name)
-                final_file.write(chunk_file.read())
-                chunk_file.close()
-                default_storage.delete(chunk_name)
-
-            # Create the HouseFile instance
-            house_file = models.HouseFile(
-                house_id=self.get_object().pk,
-                filename=filename,
-                order=order
-            )
-
-            # Save the combined file
-            final_file_path = models.house_file_upload_to(house_file, filename)
-            house_file.file = default_storage.save(final_file_path, final_file)
-
-            # Determine the content type
-            content_type, _ = mimetypes.guess_type(final_file_path)
-            house_file.content_type = content_type
-
-            house_file.save()
-
-        return JsonResponse({'status': 'ok'})

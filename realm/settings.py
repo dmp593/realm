@@ -46,6 +46,10 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+XS_SHARING_ALLOWED_METHODS = ['HEAD', 'GET', 'OPTIONS',]
+
 
 # Application definition
 
@@ -56,8 +60,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'image_uploader_widget',
 
     'houses',
 ]
@@ -80,6 +82,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR / 'templates',
+            BASE_DIR / 'realm' / 'templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
