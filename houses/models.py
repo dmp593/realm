@@ -469,9 +469,9 @@ class HouseFile(models.Model):
     )
 
     def __str__(self):
-        return f"{self.house} | {self.filename}"
+        return f"{self.filename}"
 
     class Meta:
         verbose_name = _('house file')
         verbose_name_plural = _('house files')
-        ordering = ['-house', 'order',]
+        ordering = ['order',]

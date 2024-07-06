@@ -1,4 +1,5 @@
 from django.contrib import admin
+from adminsortable2.admin import SortableAdminBase, SortableStackedInline
 
 from houses import models, forms
 
@@ -18,15 +19,27 @@ admin.site.register(models.EnergyCertificate)
 @admin.register(models.HouseFile)
 class HouseFileAdmin(admin.ModelAdmin):
     form = forms.HouseFileForm
+    ordering = ('-house', 'order')
+
+    list_display = (
+        'house',
+        'filename',
+        'content_type'
+    )
+
+    list_filter = (
+        'house',
+        'content_type',
+    )
 
 
-class HouseFileStackedInline(admin.StackedInline):
+class HouseFileStackedInline(SortableStackedInline):
     model = models.HouseFile
     form = forms.HouseFileForm
 
 
 @admin.register(models.House)
-class HouseAdmin(admin.ModelAdmin):
+class HouseAdmin(SortableAdminBase, admin.ModelAdmin):
     inlines = [HouseFileStackedInline]
 
     list_display = (
