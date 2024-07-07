@@ -1,61 +1,48 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('DOMContentLoaded', function() {
     const CHUNK_UPLOAD_SIZE = 4_194_304; // 4 MB chunk size (4 * 1024 * 1024)
-    const CSRF_TOKEN = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+    const CSRF_TOKEN = django.jQuery('input[name="csrfmiddlewaretoken"]').val();
 
     // Create a single reusable modal element
-    const modal = document.createElement('div');
-    modal.classList.add('modal');
+    const $modal = django.jQuery('<div class="modal"><span class="close">&times;</span><div class="modal-content"></div></div>');
+    django.jQuery('body').append($modal);
+    const $modalContent = $modal.find('.modal-content');
+    const $closeModalButton = $modal.find('.close');
 
-    modal.innerHTML = `
-        <span class="close">&times;</span>
-        <div class="modal-content"></div>
-    `;
-
-    document.body.appendChild(modal);
-
-    const modalContent = modal.querySelector('.modal-content');
-    const closeModalButton = modal.querySelector('.close');
-
-    function openModal(content) {
-        if (!['IMG', 'VIDEO', 'IFRAME'].includes(content.tagName)) {
+    function openModal($content) {
+        if (!['IMG', 'VIDEO', 'IFRAME'].includes($content.prop('tagName'))) {
             return;
         }
-
-        const clone = content.cloneNode(true);
-        clone.style.width = '100%';
-        clone.style.height = '90vh';
-        clone.style.objectFit = 'contain';
-
-        modalContent.innerHTML = '';
-        modalContent.appendChild(clone);
-        modal.style.display = 'block';
+        const $clone = $content.clone().css({
+            width: '100%',
+            height: '90vh',
+            objectFit: 'contain'
+        });
+        $modalContent.empty().append($clone);
+        $modal.show();
     }
 
     function closeModal() {
-        modal.style.display = 'none';
-        modal.querySelector('.modal-content').innerHTML = '';
+        $modal.hide();
+        $modalContent.empty();
     }
 
-    closeModalButton.addEventListener('click', closeModal);
-
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) {
+    $closeModalButton.on('click', closeModal);
+    django.jQuery(window).on('click', function(event) {
+        if (django.jQuery(event.target).is($modal)) {
             closeModal();
         }
     });
 
-    async function uploadFileInChunks(fileInput, url, method) {
-        const file = fileInput.files[0];
+    async function uploadFileInChunks($fileInput, url, method) {
+        const file = $fileInput[0].files[0];
         const totalChunks = Math.ceil(file.size / CHUNK_UPLOAD_SIZE);
         const fileId = crypto.randomUUID();
-
         let file_url = null;
 
         for (let chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++) {
             const start = chunkIndex * CHUNK_UPLOAD_SIZE;
             const end = Math.min(start + CHUNK_UPLOAD_SIZE, file.size);
             const chunk = file.slice(start, end);
-
             const formData = new FormData();
             formData.append('file', chunk);
             formData.append('fileId', fileId);
@@ -81,146 +68,120 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
 
-        // All chunks uploaded
         console.log('Upload complete');
+        const tmpFileInputName = $fileInput.attr('name').replace(/file$/, 'tmp_file');
+        let $tmpFileInput = django.jQuery(`input[name="${tmpFileInputName}"]`);
 
-        // Update the tmp_file input
-        const tmpFileInputName = fileInput.getAttribute('name').replace(/file$/, 'tmp_file');
-        let tmpFileInput = document.querySelector(`input[name="${tmpFileInputName}"]`);
-
-        if (!tmpFileInput) {
-            tmpFileInput = document.createElement('input');
-            tmpFileInput.setAttribute('type', 'hidden');
-            tmpFileInput.setAttribute('name', tmpFileInputName);
-
-            fileInput.closest('.file-preview-container .clearable-file-input').appendChild(tmpFileInput);
+        if (!$tmpFileInput.length) {
+            $tmpFileInput = django.jQuery('<input>', {
+                type: 'hidden',
+                name: tmpFileInputName
+            });
+            $fileInput.closest('.file-preview-container .clearable-file-input').append($tmpFileInput);
         }
 
-        tmpFileInput.value = file_url;
-        fileInput.value = null;
+        $tmpFileInput.val(file_url);
+        $fileInput.val(null);
     }
 
-    function initializeOnChangeShowFilePreview(fileInput) {
-        fileInput.addEventListener("change", async function(event) {
+    function initializeOnChangeShowFilePreview($fileInput) {
+        $fileInput.on('change', async function(event) {
             const dataTransfer = new DataTransfer();
-
             for (let index = 1; index < event.target.files.length; ++index) {
-                dataTransfer.items.add(event.target.files[index])
+                dataTransfer.items.add(event.target.files[index]);
             }
 
             const file = event.target.files[0];
-            const container = event.target.closest('.file-preview-container');
+            const $container = $fileInput.closest('.file-preview-container');
+            const $filePreview = $container.find('.file-preview');
+            let $preview = $filePreview.children().first();
 
-            const filePreview = container.querySelector('.file-preview');
-
-            let preview = filePreview.firstChild;
-
-            if (!!preview) {
-                filePreview.innerHTML = '';
+            if ($preview.length) {
+                $filePreview.empty();
             }
 
             if (file.type.startsWith('image/')) {
-                preview = document.createElement('img');
-                preview.loading = 'lazy';
+                $preview = django.jQuery('<img>', { loading: 'lazy' });
             } else if (file.type.startsWith('video/')) {
-                preview = document.createElement('video');
-                preview.controls = true;
+                $preview = django.jQuery('<video>', { controls: true });
             } else if (file.type === 'application/pdf') {
-                preview = document.createElement('iframe');
+                $preview = django.jQuery('<iframe>');
             } else {
-                preview = document.createElement('p');
-                preview.textContent = file.name;
+                $preview = django.jQuery('<p>').text(file.name);
             }
 
-            preview.className = 'file-preview-element';
-            preview.style.width = '250px';
-            preview.style.height = '150px';
-            preview.style.objectFit = 'cover';
-            preview.style.borderRadius = '5px';
-            preview.style.transition = 'transform 0.3s ease';
-            preview.style.cursor = 'pointer';
+            $preview.addClass('file-preview-element').css({
+                width: '250px',
+                height: '150px',
+                objectFit: 'cover',
+                borderRadius: '5px',
+                transition: 'transform 0.3s ease',
+                cursor: 'pointer'
+            });
 
-            filePreview.appendChild(preview);
+            $filePreview.append($preview);
 
             if (file.type === 'application/pdf') {
-                filePreview.style.position = 'relative';
-
-                const wrapper = document.createElement('div');
-                wrapper.className = 'file-preview-element-wrapper';
-
-                container.querySelector('.file-preview').appendChild(wrapper)
-
-                wrapper.addEventListener('click', function(e) {
-                    openModal(preview);
-                });
-
+                $filePreview.css('position', 'relative');
+                const $clickLayer = django.jQuery('<div>', { class: 'file-preview-click-layer' });
+                $container.find('.file-preview').append($clickLayer);
+                $clickLayer.on('click', function() { openModal($preview); });
             } else {
-                preview.addEventListener('click', function(e) {
-                    openModal(preview);
-                });
+                $preview.on('click', function() { openModal($preview); });
             }
 
-            preview.src = URL.createObjectURL(file);
-            preview.style.display = 'block';
+            $preview.attr('src', URL.createObjectURL(file)).show();
 
-            // Start chunked upload
-            const uploadUrl = fileInput.getAttribute('data-chunked-upload-url');
-            const uploadMethod = fileInput.getAttribute('data-chunked-upload-method') || 'POST';
+            const uploadUrl = $fileInput.data('chunked-upload-url');
+            const uploadMethod = $fileInput.data('chunked-upload-method') || 'POST';
+            await uploadFileInChunks($fileInput, uploadUrl, uploadMethod);
 
-            await uploadFileInChunks(fileInput, uploadUrl, uploadMethod);
+            if ($fileInput.prop('multiple') && dataTransfer.items.length > 0) {
+                let availableContainers = django.jQuery(".inline-related:not(.empty-form):not(:has('.file-preview-element'))");
+                const containersToAdd = dataTransfer.items.length - availableContainers.length;
 
-            // Handle multiple file uploads
-            if (fileInput.multiple && dataTransfer.items.length > 0) {
-                let availableContainers = django.jQuery(".inline-related:not(.empty-form):not(:has('.file-preview-element'))")
-
-                const containersToAdd = dataTransfer.items.length - availableContainers.length
                 if (containersToAdd > 0) {
-                    const addRow = document.querySelector('.add-row a')
-                    addRow.dispatchEvent(new Event('click'))
-
-                    availableContainers = django.jQuery(".inline-related:not(.empty-form):not(:has('.file-preview-element'))")
+                    const $addRow = django.jQuery('.add-row a');
+                    $addRow.trigger('click');
+                    availableContainers = django.jQuery(".inline-related:not(.empty-form):not(:has('.file-preview-element'))");
                 }
 
-                const fileInput = availableContainers.get(0).querySelector('.file-preview-container input[type="file"]')
-                fileInput.files = dataTransfer.files
-                fileInput.dispatchEvent(new Event('change'));
+                const $newFileInput = availableContainers.first().find('.file-preview-container input[type="file"]');
+                $newFileInput[0].files = dataTransfer.files;
+                $newFileInput.trigger('change');
             }
         });
     }
 
-    function initializeOnClickOpenModal(fileInput) {
-        // Handle existing previews
-        const container = fileInput.closest('.file-preview-container');
+    function initializeOnClickOpenModal($fileInput) {
+        const $container = $fileInput.closest('.file-preview-container');
+        const $filePreviewClickLayer = $container.find('.file-preview-click-layer');
+        const $filePreview = $container.find('.file-preview-element');
 
-        let filePreviewWrapper = container.querySelector('.file-preview-element-wrapper');
-        let filePreview = container.querySelector('.file-preview-element');
-
-        if (filePreview) {
-            (filePreviewWrapper || filePreview).addEventListener('click', function(e) {
-                openModal(filePreview);
+        if ($filePreview.length) {
+            ($filePreviewClickLayer.length ? $filePreviewClickLayer : $filePreview).on('click', function() {
+                openModal($filePreview);
             });
         }
     }
 
-    function initializeFileInput(fileInput) {
-        initializeOnChangeShowFilePreview(fileInput);
-        initializeOnClickOpenModal(fileInput);
+    function initializeFileInput($fileInput) {
+        initializeOnChangeShowFilePreview($fileInput);
+        initializeOnClickOpenModal($fileInput);
     }
 
-    document.querySelectorAll('.file-preview-container input[type="file"]').forEach(initializeFileInput);
+    django.jQuery('.file-preview-container input[type="file"]').each(function() {
+        initializeFileInput(django.jQuery(this));
+    });
 
     setTimeout(() => {
-        const addRow = document.querySelector('.add-row a')
-
-        if (addRow) {
-            addRow.addEventListener('click', function () {
-                const containers = django.jQuery(".inline-related:not(.empty-form):not(:has('.file-preview-element'))");
-                const lastContainer = containers[containers.length - 1];
-
-                initializeFileInput(
-                    lastContainer.querySelector('.file-preview-container input[type="file"]')
-                )
-            })
+        const $addRow = django.jQuery('.add-row a');
+        if ($addRow.length) {
+            $addRow.on('click', function() {
+                const $containers = django.jQuery(".inline-related:not(.empty-form):not(:has('.file-preview-element'))");
+                const $lastContainer = $containers.last();
+                initializeFileInput($lastContainer.find('.file-preview-container input[type="file"]'));
+            });
         }
-    }, 1)
+    }, 1);
 });

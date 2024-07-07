@@ -10,7 +10,7 @@
                 <video src="{{ widget.value.url }}" controls id="file-preview-{{ widget.name }}" class="file-preview-element"></video>
             {% elif widget.value.name|endswith:'.pdf' %}
                 <iframe src="{{ widget.value.url }}" width="250" height="150" class="file-preview-element"></iframe>
-                <div class="file-preview-element-wrapper"></div>
+                <div class="file-preview-click-layer"></div>
             {% else %}
                 <p id="file-preview-{{ widget.name }}" class="file-preview-element">{{ widget.value.name }}</p>
             {% endif %}
