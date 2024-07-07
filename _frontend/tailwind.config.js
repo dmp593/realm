@@ -11,7 +11,7 @@ module.exports = {
       },
       colors: {
         gold: '#FFD700',
-      },
+      }
     },
   },
   plugins: [

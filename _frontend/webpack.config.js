@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 const HTML = {
@@ -71,7 +71,15 @@ module.exports = (env, argv) => {
                 template: HTML[k],
                 inject: false,
                 minify: false,
-            }))
+            })),
+            new CopyWebpackPlugin({
+                patterns: [
+                    {
+                        from: 'src/img',
+                        to: 'img'
+                    }
+                ],
+            }),
         ],
         module: {
             rules: [
