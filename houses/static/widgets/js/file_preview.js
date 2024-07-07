@@ -138,11 +138,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if ($fileInput.prop('multiple') && dataTransfer.items.length > 0) {
                 let availableContainers = django.jQuery(".inline-related:not(.empty-form):not(:has('.file-preview-element'))");
-                const containersToAdd = dataTransfer.items.length - availableContainers.length;
 
-                if (containersToAdd > 0) {
-                    const $addRow = django.jQuery('.add-row a');
-                    $addRow.trigger('click');
+                if ((dataTransfer.items.length - availableContainers.length) > 0) {
+                    django.jQuery('.add-row a').trigger('click');
                     availableContainers = django.jQuery(".inline-related:not(.empty-form):not(:has('.file-preview-element'))");
                 }
 
@@ -170,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeOnClickOpenModal($fileInput);
     }
 
-    django.jQuery('.file-preview-container input[type="file"]').each(function() {
+    django.jQuery('.inline-related:not(.empty-form) .file-preview-container input[type="file"]').each(function() {
         initializeFileInput(django.jQuery(this));
     });
 
@@ -178,9 +176,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const $addRow = django.jQuery('.add-row a');
         if ($addRow.length) {
             $addRow.on('click', function() {
-                const $containers = django.jQuery(".inline-related:not(.empty-form):not(:has('.file-preview-element'))");
-                const $lastContainer = $containers.last();
-                initializeFileInput($lastContainer.find('.file-preview-container input[type="file"]'));
+                const $lastAdded = django.jQuery(".inline-related:not(.empty-form)").last();
+                initializeFileInput($lastAdded.find('.file-preview-container input[type="file"]'));
             });
         }
     }, 1);
