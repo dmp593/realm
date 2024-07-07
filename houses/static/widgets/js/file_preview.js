@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     closeModalButton.addEventListener('click', closeModal);
+
     window.addEventListener('click', function(event) {
         if (event.target === modal) {
             closeModal();
@@ -99,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function() {
         fileInput.value = null;
     }
 
-    function initializeFilePreview(fileInput) {
+    function initializeOnChangeShowFilePreview(fileInput) {
         fileInput.addEventListener("change", async function(event) {
             const dataTransfer = new DataTransfer();
 
@@ -187,9 +188,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    function init(fileInput) {
-        initializeFilePreview(fileInput);
-
+    function initializeOnClickOpenModal(fileInput) {
         // Handle existing previews
         const container = fileInput.closest('.file-preview-container');
 
@@ -203,18 +202,25 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    document.querySelectorAll('.file-preview-container input[type="file"]').forEach(init);
+    function initializeFileInput(fileInput) {
+        initializeOnChangeShowFilePreview(fileInput);
+        initializeOnClickOpenModal(fileInput);
+    }
+
+    document.querySelectorAll('.file-preview-container input[type="file"]').forEach(initializeFileInput);
 
     setTimeout(() => {
         const addRow = document.querySelector('.add-row a')
 
-        addRow.addEventListener('click', function () {
-            const containers = django.jQuery(".inline-related:not(.empty-form):not(:has('.file-preview-element'))");
-            const lastContainer = containers[containers.length - 1];
+        if (addRow) {
+            addRow.addEventListener('click', function () {
+                const containers = django.jQuery(".inline-related:not(.empty-form):not(:has('.file-preview-element'))");
+                const lastContainer = containers[containers.length - 1];
 
-            init(
-                lastContainer.querySelector('.file-preview-container input[type="file"]')
-            )
-        })
+                initializeFileInput(
+                    lastContainer.querySelector('.file-preview-container input[type="file"]')
+                )
+            })
+        }
     }, 1)
 });
