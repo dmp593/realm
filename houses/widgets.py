@@ -25,3 +25,10 @@ class FilePreviewWidget(ClearableFileInput):
         context['widget']['attrs']['data-chunked-upload-method'] = self.chunked_upload_method
 
         return context
+
+
+class FilePreviewInlineWidget(FilePreviewWidget):
+    def get_context(self, name, value, attrs):
+        context = super().get_context(name, value, attrs)
+        context['widget']['attrs']['multiple'] = True
+        return context

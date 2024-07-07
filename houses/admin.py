@@ -1,5 +1,4 @@
 from django.contrib import admin
-from adminsortable2.admin import SortableAdminBase, SortableStackedInline
 
 from houses import models, forms
 
@@ -33,13 +32,14 @@ class HouseFileAdmin(admin.ModelAdmin):
     )
 
 
-class HouseFileStackedInline(SortableStackedInline):
+class HouseFileStackedInline(admin.StackedInline):
     model = models.HouseFile
-    form = forms.HouseFileForm
+    form = forms.HouseFileInlineForm
 
 
 @admin.register(models.House)
-class HouseAdmin(SortableAdminBase, admin.ModelAdmin):
+class HouseAdmin(admin.ModelAdmin):
+    form = forms.HouseForm
     inlines = [HouseFileStackedInline]
 
     list_display = (

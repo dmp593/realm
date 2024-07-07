@@ -101,6 +101,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function initializeFilePreview(fileInput) {
         fileInput.addEventListener("change", async function(event) {
+            const dataTransfer = new DataTransfer();
+
+            for (let index = 1; index < event.target.files.length; ++index) {
+                dataTransfer.items.add(event.target.files[index])
+            }
+
             const file = event.target.files[0];
             const container = event.target.closest('.file-preview-container');
 
@@ -161,10 +167,27 @@ document.addEventListener("DOMContentLoaded", function() {
             const uploadMethod = fileInput.getAttribute('data-chunked-upload-method') || 'POST';
 
             await uploadFileInChunks(fileInput, uploadUrl, uploadMethod);
+
+            // Handle multiple file uploads
+            if (fileInput.multiple && dataTransfer.items.length > 0) {
+                let availableContainers = django.jQuery(".inline-related:not(.empty-form):not(:has('.file-preview-element'))")
+
+                const containersToAdd = dataTransfer.items.length - availableContainers.length
+                if (containersToAdd > 0) {
+                    const addRow = document.querySelector('.add-row a')
+                    addRow.dispatchEvent(new Event('click'))
+
+                    availableContainers = django.jQuery(".inline-related:not(.empty-form):not(:has('.file-preview-element'))")
+                }
+
+                const fileInput = availableContainers.get(0).querySelector('.file-preview-container input[type="file"]')
+                fileInput.files = dataTransfer.files
+                fileInput.dispatchEvent(new Event('change'));
+            }
         });
     }
 
-    document.querySelectorAll('.file-preview-container input[type="file"]').forEach(function(fileInput) {
+    function init(fileInput) {
         initializeFilePreview(fileInput);
 
         // Handle existing previews
@@ -178,5 +201,20 @@ document.addEventListener("DOMContentLoaded", function() {
                 openModal(filePreview);
             });
         }
-    });
+    }
+
+    document.querySelectorAll('.file-preview-container input[type="file"]').forEach(init);
+
+    setTimeout(() => {
+        const addRow = document.querySelector('.add-row a')
+
+        addRow.addEventListener('click', function () {
+            const containers = django.jQuery(".inline-related:not(.empty-form):not(:has('.file-preview-element'))");
+            const lastContainer = containers[containers.length - 1];
+
+            init(
+                lastContainer.querySelector('.file-preview-container input[type="file"]')
+            )
+        })
+    }, 1)
 });
