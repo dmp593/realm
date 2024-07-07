@@ -77,6 +77,10 @@ module.exports = (env, argv) => {
                     {
                         from: 'src/img',
                         to: 'img'
+                    },
+                    {
+                        from: 'src/site.webmanifest',
+                        to: 'site.webmanifest'
                     }
                 ],
             }),
