@@ -74,6 +74,13 @@ module.exports = (env, argv) => {
                 inject: false,
                 minify: false,
             })),
+            new PurgeCSSPlugin({
+                paths: glob.sync([
+                    path.join(__dirname, 'src/**/*.html'),
+                    path.join(__dirname, 'src/**/*.js'),
+                ]),
+                safelist: { deep: [/^dark:/] }, // Example of preserving specific classes
+            }),
             new CopyWebpackPlugin({
                 patterns: [
                     {
@@ -85,13 +92,6 @@ module.exports = (env, argv) => {
                         to: 'site.webmanifest'
                     }
                 ],
-            }),
-            new PurgeCSSPlugin({
-                paths: glob.sync([
-                    path.join(__dirname, 'src/**/*.html'),
-                    path.join(__dirname, 'src/**/*.js'),
-                ]),
-                safelist: { deep: [/^dark:/] }, // Example of preserving specific classes
             }),
         ],
         module: {
