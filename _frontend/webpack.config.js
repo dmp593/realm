@@ -4,8 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
-const glob = require('glob');
 
 
 const HTML = {
@@ -74,13 +72,6 @@ module.exports = (env, argv) => {
                 inject: false,
                 minify: false,
             })),
-            new PurgeCSSPlugin({
-                paths: glob.sync([
-                    path.join(__dirname, 'src/**/*.html'),
-                    path.join(__dirname, 'src/**/*.js'),
-                ]),
-                safelist: { deep: [/^dark:/] }, // Example of preserving specific classes
-            }),
             new CopyWebpackPlugin({
                 patterns: [
                     {
