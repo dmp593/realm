@@ -82,7 +82,7 @@ class HouseAdmin(admin.ModelAdmin):
             params = {
                 'access_token': access_token,
                 'published': 'false',
-                'url': image.url,
+                'url': image.file.url,
             }
 
             response = requests.post(upload_url, params=params)
