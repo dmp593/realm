@@ -63,3 +63,14 @@
     font-weight: bold;
     cursor: pointer;
 }
+.draggable h3 {
+  cursor: grab;
+}
+.dragging {
+  opacity: 0.593;
+}
+.placeholder {
+  background-color: #ccc;
+  border: 2px dashed #456C86;
+  min-height: 50px;
+}

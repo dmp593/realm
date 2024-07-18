@@ -8,7 +8,7 @@
                     @mouseover="$event.target.src = '{% static "img/logo_simple_accent.svg" %}'"
                     @mouseout="$event.target.src = '{% static "img/logo_simple.svg" %}'">
             </a>
-            <a href="{% url 'house_list' %}" class="hidden md:block hover:text-indigo-900">Casas</a>
+            <a href="{% url 'houses:list' %}" class="hidden md:block hover:text-indigo-900">Casas</a>
             <a href="{% url 'contacts' %}" class="hidden md:block hover:text-indigo-900">Contactos</a>
         </div>
         <div class="flex items-center space-x-8">
@@ -27,7 +27,7 @@
             <div x-show="open" x-transition:enter.duration.750ms x-transition:leave.duration.500ms>
                 <ul class="text-right text-xl py-2 space-y-2">
                     <li>
-                        <a href="{% url 'house_list' %}">
+                        <a href="{% url 'houses:list' %}">
                             Casas
                         </a>
                     </li>

@@ -1,0 +1,851 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"HTTP_40",
+				"HTTP_401_UNAUTHORIZED"
+			],
+			[
+				"content_t",
+				"content_type__app_label"
+			],
+			[
+				"Tags",
+				"TagsListView"
+			],
+			[
+				"vi",
+				"views"
+			],
+			[
+				"res",
+				"rest_framework"
+			],
+			[
+				"view",
+				"viewsets"
+			],
+			[
+				"List",
+				"ListModelMixin"
+			],
+			[
+				"filter",
+				"filter_queryset"
+			],
+			[
+				"per_",
+				"perform_bulk_destroy"
+			],
+			[
+				"conten",
+				"content_type"
+			],
+			[
+				"Anon",
+				"IsAuthenticatedOrReadOnly"
+			],
+			[
+				"tag",
+				"TagsViewSet"
+			],
+			[
+				"Destro",
+				"DestroyModelMixin"
+			],
+			[
+				"resol",
+				"resolver_match"
+			],
+			[
+				"TENAN",
+				"TENANT_APPS"
+			],
+			[
+				"TEN",
+				"TENANT_APPS"
+			],
+			[
+				"get",
+				"get_current_tenant"
+			],
+			[
+				"app",
+				"app_label"
+			],
+			[
+				"TENATN",
+				"TENANT_APPS"
+			],
+			[
+				"dra",
+				"dragContainer"
+			],
+			[
+				"inl",
+				"inlineAdminFormset"
+			],
+			[
+				"wi",
+				"window"
+			],
+			[
+				"pad",
+				"padTime"
+			],
+			[
+				"paddin",
+				"padding-right"
+			],
+			[
+				"oran",
+				"orangered"
+			],
+			[
+				"fea",
+				"feather"
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"mi",
+				"middle"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"is",
+				"isStopWatch"
+			],
+			[
+				"tim",
+				"timerType"
+			],
+			[
+				"run",
+				"runCountdown"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"crea",
+				"createApp"
+			],
+			[
+				"sec",
+				"secondsTxt"
+			],
+			[
+				"minu",
+				"minutesTxt"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"pieces: ",
+				"Pieces: Launch Onboarding"
+			],
+			[
+				"Pieces:",
+				"Pieces: About"
+			],
+			[
+				"pieces sett",
+				"Pieces: Open Pieces Settings"
+			],
+			[
+				"pieces: ask",
+				"Pieces: Ask about the current project"
+			],
+			[
+				"pieces: reload",
+				"Pieces: Reload Plugin"
+			],
+			[
+				"pieces: setting",
+				"Pieces: Open Pieces Settings"
+			],
+			[
+				"pieces:",
+				"Pieces: Ask about the current project"
+			],
+			[
+				"package control ins",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"pieces: relo",
+				"Pieces: Reload Plugin"
+			],
+			[
+				"terminus view",
+				"Terminus: Open Default Shell in Tab (View)"
+			],
+			[
+				"toggle",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"debugger: start",
+				"Debugger: Start (no debug)"
+			],
+			[
+				"termi",
+				"Terminus: List Shells"
+			],
+			[
+				"debugger sett",
+				"Preferences: Debugger Settings"
+			],
+			[
+				"debugger:",
+				"Debugger: Start (no debug)"
+			],
+			[
+				"Debugger",
+				"Debugger: Open"
+			],
+			[
+				"Debugg",
+				"Debugger: Open"
+			],
+			[
+				"term",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"toggl",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"merge:",
+				"Sublime Merge: Open Repository"
+			],
+			[
+				"togg",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"package control: ",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"update",
+				"Help: Check for Updates"
+			],
+			[
+				"pieces: logi",
+				"Pieces: Launch Onboarding"
+			],
+			[
+				"pieces: asl",
+				"Pieces: Ask about the current file"
+			],
+			[
+				"pieces",
+				"Pieces: Ask about the current project"
+			],
+			[
+				"temrinus open",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"Terminus: open",
+				"Terminus: Open Default Shell in Tab (View)"
+			],
+			[
+				"Terminus: ",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"terminus: ",
+				"Terminus: List Shells"
+			],
+			[
+				"terminus: Open",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"terminus toggle",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"Debugg: oep",
+				"Debugger: Open"
+			],
+			[
+				"de",
+				"Debugger: Open"
+			],
+			[
+				"terminus: clo",
+				"Terminus: Close All"
+			],
+			[
+				"terminu open",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"debugg",
+				"Debugger: Open"
+			],
+			[
+				"toggle ter",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"terminus:",
+				"Terminus Utilities: Select Theme"
+			],
+			[
+				"terminus open",
+				"Terminus: Open Default Shell in Panel"
+			],
+			[
+				"Debu",
+				"Debugger: Open"
+			],
+			[
+				"Debugger: ",
+				"Debugger: Open"
+			],
+			[
+				"Debugger: Togg",
+				"Debugger: Toggle Disassembly"
+			],
+			[
+				"termin",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"install ada",
+				"Debugger: Install Adapters"
+			],
+			[
+				"Debugger ",
+				"Debugger: Open"
+			],
+			[
+				"setting s debugg",
+				"Preferences: Debugger Settings"
+			],
+			[
+				"debugger open",
+				"Debugger: Open"
+			],
+			[
+				"Debugger: Ope",
+				"Debugger: Open"
+			],
+			[
+				"DebuggeR:",
+				"Debugger: Start (no debug)"
+			],
+			[
+				"console",
+				"Debugger: Clear Console"
+			],
+			[
+				"Debugger: Open",
+				"Debugger: Open"
+			],
+			[
+				"Debugger: Ins",
+				"Debugger: Install Adapters"
+			],
+			[
+				"Debugger: Install adapters",
+				"Debugger: Install Adapters"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"terminus  tab",
+				"Terminus: Open Default Shell in Tab (View)"
+			],
+			[
+				"list pac",
+				"Package Control: List Packages"
+			],
+			[
+				"tog",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"termn",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"toggle termin",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"packages list",
+				"Package Control: List Packages"
+			],
+			[
+				"settings",
+				"Preferences: Settings"
+			],
+			[
+				"distraction",
+				"View: Toggle Distraction Free"
+			],
+			[
+				"Theme",
+				"UI: Customize Theme"
+			],
+			[
+				"theme",
+				"UI: Select Theme"
+			],
+			[
+				"distrac",
+				"Preferences: Settings – Distraction Free"
+			],
+			[
+				"django",
+				"Set Syntax: Django HTML"
+			],
+			[
+				"terminal",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"install p",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Add Channel"
+			],
+			[
+				"key bin",
+				"Preferences: Key Bindings"
+			],
+			[
+				"remove pa",
+				"Package Control: Remove Package"
+			],
+			[
+				"list pack",
+				"Package Control: List Packages"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"terminua",
+				"Preferences: Terminus Command Palette"
+			],
+			[
+				"Install P",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 907.0,
+		"history":
+		[
+			"clear"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": true,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/dmp593/Code/personal/realm",
+		"/Users/dmp593/Code/personal/realm/fixtures",
+		"/Users/dmp593/Code/personal/realm/houses"
+	],
+	"file_history":
+	[
+		"/Users/dmp593/Code/personal/realm/realm.sublime-project",
+		"/Users/dmp593/Code/setwin/mywise/mywise.sublime-project",
+		"/Users/dmp593/Code/setwin/mywise/frontend/node_modules/nuxt/node_modules/@nuxt/devtools/dist/chunks/vscode.mjs",
+		"/Users/dmp593/Code/setwin/mywise/backend/tags/views.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/tags/tests.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/.venv/lib/python3.12/site-packages/rest_framework/generics.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/.venv/lib/python3.12/site-packages/rest_framework/views.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/tags/serializers.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/tags/urls.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/.venv/lib/python3.12/site-packages/rest_framework/mixins.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/.venv/lib/python3.12/site-packages/timestamps/drf/mixins.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/tags/fixtures/tags/tags.json",
+		"/Users/dmp593/Code/setwin/mywise/backend/.venv/lib/python3.12/site-packages/rest_framework/permissions.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/tags/models.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/.venv/lib/python3.12/site-packages/rest_framework/viewsets.py",
+		"/Users/dmp593/.zshrc",
+		"/Users/dmp593/Code/setwin/mywise/backend/mywise/urls.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/tenants/middleware.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/manage.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/tenants/utils.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/mywise/settings.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/health/urls.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/mywise/views.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/health/views.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/health/apps.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/healthcheck/urls.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/resources/serializers.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/tenants/db/router.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/tenants/management/commands/create_tenant.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/users/management/commands/setup_tenant.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/resources/views.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/resources/utils.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/.venv/lib/python3.12/site-packages/rest_framework/routers.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/.env.example",
+		"/Users/dmp593/Code/setwin/mywise/backend/.env",
+		"/Users/dmp593/Code/setwin/mywise/backend/courses/models.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/courses/serializers.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/courses/tests/courses.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/resources/fixtures/resources/resources.json",
+		"/Users/dmp593/Code/setwin/mywise/backend/courses/views/courses.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/courses/fixtures/courses/courses.json",
+		"/Users/dmp593/Code/setwin/mywise/backend/.gitignore",
+		"/Users/dmp593/Code/setwin/mywise/backend/resources/tests/resources.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/courses/apps.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/courses/fixtures/courses/resources.json",
+		"/Users/dmp593/Downloads/image3.jpg",
+		"/Users/dmp593/Code/personal/realm/houses/static/widgets/js/file_preview.js",
+		"/Users/dmp593/Code/personal/realm/houses/static/widgets/css/file_preview.css",
+		"/Users/dmp593/Code/personal/realm/houses/templates/widgets/file_preview.html",
+		"/Users/dmp593/Code/setwin/mywise/backend/conf/models.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/tenants/models.py",
+		"/Users/dmp593/Code/setwin/mywise/backend/az/resources/services.py",
+		"/Users/dmp593/Downloads/Skeleton-2.0.4/css/skeleton.css",
+		"/Users/dmp593/Downloads/_etc_cpanel_ea4_paths.conf___default_equal_space_seperated_config",
+		"/Users/dmp593/Downloads/wsgi (1).py",
+		"/Users/dmp593/IdeaProjects/academics-client/node_modules/lodash/words.js",
+		"/Users/dmp593/Documents/timewatch/index.html",
+		"/Users/dmp593/Documents/timewatch/font-awesome.min.js",
+		"/Users/dmp593/Documents/timewatch/font-awesome.min.css",
+		"/Users/dmp593/Documents/timewatch/petite-vue.umd.js",
+		"/Users/dmp593/Documents/timewatch/petite-vue.iife.js",
+		"/Users/dmp593/Documents/timewatch/petite-vue.es.js",
+		"/Users/dmp593/Documents/timewatch/feather-icons.min.js",
+		"/Users/dmp593/Documents/timewatch/petite-vue.min.js",
+		"/Users/dmp593/Documents/timewatch/node_modules/petite-vue/dist/petite-vue.umd.js",
+		"/Users/dmp593/Documents/timewatch/node_modules/petite-vue/dist/petite-vue.iife.js",
+		"/Users/dmp593/Documents/timewatch/package-lock.json",
+		"/Users/dmp593/Documents/timewatch/package.json",
+		"/Users/dmp593/Documents/stopwatch.html",
+		"/Users/dmp593/Documents/petite-vue.min.js",
+		"/Users/dmp593/Documents/feather.min.js",
+		"/Users/dmp593/Library/Application Support/Sublime Text/Packages/User/stopwatch.html",
+		"/Users/dmp593/Downloads/Output.hlink.pt/certificate.pfx",
+		"/Users/dmp593/Downloads/Output.hlink.pt/certificate.der",
+		"/Users/dmp593/Downloads/Output.hlink.pt/certificate.cer",
+		"/Users/dmp593/Downloads/Output.hlink.pt/certificate.crt",
+		"/Users/dmp593/Downloads/Output.hlink.pt/dados.txt",
+		"/Users/dmp593/Downloads/exporter/HELP.md"
+	],
+	"find":
+	{
+		"height": 40.0
+	},
+	"find_in_files":
+	{
+		"height": 182.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 40.0
+	},
+	"input":
+	{
+		"height": 78.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.Debugger":
+	{
+		"height": 363.0
+	},
+	"output.Debugger Console":
+	{
+		"height": 332.0
+	},
+	"output.Debugger Console(1)":
+	{
+		"height": 0.0
+	},
+	"output.Debugger Console(1)(2)":
+	{
+		"height": 0.0
+	},
+	"output.Debugger Console(1)(2)(3)":
+	{
+		"height": 0.0
+	},
+	"output.Debugger Console(1)(2)(3)(4)":
+	{
+		"height": 0.0
+	},
+	"output.Debugger Console(1)(2)(3)(4)(5)":
+	{
+		"height": 0.0
+	},
+	"output.Debugger Console(1)(2)(3)(4)(5)(6)":
+	{
+		"height": 0.0
+	},
+	"output.Debugger Console(1)(2)(3)(4)(5)(6)(7)":
+	{
+		"height": 0.0
+	},
+	"output.Debugger Console(1)(2)(3)(4)(5)(6)(7)(8)":
+	{
+		"height": 0.0
+	},
+	"output.Debugger Terminal":
+	{
+		"height": 440.0
+	},
+	"output.LSP Log Panel":
+	{
+		"height": 0.0
+	},
+	"output.Pieces Auth":
+	{
+		"height": 0.0
+	},
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.Terminus":
+	{
+		"height": 328.0
+	},
+	"output.Terminus 2":
+	{
+		"height": 108.0
+	},
+	"output.diagnostics":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups-dummy":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "realm.sublime-project",
+	"replace":
+	{
+		"height": 76.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"tags/views.py"
+			],
+			[
+				"sett",
+				"mywise/settings.py"
+			],
+			[
+				"middel",
+				"tenants/middleware.py"
+			],
+			[
+				"route",
+				"tenants/db/router.py"
+			],
+			[
+				"create_t",
+				"tenants/management/commands/create_tenant.py"
+			],
+			[
+				"setup_ten",
+				"users/management/commands/setup_tenant.py"
+			],
+			[
+				"setting",
+				"mywise/settings.py"
+			],
+			[
+				"router",
+				"tenants/db/router.py"
+			],
+			[
+				"urls",
+				"mywise/urls.py"
+			],
+			[
+				"reouter",
+				".venv/lib/python3.12/site-packages/rest_framework/routers.py"
+			],
+			[
+				"resources.json",
+				"resources/fixtures/resources/resources.json"
+			],
+			[
+				"courses models",
+				"courses/models.py"
+			],
+			[
+				".giti",
+				".gitignore"
+			],
+			[
+				"resources.jso",
+				"resources/fixtures/resources/resources.json"
+			],
+			[
+				"resources/views",
+				"resources/views.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 305.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 592.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 264.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

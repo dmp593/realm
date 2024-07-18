@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const CHUNK_UPLOAD_SIZE = 4_194_304; // 4 MB chunk size (4 * 1024 * 1024)
     const CSRF_TOKEN = django.jQuery('input[name="csrfmiddlewaretoken"]').val();
 
-    // Create a single reusable modal element
+
+    // Create a single reusable modal preview HTML component
     const $modal = django.jQuery('<div class="modal"><span class="close">&times;</span><div class="modal-content"></div></div>');
     django.jQuery('body').append($modal);
     const $modalContent = $modal.find('.modal-content');
@@ -26,13 +27,17 @@ document.addEventListener('DOMContentLoaded', function() {
         $modalContent.empty();
     }
 
+    // setup listeners to close modal preview HTML component
     $closeModalButton.on('click', closeModal);
+
     django.jQuery(window).on('click', function(event) {
         if (django.jQuery(event.target).is($modal)) {
             closeModal();
         }
     });
 
+
+    // Widget Features (modal preview, chunked upload...)
     async function uploadFileInChunks($fileInput, url, method) {
         const file = $fileInput[0].files[0];
         const totalChunks = Math.ceil(file.size / CHUNK_UPLOAD_SIZE);
@@ -68,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        console.log('Upload complete');
         const tmpFileInputName = $fileInput.attr('name').replace(/file$/, 'tmp_file');
         let $tmpFileInput = django.jQuery(`input[name="${tmpFileInputName}"]`);
 
@@ -168,17 +172,49 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeOnClickOpenModal($fileInput);
     }
 
-    django.jQuery('.inline-related:not(.empty-form) .file-preview-container input[type="file"]').each(function() {
-        initializeFileInput(django.jQuery(this));
-    });
+    // This Widget activates extra features if running in inline mode
+    django.jQuery('.js-inline-admin-formset.inline-group').each(function (i, inlineAdminFormset) {
+        const dragContainer = inlineAdminFormset.querySelector('fieldset.module')
 
-    setTimeout(() => {
-        const $addRow = django.jQuery('.add-row a');
-        if ($addRow.length) {
-            $addRow.on('click', function() {
-                const $lastAdded = django.jQuery(".inline-related:not(.empty-form)").last();
-                initializeFileInput($lastAdded.find('.file-preview-container input[type="file"]'));
+        dragContainer.addEventListener('dragover', e => {
+            e.preventDefault();
+            
+            const dragging = dragContainer.querySelector('.draggable.dragging');
+
+            const elementAtPoint = document.elementFromPoint(e.clientX, e.clientY);
+            const afterElement = elementAtPoint.closest('.inline-related.draggable:not(.dragging)');
+
+            if (!!afterElement) {
+                dragContainer.insertBefore(dragging, afterElement)
+
+                django.jQuery('input[name$=order][type=number]', dragContainer).each(function(orderIndex, inputOrder) {
+                    inputOrder.value = orderIndex + 1
+                })
+            }
+        });
+
+        django.jQuery('.inline-related:not(.empty-form)', inlineAdminFormset).each(function(j, inlineRelated) {
+            inlineRelated.classList.add('draggable')
+            inlineRelated.draggable = true
+
+            inlineRelated.addEventListener('dragstart', () => {
+                inlineRelated.classList.add('dragging');
             });
-        }
-    }, 1);
+
+            inlineRelated.addEventListener('dragend', () => {
+                inlineRelated.classList.remove('dragging');
+            });
+
+            django.jQuery('.file-preview-container input[type="file"]', inlineRelated).each(function(j, fileInput) {
+                initializeFileInput(django.jQuery(fileInput));
+            })
+        })
+
+        window.addEventListener('load', function () {
+            django.jQuery('.add-row a').on('click', function() {
+                const $lastAdded = django.jQuery(".inline-related:not(.empty-form)", inlineAdminFormset).last();
+                initializeFileInput($lastAdded.find('.file-preview-container input[type="file"]'));
+            })
+        })
+    })
 });

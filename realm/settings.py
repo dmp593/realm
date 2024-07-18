@@ -27,8 +27,12 @@ env = environ.Env(
     DEBUG=(bool, False),
     ALLOWED_HOSTS=(list, ['*']),
     DATABASE_URL=(str, 'sqlite:///db.sqlite3'),
+    
     STATIC_ROOT=(str, None),
-    MEDIA_ROOT=(str, BASE_DIR / 'media/')
+    MEDIA_ROOT=(str, BASE_DIR / 'media/'),
+
+    FACEBOOK_PAGE_ID=(str, ''),
+    FACEBOOK_PAGE_ACCESS_TOKEN=(str, ''),
 )
 
 # Take environment variables from .env file
@@ -193,3 +197,7 @@ FIXTURE_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+FACEBOOK_PAGE_ID=env('FACEBOOK_PAGE_ID')
+FACEBOOK_PAGE_ACCESS_TOKEN=env('FACEBOOK_PAGE_ACCESS_TOKEN')

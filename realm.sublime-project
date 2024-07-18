@@ -1,0 +1,21 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+		},
+	],
+	"debugger_configurations":
+	[
+		{
+			"name": "Realm",
+			"type": "debugpy",
+			"request": "launch",
+			"program": "${project_path}/manage.py",
+			"args": [
+				"runserver"
+			],
+			"console": "integratedTerminal"
+		}
+	],
+}

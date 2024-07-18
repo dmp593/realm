@@ -436,6 +436,8 @@ class HouseFile(models.Model):
         on_delete=models.CASCADE,
         null=False,
         verbose_name=_('house'),
+        related_name='files',
+        related_query_name='file'
     )
 
     file = models.FileField(

@@ -1,11 +1,10 @@
-import mimetypes
 from typing import Any
 
 from django.core.paginator import Paginator
 from django.db.models.base import Model
 from django.db.models.query import QuerySet
 from django.db.models import Q
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
 from houses import models
 
@@ -79,7 +78,7 @@ class HouseListView(ListView):
 
         # Add default image to each house
         for house in houses:
-            house.cover = house.housefile_set.filter(filter_houve_cover).first()
+            house.cover = house.files.filter(filter_houve_cover).first()
 
         context['houses'] = houses
 
@@ -104,7 +103,7 @@ class HouseDetailView(DetailView):
         obj.images = []
         obj.videos = []
 
-        for file in obj.housefile_set.all():
+        for file in obj.files.all():
             if file.content_type.startswith('image/'):
                 obj.images.append(file)
 
@@ -112,3 +111,7 @@ class HouseDetailView(DetailView):
                 obj.videos.append(file)
 
         return obj
+
+
+class HouseFacebookPost(CreateView):
+    ...

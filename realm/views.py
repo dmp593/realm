@@ -24,7 +24,7 @@ class HomePageView(TemplateView):
 
         # Add default image to each house
         for house in houses:
-            house.cover = house.housefile_set.filter(filter_houve_cover).first()
+            house.cover = house.files.filter(filter_houve_cover).first()
 
         context_data['houses'] = houses
         return context_data
