@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"set",
+				"settings"
+			],
+			[
+				"related_",
+				"related_name="
+			],
+			[
+				"acces",
+				"access_token"
+			],
+			[
+				"get_",
+				"get_facebook_page_access_token"
+			],
+			[
+				"pos",
+				"post_house_on_facebook"
+			],
+			[
 				"HTTP_40",
 				"HTTP_401_UNAUTHORIZED"
 			],
@@ -164,6 +184,14 @@
 		"selected_items":
 		[
 			[
+				"togg",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"termiu",
+				"Terminus: Toggle Panel"
+			],
+			[
 				"pieces: ",
 				"Pieces: Launch Onboarding"
 			],
@@ -250,10 +278,6 @@
 			[
 				"merge:",
 				"Sublime Merge: Open Repository"
-			],
-			[
-				"togg",
-				"Terminus: Toggle Panel"
 			],
 			[
 				"package control: ",
@@ -506,11 +530,33 @@
 	"expanded_folders":
 	[
 		"/Users/dmp593/Code/personal/realm",
-		"/Users/dmp593/Code/personal/realm/fixtures",
-		"/Users/dmp593/Code/personal/realm/houses"
+		"/Users/dmp593/Code/personal/realm/_frontend",
+		"/Users/dmp593/Code/personal/realm/_frontend/src",
+		"/Users/dmp593/Code/personal/realm/_frontend/src/css",
+		"/Users/dmp593/Code/personal/realm/_frontend/src/templates",
+		"/Users/dmp593/Code/personal/realm/_frontend/src/templates/houses",
+		"/Users/dmp593/Code/personal/realm/houses",
+		"/Users/dmp593/Code/personal/realm/houses/static",
+		"/Users/dmp593/Code/personal/realm/houses/static/widgets",
+		"/Users/dmp593/Code/personal/realm/houses/static/widgets/css",
+		"/Users/dmp593/Code/personal/realm/houses/static/widgets/js",
+		"/Users/dmp593/Code/personal/realm/houses/templates",
+		"/Users/dmp593/Code/personal/realm/houses/templates/houses",
+		"/Users/dmp593/Code/personal/realm/houses/templates/widgets"
 	],
 	"file_history":
 	[
+		"/Users/dmp593/Code/personal/realm/houses/admin.py",
+		"/Users/dmp593/Code/personal/realm/houses/urls.py",
+		"/Users/dmp593/Code/personal/realm/.env.prod",
+		"/Users/dmp593/Code/personal/realm/.env",
+		"/Users/dmp593/Code/personal/realm/houses/models.py",
+		"/Users/dmp593/Code/personal/realm/houses/static/widgets/css/file_preview.css",
+		"/Users/dmp593/Code/personal/realm/realm/views.py",
+		"/Users/dmp593/Code/personal/realm/houses/views.py",
+		"/Users/dmp593/Code/personal/realm/realm/settings.py",
+		"/Users/dmp593/Code/personal/realm/realm/utils.py",
+		"/Users/dmp593/Code/personal/realm/.env.example",
 		"/Users/dmp593/Code/personal/realm/realm.sublime-project",
 		"/Users/dmp593/Code/setwin/mywise/mywise.sublime-project",
 		"/Users/dmp593/Code/setwin/mywise/frontend/node_modules/nuxt/node_modules/@nuxt/devtools/dist/chunks/vscode.mjs",
@@ -558,7 +604,6 @@
 		"/Users/dmp593/Code/setwin/mywise/backend/courses/fixtures/courses/resources.json",
 		"/Users/dmp593/Downloads/image3.jpg",
 		"/Users/dmp593/Code/personal/realm/houses/static/widgets/js/file_preview.js",
-		"/Users/dmp593/Code/personal/realm/houses/static/widgets/css/file_preview.css",
 		"/Users/dmp593/Code/personal/realm/houses/templates/widgets/file_preview.html",
 		"/Users/dmp593/Code/setwin/mywise/backend/conf/models.py",
 		"/Users/dmp593/Code/setwin/mywise/backend/tenants/models.py",
@@ -592,13 +637,14 @@
 	],
 	"find":
 	{
-		"height": 40.0
+		"height": 78.0
 	},
 	"find_in_files":
 	{
 		"height": 182.0,
 		"where_history":
 		[
+			""
 		]
 	},
 	"find_state":
@@ -606,6 +652,15 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"reverse",
+			".files.",
+			"content_type__startswith",
+			".url",
+			".files.filter",
+			"housefile_set",
+			"file_Set",
+			"house_file_upload_to",
+			"FACEBOOK_ACCESS_TOKEN"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -719,7 +774,7 @@
 	},
 	"output.Terminus":
 	{
-		"height": 328.0
+		"height": 233.0
 	},
 	"output.Terminus 2":
 	{
@@ -755,12 +810,36 @@
 		"selected_items":
 		[
 			[
-				"",
-				"tags/views.py"
+				"urls.",
+				"houses/urls.py"
+			],
+			[
+				".env.p",
+				".env.prod"
+			],
+			[
+				".env",
+				".env"
+			],
+			[
+				"models",
+				"houses/models.py"
+			],
+			[
+				"admin.",
+				"houses/admin.py"
 			],
 			[
 				"sett",
-				"mywise/settings.py"
+				"realm/settings.py"
+			],
+			[
+				"settings.",
+				"realm/settings.py"
+			],
+			[
+				"",
+				"tags/views.py"
 			],
 			[
 				"middel",

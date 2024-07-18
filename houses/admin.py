@@ -1,10 +1,12 @@
+from django.http import HttpRequest
 import requests
 
+from django.urls import reverse
 from django.contrib import admin, messages
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext_lazy as _n
 
-from realm.utils import get_facebook_page_id, get_facebook_page_access_token
+from facebook.utils import get_facebook_page_id, get_facebook_page_access_token
 from houses import models, forms
 
 
@@ -24,23 +26,19 @@ admin.site.register(models.EnergyCertificate)
 class HouseFileAdmin(admin.ModelAdmin):
     form = forms.HouseFileForm
     ordering = ('-house', 'order')
-
     list_display = (
         'house',
         'filename',
         'content_type'
     )
-
     list_filter = (
         'house',
         'content_type',
     )
 
-
 class HouseFileStackedInline(admin.StackedInline):
     model = models.HouseFile
     form = forms.HouseFileInlineForm
-
 
 @admin.register(models.House)
 class HouseAdmin(admin.ModelAdmin):
@@ -49,7 +47,6 @@ class HouseAdmin(admin.ModelAdmin):
     actions = (
         'post_on_facebook',
     )
-
     list_display = (
         'title',
         'type',
@@ -60,7 +57,6 @@ class HouseAdmin(admin.ModelAdmin):
         'gross_private_area_in_square_meters',
         'net_internal_area_in_square_meters'
     )
-
     list_filter = (
         'active',
         'type',
@@ -69,71 +65,75 @@ class HouseAdmin(admin.ModelAdmin):
         'locale',
     )
 
-    def upload_house_images_to_facebook(self, house: models.House) -> list[str]:
-        page_id = get_facebook_page_id()
-        access_token = get_facebook_page_access_token()
+    def upload_house_images_to_facebook(self, page_id: str, access_token: str, request: HttpRequest, house: models.House) -> list[str]:
+        upload_url = f'https://graph.facebook.com/v20.0/{page_id}/photos'
 
-        upload_url = f'https://graph.facebook.com/v13.0/{page_id}/photos'
-        images = house.files.filter(content_type__startswith='image/').all()[:3]
-
+        realm_host = request.get_host()
+        house_images = house.files.filter(content_type__startswith='image/').all()[:3]
+        
         photos_ids = []
 
-        for image in images:
-            params = {
-                'access_token': access_token,
-                'published': 'false',
-                'url': image.file.url,
-            }
+        for house_image in house_images:
+            response = requests.post(
+                upload_url,
+                json={
+                    'access_token': access_token,
+                    'url': f"https://{realm_host}{house_image.file.url}",
+                    'published': 'false',
+                }
+            )
 
-            response = requests.post(upload_url, params=params)
             response.raise_for_status()
 
             result = response.json()
-            photos_ids.append(result['id'])
+            photo_id = result['id']
+
+            photos_ids.append(photo_id)
 
         return photos_ids
 
-    def post_house_on_facebook(self, house):
-        # Step 1: Upload photos with published state set to false
-        photos_ids = self.upload_house_images_to_facebook(house)
-
-        # Step 2: Create a post with the uploaded unpublished images IDs
+    def post_house_on_facebook(self, request, house):
+        # Requirements
         page_id = get_facebook_page_id()
         access_token = get_facebook_page_access_token()
 
-        post_url = f"https://graph.facebook.com/{page_id}/feed"
-        post_payload = {
+        # Step 1: Upload photos with published state set to false
+        photos_ids = self.upload_house_images_to_facebook(page_id, access_token, request, house)
+
+        # Step 2: Create a post with the uploaded unpublished images IDs
+        host = request.get_host()
+        house_detail_url = reverse('houses:detail', args=[house.pk])
+        url = f"https://graph.facebook.com/v20.0/{page_id}/feed"
+        payload = {
             'message': house.description,
-            'access_token': access_token
+            'access_token': access_token,
+            'link': f"https://{host}{house_detail_url}",
+            'attached_media': [{'media_fbid': photo_id} for photo_id in photos_ids]
         }
-
-        for i, photo_id in enumerate(photos_ids):
-            post_payload[f'attached_media[{i}]'] = f'{{"media_fbid":"{photo_id}"}}'
-
-        response = requests.post(post_url, json=post_payload)
+        response = requests.post(url, json=payload)
         response.raise_for_status()
 
     @admin.action(description=_('Post on Facebook'))
     def post_on_facebook(self, request, queryset):
         try:
             for house in queryset.all():
-                self.post_house_on_facebook(house)
-
+                self.post_house_on_facebook(request, house)
+            
             n = queryset.count()
-
+            
             self.message_user(
                 request,
                 _n(
-                    "%d house was successfully published on facebook.",
-                    "%d houses were successfully published on facebook.",
+                    "%d house was successfully published on Facebook.",
+                    "%d houses were successfully published on Facebook.",
                     n,
-                )
-                % n,
+                ) % n,
                 messages.SUCCESS,
             )
+
         except Exception as e:
             self.message_user(
                 request,
-                _('Something failed while publishing to facebook. Please check your feed.'),
+                _('Something failed while publishing to Facebook. Please check your feed.'),
                 messages.ERROR,
             )
