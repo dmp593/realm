@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: Daniel Mendes Pinto <dmp593@gmail.com>\n"
-"POT-Creation-Date: 2024-07-19 10:17+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-19 11:10+0000\n"
 "PO-Revision-Date: 2024-07-19 01:55+0000\n"
 "Last-Translator: Daniel Mendes Pinto <dmp593@gmail.com>\n"
 "Language-Team: Portuguese Team <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: facebook/models.py:6
 msgid "Facebook Short-Lived User Access Token"
 msgstr "Token de Acesso de Utilizador de Curta Duração do Facebook"
@@ -59,7 +60,8 @@ msgstr "Publicar no Facebook"
 
 #: houses/admin.py:138
 msgid "Something failed while publishing to Facebook. Please check your feed."
-msgstr "Ocorreu um erro ao publicar no Facebook. Por favor, verifique o seu feed."
+msgstr ""
+"Ocorreu um erro ao publicar no Facebook. Por favor, verifique o seu feed."
 
 #: houses/models.py:36 houses/models.py:51 houses/models.py:75
 #: houses/models.py:99 houses/models.py:128 houses/models.py:161

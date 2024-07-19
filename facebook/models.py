@@ -23,7 +23,9 @@ class FacebookAccessToken(models.Model):
 	)
 
 	expiry = models.DateTimeField(
-		verbose_name=_('expiry')
+		verbose_name=_('expiry'),
+		null=True,
+		blank=True
 	)
 
 	class Meta:
