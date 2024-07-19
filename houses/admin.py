@@ -71,7 +71,7 @@ class HouseAdmin(admin.ModelAdmin):
         upload_url = f'https://graph.facebook.com/v20.0/{page_id}/photos'
 
         realm_host = request.get_host()
-        house_images = house.files.filter(content_type__startswith='image/').all()[:max_images_to_upload]
+        house_images = house.files.filter(content_type__startswith='image/').all()
         
         photos_ids = []
         nr_images_uploaded = 0
