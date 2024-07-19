@@ -115,7 +115,7 @@ class HouseAdmin(admin.ModelAdmin):
         url = f"https://graph.facebook.com/v20.0/{page_id}/feed"
         payload = {
             'access_token': access_token,
-            'message': f"***{house.title}***\n\n{house.description}",
+            'message': f"*** {house.title} ***\n\n{house.description}",
             'link': f"https://{host}{house_detail_url}",
             'attached_media': [{'media_fbid': photo_id} for photo_id in photos_ids],
             'published': True
