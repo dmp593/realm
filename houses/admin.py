@@ -121,14 +121,6 @@ class HouseAdmin(admin.ModelAdmin):
             'published': True
         }
         response = requests.post(url, json=payload)
-
-        if not response.ok:
-            self.message_user(
-                request,
-                str(response.json()),
-                messages.ERROR,
-            )
-
         response.raise_for_status()
 
     @admin.action(description=_('Post on Facebook'))
