@@ -76,11 +76,11 @@ def refresh_page_access_token(user_access_token: str):
     response.raise_for_status()
     
     data = response.json()
+    pages = data['data']
     
-    if 'data' in data:
-        for page in data['data']:
-            if 'access_token' in page and 'id' in page and page['id'] == settings.FACEBOOK_PAGE_ID:
-                return set_token('page', page['access_token'], expiry=None)
+    for page in pages:
+        if page['id'] == settings.FACEBOOK_PAGE_ID and 'MANAGE' in page['tasks']:
+            return set_token('page', page['access_token'], expiry=None)
     
     return None
 
