@@ -86,12 +86,18 @@ def refresh_page_access_token(user_access_token: str):
 
 
 def refresh_facebook_tokens() -> tuple[str | None, str | None]:
+    #  a long lived user access token has an expiry of 60 days...
     user_access_token = get_token('user-long-lived') or get_token('user-short-lived')
 
     if user_access_token:
         user_access_token = refresh_user_access_token(exchange_token=user_access_token)
-        page_access_token = refresh_page_access_token(user_access_token)
+    
+    # https://developers.facebook.com/docs/facebook-login/guides/access-tokens/get-long-lived/
+    # according to fb documentation, page access token never expires...
+    page_access_token = get_token('page')
 
-        return user_access_token, page_access_token
+    if not page_access_token:
+        page_access_token = refresh_page_access_token(user_access_token) if user_access_token else None
 
-    return None, None
+    return user_access_token, page_access_token
+
