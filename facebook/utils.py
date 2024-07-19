@@ -46,7 +46,7 @@ def refresh_user_access_token(exchange_token: str):
     response.raise_for_status()
     
     data = response.json()
-    expiry = now() + timedelta(seconds=data['expires_in'])
+    expiry = now() + timedelta(seconds=data.get('expires_in', 3600))
     
     return set_token('user-long-lived', data['access_token'], expiry)
 
