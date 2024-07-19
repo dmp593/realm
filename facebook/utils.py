@@ -10,8 +10,8 @@ from datetime import datetime, timedelta
 from facebook.models import FacebookAccessToken
 
 
-def get_facebook_app_id():
-    return settings.FACEBOOK_APP_ID
+def get_facebook_page_id():
+    return settings.FACEBOOK_PAGE_ID
 
 
 def get_token(scope: str) -> str | None:

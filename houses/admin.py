@@ -6,7 +6,7 @@ from django.contrib import admin, messages
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext_lazy as _n
 
-from facebook.utils import get_facebook_app_id, refresh_facebook_tokens
+from facebook.utils import get_facebook_page_id, refresh_facebook_tokens
 from houses import models, forms
 
 
@@ -71,11 +71,21 @@ class HouseAdmin(admin.ModelAdmin):
         upload_url = f'https://graph.facebook.com/v20.0/{page_id}/photos'
 
         realm_host = request.get_host()
-        house_images = house.files.filter(content_type__startswith='image/').all()[:3]
+        house_images = house.files.filter(content_type__startswith='image/').all()
         
         photos_ids = []
 
+        nr_images_uploaded = 0
+        max_images_to_upload = 3
+
         for house_image in house_images:
+            if nr_images_uploaded >= max_images_to_upload:
+                break
+
+            if house_image.file.size > 419_430_4:
+                # max facebook image size to upload is 4MB
+                continue
+
             response = requests.post(
                 upload_url,
                 json={
@@ -91,34 +101,44 @@ class HouseAdmin(admin.ModelAdmin):
             photo_id = result['id']
 
             photos_ids.append(photo_id)
+            nr_images_uploaded += 1
 
         return photos_ids
 
-    def post_house_on_facebook(self, app_id, access_token, request, house):
+    def post_house_on_facebook(self, page_id, access_token, request, house):
         # Step 1: Upload photos with published state set to false
-        photos_ids = self.upload_house_images_to_facebook(app_id, access_token, request, house)
+        photos_ids = self.upload_house_images_to_facebook(page_id, access_token, request, house)
 
         # Step 2: Create a post with the uploaded unpublished images IDs
         host = request.get_host()
         house_detail_url = reverse('houses:detail', args=[house.pk])
-        url = f"https://graph.facebook.com/v20.0/{app_id}/feed"
+        url = f"https://graph.facebook.com/v20.0/{page_id}/feed"
         payload = {
-            'message': f"***{house.title}***\n\n{house.description}",
             'access_token': access_token,
+            'message': f"***{house.title}***\n\n{house.description}",
             'link': f"https://{host}{house_detail_url}",
-            'attached_media': [{'media_fbid': photo_id} for photo_id in photos_ids]
+            'attached_media': [{'media_fbid': photo_id} for photo_id in photos_ids],
+            'published': True
         }
         response = requests.post(url, json=payload)
+
+        if not response.ok:
+            self.message_user(
+                request,
+                str(response.json()),
+                messages.ERROR,
+            )
+
         response.raise_for_status()
 
     @admin.action(description=_('Post on Facebook'))
     def post_on_facebook(self, request, queryset):
         try:
-            facebook_app_id = get_facebook_app_id()
+            facebook_page_id = get_facebook_page_id()
             fb_user_access_token, fb_page_access_token = refresh_facebook_tokens()
 
             for house in queryset.all():
-                self.post_house_on_facebook(facebook_app_id, fb_page_access_token, request, house)
+                self.post_house_on_facebook(facebook_page_id, fb_page_access_token, request, house)
             
             n = queryset.count()
             
