@@ -115,10 +115,10 @@ class HouseAdmin(admin.ModelAdmin):
     def post_on_facebook(self, request, queryset):
         try:
             facebook_app_id = get_facebook_app_id()
-            _, facebook_page_access_token = refresh_facebook_tokens()
+            fb_user_access_token, fb_page_access_token = refresh_facebook_tokens()
 
             for house in queryset.all():
-                self.post_house_on_facebook(facebook_app_id, facebook_page_access_token, request, house)
+                self.post_house_on_facebook(facebook_app_id, fb_page_access_token, request, house)
             
             n = queryset.count()
             
