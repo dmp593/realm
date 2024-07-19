@@ -34,4 +34,4 @@ class FacebookAccessToken(models.Model):
 		ordering = ('-expiry', )
 
 	def __str__(self):
-		return f"{self.scope} :: ...{self.access_token[-15:]} @ {self.expiry}"
+		return f"{self.scope} :: {self.access_token[:5]}...{self.access_token[-15:]} @ {self.expiry}"
