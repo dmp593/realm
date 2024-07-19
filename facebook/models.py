@@ -1,29 +1,34 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 FACEBOOK_ACCESS_TOKEN_SCOPE = (
-    ("user-short-lived", "Facebook Short-Lived User Access Token"),
-    ("user-long-lived", "Facebook Long-Lived User Access Token"),
-    ("app", "Facebook App Access Token"),
-    ("page", "Facebook Page Access Token"),
+    ("user-short-lived", _("Facebook Short-Lived User Access Token")),
+    ("user-long-lived", _("Facebook Long-Lived User Access Token")),
+    ("app", _("Facebook App Access Token")),
+    ("page", _("Facebook Page Access Token")),
 )
 
 
 class FacebookAccessToken(models.Model):
-	scope = models.CharField(choices=FACEBOOK_ACCESS_TOKEN_SCOPE, max_length=50)
+	scope = models.CharField(
+		choices=FACEBOOK_ACCESS_TOKEN_SCOPE,
+		max_length=50,
+		verbose_name=_('scope')
+	)
 
-	access_token = models.CharField(max_length=255)
+	access_token = models.CharField(
+		max_length=255,
+		verbose_name=_('access token')
+	)
 
-	# this should be set according to the scope.
-	
-	# eg: user-long-lived token has 60 days until expires:
-	# from django.utils.timezone import now
-	# from datetime import timedelta
-	#
-	# Token(scope='user-long-lived', access_token='...', expiry=now() + timedelta(days=60))
-	expiry = models.DateTimeField()
+	expiry = models.DateTimeField(
+		verbose_name=_('expiry')
+	)
 
 	class Meta:
+		verbose_name = _('facebook access token')
+		verbose_name_plural = _('facebook access tokens')
 		ordering = ('-expiry', )
 
 	def __str__(self):
