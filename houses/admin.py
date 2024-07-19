@@ -67,16 +67,14 @@ class HouseAdmin(admin.ModelAdmin):
         'locale',
     )
 
-    def upload_house_images_to_facebook(self, page_id: str, access_token: str, request: HttpRequest, house: models.House) -> list[str]:
+    def upload_house_images_to_facebook(self, page_id: str, access_token: str, request: HttpRequest, house: models.House, max_images_to_upload: int = 3) -> list[str]:
         upload_url = f'https://graph.facebook.com/v20.0/{page_id}/photos'
 
         realm_host = request.get_host()
-        house_images = house.files.filter(content_type__startswith='image/').all()
+        house_images = house.files.filter(content_type__startswith='image/').all()[:max_images_to_upload]
         
         photos_ids = []
-
         nr_images_uploaded = 0
-        max_images_to_upload = 3
 
         for house_image in house_images:
             if nr_images_uploaded >= max_images_to_upload:
@@ -107,7 +105,7 @@ class HouseAdmin(admin.ModelAdmin):
 
     def post_house_on_facebook(self, page_id, access_token, request, house):
         # Step 1: Upload photos with published state set to false
-        photos_ids = self.upload_house_images_to_facebook(page_id, access_token, request, house)
+        photos_ids = self.upload_house_images_to_facebook(page_id, access_token, request, house, max_images_to_upload=1)
 
         # Step 2: Create a post with the uploaded unpublished images IDs
         host = request.get_host()
