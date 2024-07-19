@@ -1,9 +1,12 @@
 from environ import re
 import requests
 
-from datetime import datetime, timedelta
 from django.conf import settings
+from django.db.models import Q
+
 from django.utils.timezone import now
+from datetime import datetime, timedelta
+
 from facebook.models import FacebookAccessToken
 
 
@@ -12,7 +15,8 @@ def get_facebook_app_id():
 
 
 def get_token(scope: str) -> str | None:
-    queryset = FacebookAccessToken.objects.filter(scope=scope, expiry__gt=now())
+    where = Q(scope=scope) & ( Q(expiry__gt=now()) | Q(expiry__isnull=True) )
+    queryset = FacebookAccessToken.objects.filter(where)
 
     if not queryset.exists():
         return None
@@ -42,7 +46,7 @@ def refresh_user_access_token(exchange_token: str):
     response.raise_for_status()
     
     data = response.json()
-    expiry = now() + timedelta(days=60)
+    expiry = now() + timedelta(seconds=data['expires_in'])
     
     return set_token('user-long-lived', data['access_token'], expiry)
 
@@ -76,8 +80,7 @@ def refresh_page_access_token(user_access_token: str):
     if 'data' in data:
         for page in data['data']:
             if 'access_token' in page and 'id' in page and page['id'] == settings.FACEBOOK_PAGE_ID:
-                expiry = now() + timedelta(hours=1)  # Assuming page token expiry 1h
-                return set_token('page', page['access_token'], expiry)
+                return set_token('page', page['access_token'], expiry=None)
     
     return None
 
