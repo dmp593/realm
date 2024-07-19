@@ -2,9 +2,10 @@ from django.db import models
 
 
 FACEBOOK_ACCESS_TOKEN_SCOPE = (
-    ("page", "Facebook Page Access Token"),
     ("user-short-lived", "Facebook Short-Lived User Access Token"),
     ("user-long-lived", "Facebook Long-Lived User Access Token"),
+    ("app", "Facebook App Access Token"),
+    ("page", "Facebook Page Access Token"),
 )
 
 
@@ -21,6 +22,9 @@ class FacebookAccessToken(models.Model):
 	#
 	# Token(scope='user-long-lived', access_token='...', expiry=now() + timedelta(days=60))
 	expiry = models.DateTimeField()
+
+	class Meta:
+		ordering = ('-expiry', )
 
 	def __str__(self):
 		return f"{self.scope} :: {self.access_token[:5]}...{self.access_token[-5:]} @ {self.expiry}"

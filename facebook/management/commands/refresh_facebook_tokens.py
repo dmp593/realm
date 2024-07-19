@@ -14,12 +14,7 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.ERROR('Required short-lived user token is missing.'))
                 return
 
-        tokens = refresh_facebook_tokens()
-        if not tokens:
-            self.stdout.write(self.style.ERROR('Failed to refresh Facebook tokens.'))
-            return
-
-        user_access_token, page_access_token = tokens
+        user_access_token, page_access_token = refresh_facebook_tokens()
 
         if not user_access_token:
             self.stdout.write(self.style.ERROR('Failed to refresh the long-lived user access token.'))

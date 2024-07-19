@@ -103,7 +103,7 @@ class HouseAdmin(admin.ModelAdmin):
         house_detail_url = reverse('houses:detail', args=[house.pk])
         url = f"https://graph.facebook.com/v20.0/{app_id}/feed"
         payload = {
-            'message': house.description,
+            'message': f"***{house.title}***\n\n{house.description}",
             'access_token': access_token,
             'link': f"https://{host}{house_detail_url}",
             'attached_media': [{'media_fbid': photo_id} for photo_id in photos_ids]

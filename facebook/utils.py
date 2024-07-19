@@ -11,12 +11,13 @@ def get_facebook_app_id():
     return settings.FACEBOOK_APP_ID
 
 
-def get_token(scope) -> str | None:
-    try:
-        token = FacebookAccessToken.objects.get(scope=scope)
-        return token.access_token if token.expiry > now() else None
-    except FacebookAccessToken.DoesNotExist:
+def get_token(scope: str) -> str | None:
+    queryset = FacebookAccessToken.objects.filter(scope=scope, expiry__gt=now())
+
+    if not queryset.exists():
         return None
+
+    return queryset.first().access_token
 
 
 def set_token(scope, access_token, expiry) -> str:
@@ -81,7 +82,7 @@ def refresh_page_access_token(user_access_token: str):
     return None
 
 
-def refresh_facebook_tokens() -> tuple[str, str | None] | None:
+def refresh_facebook_tokens() -> tuple[str | None, str | None]:
     user_access_token = get_token('user-long-lived') or get_token('user-short-lived')
 
     if user_access_token:
@@ -90,4 +91,4 @@ def refresh_facebook_tokens() -> tuple[str, str | None] | None:
 
         return user_access_token, page_access_token
 
-    return None
+    return None, None
