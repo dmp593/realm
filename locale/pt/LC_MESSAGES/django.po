@@ -1,3 +1,4 @@
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Daniel Pinto <dmp593@gmail.com>, 2024.
@@ -5,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: realm 1.0.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: Daniel Mendes Pinto <dmp593@gmail.com>\n"
-"POT-Creation-Date: 2024-06-29 00:50+0000\n"
-"PO-Revision-Date: 2024-06-29 01:55+0000\n"
+"POT-Creation-Date: 2024-07-19 10:17+0000\n"
+"PO-Revision-Date: 2024-07-19 01:55+0000\n"
 "Last-Translator: Daniel Mendes Pinto <dmp593@gmail.com>\n"
 "Language-Team: Portuguese Team <LL@li.org>\n"
 "Language: Portuguese\n"
@@ -16,6 +17,50 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: facebook/models.py:6
+msgid "Facebook Short-Lived User Access Token"
+msgstr "Token de Acesso de Utilizador de Curta Duração do Facebook"
+
+#: facebook/models.py:7
+msgid "Facebook Long-Lived User Access Token"
+msgstr "Token de Acesso de Utilizador de Longa Duração do Facebook"
+
+#: facebook/models.py:8
+msgid "Facebook App Access Token"
+msgstr "Token de Acesso da Aplicação do Facebook"
+
+#: facebook/models.py:9
+msgid "Facebook Page Access Token"
+msgstr "Token de Acesso da Página do Facebook"
+
+#: facebook/models.py:17
+msgid "scope"
+msgstr "escopo"
+
+#: facebook/models.py:22
+msgid "access token"
+msgstr "token de acesso"
+
+#: facebook/models.py:26
+msgid "expiry"
+msgstr "expiração"
+
+#: facebook/models.py:30
+msgid "facebook access token"
+msgstr "token de acesso do facebook"
+
+#: facebook/models.py:31
+msgid "facebook access tokens"
+msgstr "tokens de acesso do facebook"
+
+#: houses/admin.py:114
+msgid "Post on Facebook"
+msgstr "Publicar no Facebook"
+
+#: houses/admin.py:138
+msgid "Something failed while publishing to Facebook. Please check your feed."
+msgstr "Ocorreu um erro ao publicar no Facebook. Por favor, verifique o seu feed."
+
 #: houses/models.py:36 houses/models.py:51 houses/models.py:75
 #: houses/models.py:99 houses/models.py:128 houses/models.py:161
 #: houses/models.py:179 houses/models.py:202 houses/models.py:225
@@ -71,7 +116,7 @@ msgid "houses types"
 msgstr "tipos de casas"
 
 #: houses/models.py:184 houses/models.py:207 houses/models.py:230
-#: houses/models.py:411 houses/models.py:468
+#: houses/models.py:411 houses/models.py:470
 msgid "order"
 msgstr "ordem"
 
@@ -103,7 +148,7 @@ msgstr "certificados energéticos"
 msgid "title"
 msgstr "título"
 
-#: houses/models.py:251 houses/models.py:450
+#: houses/models.py:251 houses/models.py:452
 msgid "description"
 msgstr "descrição"
 
@@ -191,30 +236,30 @@ msgstr "casa"
 msgid "houses"
 msgstr "casas"
 
-#: houses/models.py:444
+#: houses/models.py:446
 msgid "file"
 msgstr "ficheiro"
 
-#: houses/models.py:456
+#: houses/models.py:458
 msgid "filename"
 msgstr "nome do ficheiro"
 
-#: houses/models.py:462
+#: houses/models.py:464
 msgid "content type"
 msgstr "tipo de conteúdo"
 
-#: houses/models.py:475
+#: houses/models.py:477
 msgid "house file"
 msgstr "ficheiro da casa"
 
-#: houses/models.py:476
+#: houses/models.py:478
 msgid "house files"
 msgstr "ficheiros das casas"
 
-#: realm/settings.py:132
+#: realm/settings.py:156
 msgid "English"
 msgstr "Inglês"
 
-#: realm/settings.py:133
+#: realm/settings.py:157
 msgid "Portuguese"
 msgstr "Português"

@@ -135,6 +135,6 @@ class HouseAdmin(admin.ModelAdmin):
         except Exception as e:
             self.message_user(
                 request,
-                _(f'Something failed while publishing to Facebook. Please check your feed. Error {e}.'),
+                _('Something failed while publishing to Facebook. Please check your feed.'),
                 messages.ERROR,
             )
