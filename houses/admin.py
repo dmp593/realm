@@ -6,7 +6,7 @@ from django.contrib import admin, messages
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext_lazy as _n
 
-from facebook.utils import get_facebook_page_id, get_facebook_page_access_token
+from facebook.utils import get_facebook_app_id, refresh_facebook_tokens
 from houses import models, forms
 
 
@@ -36,9 +36,11 @@ class HouseFileAdmin(admin.ModelAdmin):
         'content_type',
     )
 
+
 class HouseFileStackedInline(admin.StackedInline):
     model = models.HouseFile
     form = forms.HouseFileInlineForm
+
 
 @admin.register(models.House)
 class HouseAdmin(admin.ModelAdmin):
@@ -92,18 +94,14 @@ class HouseAdmin(admin.ModelAdmin):
 
         return photos_ids
 
-    def post_house_on_facebook(self, request, house):
-        # Requirements
-        page_id = get_facebook_page_id()
-        access_token = get_facebook_page_access_token()
-
+    def post_house_on_facebook(self, app_id, access_token, request, house):
         # Step 1: Upload photos with published state set to false
-        photos_ids = self.upload_house_images_to_facebook(page_id, access_token, request, house)
+        photos_ids = self.upload_house_images_to_facebook(app_id, access_token, request, house)
 
         # Step 2: Create a post with the uploaded unpublished images IDs
         host = request.get_host()
         house_detail_url = reverse('houses:detail', args=[house.pk])
-        url = f"https://graph.facebook.com/v20.0/{page_id}/feed"
+        url = f"https://graph.facebook.com/v20.0/{app_id}/feed"
         payload = {
             'message': house.description,
             'access_token': access_token,
@@ -116,8 +114,11 @@ class HouseAdmin(admin.ModelAdmin):
     @admin.action(description=_('Post on Facebook'))
     def post_on_facebook(self, request, queryset):
         try:
+            facebook_app_id = get_facebook_app_id()
+            _, facebook_page_access_token = refresh_facebook_tokens()
+
             for house in queryset.all():
-                self.post_house_on_facebook(request, house)
+                self.post_house_on_facebook(facebook_app_id, facebook_page_access_token, request, house)
             
             n = queryset.count()
             
@@ -134,6 +135,6 @@ class HouseAdmin(admin.ModelAdmin):
         except Exception as e:
             self.message_user(
                 request,
-                _('Something failed while publishing to Facebook. Please check your feed.'),
+                _(f'Something failed while publishing to Facebook. Please check your feed. Error {e}.'),
                 messages.ERROR,
             )

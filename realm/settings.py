@@ -30,6 +30,10 @@ env = environ.Env(
     
     STATIC_ROOT=(str, None),
     MEDIA_ROOT=(str, BASE_DIR / 'media/'),
+
+    FACEBOOK_APP_ID=(str, '1233220271375990'),
+    FACEBOOK_APP_SECRET=(str, None),
+    FACEBOOK_PAGE_ID=(str, '104527808952671'),
 )
 
 # Take environment variables from .env file
@@ -195,3 +199,8 @@ FIXTURE_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+FACEBOOK_APP_ID=env('FACEBOOK_APP_ID')
+FACEBOOK_APP_SECRET=env('FACEBOOK_APP_SECRET')
+FACEBOOK_PAGE_ID=env('FACEBOOK_PAGE_ID')
