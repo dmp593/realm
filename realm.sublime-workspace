@@ -4,6 +4,90 @@
 		"selected_items":
 		[
 			[
+				"is",
+				"isinstance"
+			],
+			[
+				"Pricin",
+				"PricingTierForm"
+			],
+			[
+				"Country",
+				"CountryTax"
+			],
+			[
+				"tran",
+				"translated_to"
+			],
+			[
+				"decia",
+				"decimal_places="
+			],
+			[
+				"cost_",
+				"cost_in_euros_without_tax"
+			],
+			[
+				"Inger",
+				"IntegerField"
+			],
+			[
+				"HouseT",
+				"HouseTypology"
+			],
+			[
+				"max",
+				"max_images_to_upload"
+			],
+			[
+				"images",
+				"images_uploaded"
+			],
+			[
+				"ima",
+				"images_uploaded"
+			],
+			[
+				"refres",
+				"refresh_page_access_token"
+			],
+			[
+				"fb_",
+				"fb_page_access_token"
+			],
+			[
+				"face",
+				"facebook_app_id"
+			],
+			[
+				"Fac",
+				"FacebookAccessToken"
+			],
+			[
+				"F",
+				"FacebookAccessToken"
+			],
+			[
+				"auto_no",
+				"auto_now_add="
+			],
+			[
+				"get_face",
+				"get_facebook_page_access_token"
+			],
+			[
+				"FACE",
+				"FACEBOOK_PAGE_ACCESS_TOKEN"
+			],
+			[
+				"FACEBOOK",
+				"FACEBOOK_SHORT_LIVED_TOKEN"
+			],
+			[
+				"get",
+				"get_facebook_page_id"
+			],
+			[
 				"set",
 				"settings"
 			],
@@ -88,10 +172,6 @@
 				"TENANT_APPS"
 			],
 			[
-				"get",
-				"get_current_tenant"
-			],
-			[
 				"app",
 				"app_label"
 			],
@@ -140,10 +220,6 @@
 				"background"
 			],
 			[
-				"is",
-				"isStopWatch"
-			],
-			[
 				"tim",
 				"timerType"
 			],
@@ -183,6 +259,34 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"terminus open ",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"tog",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"termin",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"term",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"comm",
+				"Toggle Comment"
+			],
+			[
+				"terminus open",
+				"Terminus: Open Default Shell in Tab (View)"
+			],
+			[
+				"toggl",
+				"Terminus: Toggle Panel"
+			],
 			[
 				"togg",
 				"Terminus: Toggle Panel"
@@ -266,14 +370,6 @@
 			[
 				"Debugg",
 				"Debugger: Open"
-			],
-			[
-				"term",
-				"Terminus: Toggle Panel"
-			],
-			[
-				"toggl",
-				"Terminus: Toggle Panel"
 			],
 			[
 				"merge:",
@@ -360,10 +456,6 @@
 				"Terminus Utilities: Select Theme"
 			],
 			[
-				"terminus open",
-				"Terminus: Open Default Shell in Panel"
-			],
-			[
 				"Debu",
 				"Debugger: Open"
 			],
@@ -374,10 +466,6 @@
 			[
 				"Debugger: Togg",
 				"Debugger: Toggle Disassembly"
-			],
-			[
-				"termin",
-				"Terminus: Toggle Panel"
 			],
 			[
 				"install ada",
@@ -430,10 +518,6 @@
 			[
 				"list pac",
 				"Package Control: List Packages"
-			],
-			[
-				"tog",
-				"Terminus: Toggle Panel"
 			],
 			[
 				"termn",
@@ -529,34 +613,51 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/dmp593/Code/personal/realm",
-		"/Users/dmp593/Code/personal/realm/_frontend",
-		"/Users/dmp593/Code/personal/realm/_frontend/src",
-		"/Users/dmp593/Code/personal/realm/_frontend/src/css",
-		"/Users/dmp593/Code/personal/realm/_frontend/src/templates",
-		"/Users/dmp593/Code/personal/realm/_frontend/src/templates/houses",
-		"/Users/dmp593/Code/personal/realm/houses",
-		"/Users/dmp593/Code/personal/realm/houses/static",
-		"/Users/dmp593/Code/personal/realm/houses/static/widgets",
-		"/Users/dmp593/Code/personal/realm/houses/static/widgets/css",
-		"/Users/dmp593/Code/personal/realm/houses/static/widgets/js",
-		"/Users/dmp593/Code/personal/realm/houses/templates",
-		"/Users/dmp593/Code/personal/realm/houses/templates/houses",
-		"/Users/dmp593/Code/personal/realm/houses/templates/widgets"
 	],
 	"file_history":
 	[
-		"/Users/dmp593/Code/personal/realm/houses/admin.py",
+		"/Users/dmp593/Code/personal/realm/houses/views.py",
+		"/Users/dmp593/Code/personal/realm/_frontend/webpack.config.js",
+		"/Users/dmp593/Code/personal/realm/_frontend/src/sitemap.xml",
+		"/Users/dmp593/Code/personal/realm/sitemap.xml",
+		"/Users/dmp593/Code/personal/realm/_frontend/src/templates/houses/selling_pricing_tiers.html",
+		"/Users/dmp593/Code/personal/realm/_frontend/src/templates/components/header.html",
+		"/Users/dmp593/Code/personal/realm/_frontend/src/templates/home.html",
+		"/Users/dmp593/Code/personal/realm/houses/templatetags/custom_formats.py",
+		"/Users/dmp593/Code/personal/realm/_frontend/src/templates/selling_pricing_tiers.html",
+		"/Users/dmp593/Code/personal/realm/houses/templates/houses/selling_pricing_tiers.html",
+		"/Users/dmp593/Code/personal/realm/houses/models/pricing.py",
+		"/Users/dmp593/Code/personal/realm/facebook/models.py",
 		"/Users/dmp593/Code/personal/realm/houses/urls.py",
-		"/Users/dmp593/Code/personal/realm/.env.prod",
-		"/Users/dmp593/Code/personal/realm/.env",
+		"/Users/dmp593/Code/personal/realm/realm/urls.py",
+		"/Users/dmp593/Code/personal/realm/_frontend/src/templates/houses/pricing_tiers.html",
+		"/Users/dmp593/Code/personal/realm/.venv/lib/python3.12/site-packages/django/views/generic/list.py",
+		"/Users/dmp593/Code/personal/realm/houses/admin.py",
+		"/Users/dmp593/Code/personal/realm/houses/forms.py",
+		"/Users/dmp593/Code/personal/realm/houses/models/__init__.py",
+		"/Users/dmp593/Code/personal/realm/houses/models/houses.py",
+		"/Users/dmp593/Code/personal/realm/_frontend/src/templates/houses/house_detail.html",
+		"/Users/dmp593/Code/personal/realm/houses/models/locations.py",
 		"/Users/dmp593/Code/personal/realm/houses/models.py",
+		"/Users/dmp593/Code/personal/realm/realm/settings.py",
+		"/Users/dmp593/Code/personal/realm/facebook/utils.py",
+		"/Users/dmp593/Code/personal/realm/.env.prod",
+		"/Users/dmp593/Code/personal/realm/locale/pt/LC_MESSAGES/django.po",
+		"/Users/dmp593/Code/personal/realm/facebook/management/commands/refresh_facebook_tokens.py",
+		"/Users/dmp593/Code/personal/realm/facebook/admin.py",
+		"/Users/dmp593/Code/personal/realm/.gitignore",
+		"/Users/dmp593/Code/personal/realm/.env",
+		"/Users/dmp593/Code/personal/realm/facebook/.facebook",
+		"/Users/dmp593/Code/personal/realm/facebook/management/commands/refresh_facebook_token.py",
+		"/Users/dmp593/Code/personal/realm/.env.example",
+		"/Users/dmp593/Code/personal/realm/facebook/management/__init__.py",
+		"/Users/dmp593/Code/personal/realm/facebook/refresh.py",
+		"/Users/dmp593/Code/personal/realm/facebook/test.html",
+		"/Users/dmp593/Code/personal/realm/facebook/management/commands/__init__.py",
+		"/Users/dmp593/Code/personal/realm/facebook/token_refresh.py",
 		"/Users/dmp593/Code/personal/realm/houses/static/widgets/css/file_preview.css",
 		"/Users/dmp593/Code/personal/realm/realm/views.py",
-		"/Users/dmp593/Code/personal/realm/houses/views.py",
-		"/Users/dmp593/Code/personal/realm/realm/settings.py",
 		"/Users/dmp593/Code/personal/realm/realm/utils.py",
-		"/Users/dmp593/Code/personal/realm/.env.example",
 		"/Users/dmp593/Code/personal/realm/realm.sublime-project",
 		"/Users/dmp593/Code/setwin/mywise/mywise.sublime-project",
 		"/Users/dmp593/Code/setwin/mywise/frontend/node_modules/nuxt/node_modules/@nuxt/devtools/dist/chunks/vscode.mjs",
@@ -637,7 +738,7 @@
 	],
 	"find":
 	{
-		"height": 78.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -652,6 +753,65 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"px",
+			"upper_bound",
+			".type",
+			"house_file_upload_to",
+			"HouseType",
+			"HouseFile",
+			"        default=False,",
+			"defaulT=None",
+			"upload_house_images_to_facebook",
+			"get_facebook_page_id",
+			"post_house_on_facebook",
+			"app_id",
+			"post_on",
+			"expires_in",
+			"refresh_page_access_token",
+			"Bad ",
+			"Something failed while publishing to Facebook. Please check your feed",
+			"Post on Facebook",
+			"as _",
+			"refresh_facebook_tokens",
+			"refresh_user_access_token",
+			"exchange_token",
+			"refresh_user_access_token",
+			"refresh_page_access_token",
+			"refresh_user_access_token",
+			"refresh_page_access_token",
+			"refresh_long_lived_token",
+			"refresh_page_access_token",
+			"refresh_long_lived_token",
+			"expires_at",
+			"FACEBOOK_ACCESS_TOKEN_SCOPE",
+			"refresh_long_lived_token",
+			"fb_exchange_token",
+			"FACEBOOK_LONG_LIVED_USER_TOKEN",
+			"get_var",
+			"FACEBOOK_LONG_LIVED_USER_TOKEN_EXPIRY",
+			"get_var",
+			"get_env_var",
+			"getattr",
+			"get_facebook_page_id",
+			"get_face",
+			"get_page_access_token",
+			"refresh_long_lived_token",
+			"get_page_access_token",
+			"refresh_long_lived_token",
+			"get_user_id",
+			"get_page_access_token",
+			"get_long_lived_user_token",
+			"LONG_LIVED_USER_TOKEN",
+			"FACEBOOK_APP_SECRET",
+			"()",
+			"short_lived_token",
+			"get_long_lived_user_token",
+			"get_user_id",
+			"FACEBOOK_PAGE_ACCESS_TOKEN",
+			"get_facebook_page_access_token",
+			"get_facebook_page_id",
+			"SHORT",
+			"FACEBOOK_APP_ID",
 			"reverse",
 			".files.",
 			"content_type__startswith",
@@ -774,7 +934,7 @@
 	},
 	"output.Terminus":
 	{
-		"height": 233.0
+		"height": 272.0
 	},
 	"output.Terminus 2":
 	{
@@ -810,6 +970,62 @@
 		"selected_items":
 		[
 			[
+				"cust",
+				"houses/templatetags/custom_formats.py"
+			],
+			[
+				"custom_",
+				"houses/templatetags/custom_formats.py"
+			],
+			[
+				"houses pricing",
+				"houses/models/pricing.py"
+			],
+			[
+				"models",
+				"facebook/models.py"
+			],
+			[
+				"houses urls",
+				"houses/urls.py"
+			],
+			[
+				"urls",
+				"houses/urls.py"
+			],
+			[
+				"forms.p",
+				"houses/forms.py"
+			],
+			[
+				"sett",
+				"realm/settings.py"
+			],
+			[
+				"admin",
+				"houses/admin.py"
+			],
+			[
+				"setting",
+				"realm/settings.py"
+			],
+			[
+				"admin.p",
+				"houses/admin.py"
+			],
+			[
+				".git",
+				".gitignore"
+			],
+			[
+				".env",
+				".env"
+			],
+			[
+				"admi",
+				"houses/admin.py"
+			],
+			[
 				"urls.",
 				"houses/urls.py"
 			],
@@ -818,20 +1034,8 @@
 				".env.prod"
 			],
 			[
-				".env",
-				".env"
-			],
-			[
-				"models",
-				"houses/models.py"
-			],
-			[
 				"admin.",
 				"houses/admin.py"
-			],
-			[
-				"sett",
-				"realm/settings.py"
 			],
 			[
 				"settings.",
@@ -858,16 +1062,8 @@
 				"users/management/commands/setup_tenant.py"
 			],
 			[
-				"setting",
-				"mywise/settings.py"
-			],
-			[
 				"router",
 				"tenants/db/router.py"
-			],
-			[
-				"urls",
-				"mywise/urls.py"
 			],
 			[
 				"reouter",
@@ -922,7 +1118,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 264.0,
+	"side_bar_width": 263.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

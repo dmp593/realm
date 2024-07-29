@@ -80,7 +80,71 @@
             <span class="font-bold">Número de Casas de Banho:</span> {{ house.number_of_bathrooms|default:"(Ausente / Não Aplicável)" }}
           </div>
           <div class="mb-4">
-            <span class="font-bold">Garagem:</span> {{ house.has_garage|yesno:"Sim,Não" }}
+            <span class="font-bold">Garagem:</span>
+            {% if house.has_garage is null %}
+              (Ausente / Não Aplicável)
+            {% else %}
+              {{ house.has_garage|yesno:"Sim,Não" }}
+            {% endif %}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Garagem Incluída no Preço:</span>
+            {% if house.garage_included_in_price is null %}
+              (Ausente / Não Aplicável)
+            {% else %}
+              {{ house.garage_included_in_price|yesno:"Sim,Não" }}
+            {% endif %}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Piscina:</span>
+            {% if house.has_pool is null %}
+              (Ausente / Não Aplicável)
+            {% else %}
+              {{ house.has_pool|yesno:"Sim,Não" }}
+            {% endif %}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Terraço:</span>
+            {% if house.has_terrace is null %}
+              (Ausente / Não Aplicável)
+            {% else %}
+              {{ house.has_terrace|yesno:"Sim,Não" }}
+            {% endif %}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Varanda:</span>
+            {% if house.has_balcony is null %}
+              (Ausente / Não Aplicável)
+            {% else %}
+              {{ house.has_balcony|yesno:"Sim,Não" }}
+            {% endif %}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Jardim:</span>
+            {% if house.has_garden is null %}
+              (Ausente / Não Aplicável)
+            {% else %}
+              {{ house.has_garden|yesno:"Sim,Não" }}
+            {% endif %}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Andar:</span> {{ house.floor_level|default:"(Ausente / Não Aplicável)" }}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Elevador:</span>
+            {% if house.has_lift is null %}
+              (Ausente / Não Aplicável)
+            {% else %}
+              {{ house.has_lift|yesno:"Sim,Não" }}
+            {% endif %}
+          </div>
+          <div class="mb-4">
+            <span class="font-bold">Adaptado para Mobilidade Reduzida:</span>
+            {% if house.adapted_for_reduced_mobility is null %}
+              (Ausente / Não Aplicável)
+            {% else %}
+              {{ house.adapted_for_reduced_mobility|yesno:"Sim,Não" }}
+            {% endif %}
           </div>
           <div class="mb-4">
             <span class="font-bold">Certificado Energético:</span> {{ house.energy_certificate.name|default:"(Ausente / Não Aplicável)" }}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% load custom_formats %}
+
+{% block title %}Vender a sua habitação{% endblock %}
+
+{% block content %}
+<main class="px-8 py-14 flex-grow bg-gray-100">
+  <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class="p-6">
+      <h1 class="text-4xl font-bold text-center text-gray-800">Está a pensar em vender a sua casa?</h1>
+      <p class="text-lg mt-10 px-5 font-light text-justify text-gray-600">Não sabe por onde começar? Procura alternativas mais económicas e de confiança? Chegou ao sítio certo. Com anos de experiência no mercado imobiliário, ofereço uma tabela de preços transparente e competitiva, sem percentagens ocultas ou surpresas desagradáveis. O valor é fixo e baseado nos intervalos apresentados, garantindo que paga um valor mais justo.</p>
+      <p class="text-lg mt-3 px-5 font-light text-justify text-gray-600">A minha missão é tornar o processo de venda da sua casa o mais simples e eficiente possível. Desde a avaliação inicial, com um gestor financeiro para acompanhamento e aconselhamento de crédito, até fechar o negócio, estarei ao seu lado em cada passo do caminho, oferecendo suporte e orientação personalizados.</p>
+      <p class="text-lg mt-3 px-5 font-light text-justify text-gray-600">Além disso, ofereço preços especiais para quem optar por vender e comprar comigo, proporcionando ainda mais vantagens económicas.</p>
+      <p class="text-lg mt-3 px-5 font-light text-justify text-gray-600">Estou aqui para ajudar a realizar o seu sonho imobiliário!</p>
+      <p class="text-sm mt-2 px-5 font-light italic text-right text-gray-600">Para mais informações ou para agendar uma consulta, <a href="{% url 'contacts' %}" class="text-blue-500 hover:text-blue-700">contacte-me</a>.</p>
+      
+      <!-- Country Selection -->
+      <div class="mt-10 flex justify-end">
+        <select id="country-select" x-model="selectedCountry" class="border border-gray-300 rounded">
+          {% regroup pricing_tiers by country_tax.country as country_list %}
+          {% for country in country_list %}
+            <option
+              value="{{ country.grouper }}"
+              {% if forloop.first %}selected{% endif %}>{{ country.grouper }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Pricing Table -->
+      <div class="overflow-x-auto mt-6" x-data="{ selectedCountry: '{{ country_list.0.grouper }}' }">
+        <table class="min-w-full bg-white border border-gray-300">
+          <thead>
+            <tr class="w-full bg-pink-500 text-white">
+              <th class="py-2 px-4 border-b">De</th>
+              <th class="py-2 px-4 border-b">Até</th>
+              <th class="py-2 px-4 border-b">Preço s/ IVA</th>
+              <th class="py-2 bg-pink-900 px-4 border-b">Preço c/ IVA</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for tier in pricing_tiers %}
+            <tr class="text-center" x-show="selectedCountry === '{{ tier.country_tax.country.name }}'">
+              <td class="py-2 px-4 border-b">{{ tier.lower_bound|default:""|format_number }}{% if tier.lower_bound %}€{% endif %}</td>
+              <td class="py-2 px-4 border-b">{{ tier.upper_bound|default:""|format_number }}{% if tier.upper_bound %}€{% endif %}</td>
+              <td class="py-2 px-4 border-b">{{ tier.gross_cost_in_euros|format_number }}€</td>
+              <td class="py-2 px-4 border-b">{{ tier.net_cost_in_euros|format_number }}€</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

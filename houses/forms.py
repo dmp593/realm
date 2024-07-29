@@ -10,6 +10,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage
 
 from houses.models import House, HouseFile
+from houses.models.pricing import PricingTier
 from houses.widgets import FilePreviewWidget, FilePreviewInlineWidget
 
 LEN_MEDIA_URL = len(settings.MEDIA_URL)
@@ -65,3 +66,13 @@ class HouseFileForm(forms.ModelForm):
 
 class HouseFileInlineForm(HouseFileForm):
     file = forms.FileField(widget=FilePreviewInlineWidget, required=False)
+
+
+class PricingTierForm(forms.ModelForm):
+    lower_bound = DecimalToIntegerField(min_value=0, required=False)
+    upper_bound = DecimalToIntegerField(min_value=0, required=False)
+    gross_cost_in_euros = DecimalToIntegerField(min_value=0, required=True)
+
+    class Meta:
+        model = PricingTier
+        fields = '__all__'

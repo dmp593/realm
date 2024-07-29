@@ -4,7 +4,8 @@ from django.core.paginator import Paginator
 from django.db.models.base import Model
 from django.db.models.query import QuerySet
 from django.db.models import Q
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 
 from houses import models
 
@@ -54,7 +55,7 @@ class HouseListView(ListView):
             queryset = queryset.filter(typology_id=typology_id)
         
         if type_id:
-            queryset = queryset.filter(type_id=type_id)
+            queryset = queryset.filter(Q(type_id=type_id) | Q(type__parent=type_id))
         
         if search_term:
             queryset = queryset.filter(
@@ -113,5 +114,8 @@ class HouseDetailView(DetailView):
         return obj
 
 
-class HouseFacebookPost(CreateView):
-    ...
+class SellingPricingTierListView(ListView):
+    queryset = models.PricingTier.objects.all()
+    template_name = 'houses/house_selling.html'
+    context_object_name = 'pricing_tiers'
+    ordering = ['country_tax', 'gross_cost_in_euros']

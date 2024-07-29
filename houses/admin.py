@@ -22,6 +22,9 @@ admin.site.register(models.HouseTypology)
 admin.site.register(models.EnergyCertificate)
 
 
+admin.site.register(models.CountryTax)
+
+
 @admin.register(models.HouseFile)
 class HouseFileAdmin(admin.ModelAdmin):
     form = forms.HouseFileForm
@@ -148,3 +151,20 @@ class HouseAdmin(admin.ModelAdmin):
                 _('Something failed while publishing to Facebook. Please check your feed.'),
                 messages.ERROR,
             )
+
+
+@admin.register(models.PricingTier)
+class PricingTierAdmin(admin.ModelAdmin):
+    form = forms.PricingTierForm
+
+    list_display = (
+        'country_tax',
+        'lower_bound',
+        'upper_bound',
+        'gross_cost_in_euros',
+        'net_cost_in_euros',
+    )
+
+    list_filter = (
+        'country_tax',
+    )

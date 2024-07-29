@@ -4,11 +4,12 @@
     <nav class="flex px-8 py-4 shadow-md bg-pink-400 justify-between">
         <div class="flex items-center space-x-8">
             <a href="{% url 'home' %}">
-                <img src="{% static "img/logo_simple.svg" %}" width="80" alt="logo simple" loading="lazy"
+                <img src="{% static 'img/logo_simple.svg' %}" width="80" alt="logo simple" loading="lazy"
                     @mouseover="$event.target.src = '{% static "img/logo_simple_accent.svg" %}'"
                     @mouseout="$event.target.src = '{% static "img/logo_simple.svg" %}'">
             </a>
-            <a href="{% url 'houses:list' %}" class="hidden md:block hover:text-indigo-900">Casas</a>
+            <a href="{% url 'houses:list' %}" class="hidden md:block hover:text-indigo-900">Comprar</a>
+            <a href="{% url 'houses:selling' %}" class="hidden md:block hover:text-indigo-900">Vender</a>
             <a href="{% url 'contacts' %}" class="hidden md:block hover:text-indigo-900">Contactos</a>
         </div>
         <div class="flex items-center space-x-8">
@@ -28,7 +29,12 @@
                 <ul class="text-right text-xl py-2 space-y-2">
                     <li>
                         <a href="{% url 'houses:list' %}">
-                            Casas
+                            Comprar
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'houses:selling' %}">
+                            Vender
                         </a>
                     </li>
                     <li>

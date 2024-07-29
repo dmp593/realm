@@ -28,6 +28,7 @@ const HTML = {
     '../houses/templates/houses/components/house_card_header.html': 'src/templates/houses/components/house_card_header.html',
     '../houses/templates/houses/components/house_card_summary.html': 'src/templates/houses/components/house_card_summary.html',
     '../houses/templates/houses/house_detail.html': 'src/templates/houses/house_detail.html',
+    '../houses/templates/houses/house_selling.html': 'src/templates/houses/house_selling.html',
 }
 
 const JS = {

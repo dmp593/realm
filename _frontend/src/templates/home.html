@@ -7,7 +7,9 @@
 <main class="px-0 pt-14 flex-grow">
   <div class="w-full">
     <h1 class="text-5xl font-bold text-center text-gray-800">Bem-vindo(a) a Alcina Imóveis</h1>
-    <p class="text-xl mt-3 font-light text-center text-gray-600">Encontra a tua casa de sonho comigo</p>
+    <p class="text-xl mt-3 font-light text-center text-gray-600">
+      Onde pode <a class="text-pink-500" href="{% url 'houses:list' %}">comprar</a> a sua casa de sonho ou <a class="text-pink-500" href="{% url 'houses:selling' %}">vender</a> a sua atual, com confiança.
+    </p>
     
     <!-- Swiper -->
     <div class="swiper mt-10">

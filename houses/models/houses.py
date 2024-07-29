@@ -7,6 +7,7 @@ from django.db import models
 from django.core.validators import RegexValidator, MinValueValidator
 from django.utils.translation import gettext_lazy as _
 
+from houses.models.locations import Locale
 from houses.managers import HouseManager, HouseSellingManager
 
 
@@ -29,130 +30,17 @@ def house_file_upload_to(instance: 'HouseFile', filename: str) -> str:
     return f"houses/{instance.house.pk}/{uuid4().hex}{extension}"
 
 
-class Country(models.Model):
-    name = models.CharField(
-        max_length=50,
-        unique=True,
-        verbose_name=_('name')
-    )
-
-    def __str__(self) -> str:
-        return f"{self.name}"
-
-    class Meta:
-        verbose_name = _('country')
-        verbose_name_plural = _('countries')
-        ordering = ['name']
-
-
-class District(models.Model):
-    name = models.CharField(
-        max_length=50,
-        verbose_name=_('name')
-    )
-
-    country = models.ForeignKey(
-        to=Country,
-        on_delete=models.PROTECT,
-        verbose_name=_('country')
-    )
-
-    def __str__(self) -> str:
-        return f"{self.name}, {self.country}"
-
-    class Meta:
-        verbose_name = _('district')
-        verbose_name_plural = _('districts')
-        ordering = ['country__name', 'name']
-        unique_together = [
-            ['country', 'name',]
-        ]
-
-
-class Municipality(models.Model):
-    name = models.CharField(
-        max_length=50,
-        verbose_name=_('name')
-    )
-
-    district = models.ForeignKey(
-        to=District,
-        on_delete=models.PROTECT,
-        verbose_name=_('district')
-    )
-
-    def __str__(self) -> str:
-        return f"{self.name}, {self.district}"
-
-    class Meta:
-        verbose_name = _('municipality')
-        verbose_name_plural = _('municipalities')
-        ordering = ['district__country__name', 'district__name', 'name',]
-        unique_together = [
-            ['district', 'name',]
-        ]
-
-
-class Parish(models.Model):
-    name = models.CharField(
-        max_length=50,
-        verbose_name=_('name')
-    )
-
-    municipality = models.ForeignKey(
-        to=Municipality,
-        on_delete=models.PROTECT,
-        verbose_name=_('municipality')
-    )
-
-    def __str__(self) -> str:
-        return f"{self.name}, {self.municipality}"
-
-    class Meta:
-        verbose_name = _('parish')
-        verbose_name_plural = _('parishes')
-        ordering = [
-            'municipality__district__country__name',
-            'municipality__district__name',
-            'municipality__name',
-            'name',
-        ]
-        unique_together = [
-            ['municipality', 'name',]
-        ]
-
-
-class Locale(models.Model):
-    name = models.CharField(
-        max_length=50,
-        verbose_name=_('name')
-    )
-
-    parish = models.ForeignKey(
-        to=Parish,
-        on_delete=models.PROTECT,
-        verbose_name=_('parish')
-    )
-    
-    def __str__(self) -> str:
-        return f"{self.name}, {self.parish}"
-
-    class Meta:
-        verbose_name = _('locale')
-        verbose_name_plural = _('locales')
-        ordering = [
-            'parish__municipality__district__country__name',
-            'parish__municipality__district__name',
-            'parish__municipality__name',
-            'parish__name',
-            'name'
-        ]
-        unique_together = [
-            ['parish', 'name',]
-        ]
-
-
 class HouseType(models.Model):
+    parent = models.ForeignKey(
+        to='self',
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        related_name='children',
+        related_query_name='child',
+        verbose_name=_('parent type')
+    )
+
     name = models.CharField(
         max_length=30,
         null=False,
@@ -167,7 +55,7 @@ class HouseType(models.Model):
     class Meta:
         verbose_name = _('house type')
         verbose_name_plural = _('houses types')
-        ordering = ['name']
+        ordering = ['parent__name', 'name']
 
 
 class HouseTypology(models.Model):
@@ -364,8 +252,57 @@ class House(models.Model):
     )
 
     has_garage = models.BooleanField(
-        default=False,
+        null=True,
+        blank=True,
         verbose_name=_('has garage'),
+    )
+
+    garage_included_in_price = models.BooleanField(
+        null=True,
+        blank=True,
+        verbose_name=_('garage included in price')
+    )
+
+    has_pool = models.BooleanField(
+        null=True,
+        blank=True,
+        verbose_name=_('has pool')
+    )
+
+    has_terrace = models.BooleanField(
+        null=True,
+        blank=True,
+        verbose_name=_('has terrace')
+    )
+
+    has_balcony = models.BooleanField(
+        null=True,
+        blank=True,
+        verbose_name=_('has balcony')
+    )
+
+    has_garden = models.BooleanField(
+        null=True,
+        blank=True,
+        verbose_name=_('has garden')
+    )
+
+    floor_level = models.IntegerField(
+        null=True,
+        blank=True,
+        verbose_name=_('floor level')
+    )
+
+    has_lift = models.BooleanField(
+        null=True,
+        blank=True,
+        verbose_name=_('has lift')
+    )
+
+    adapted_for_reduced_mobility = models.BooleanField(
+        null=True,
+        blank=True,
+        verbose_name=_('is adapted for people with reduced mobility')
     )
 
     energy_certificate = models.ForeignKey(
