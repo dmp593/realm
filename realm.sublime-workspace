@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"type",
+				"type_id"
+			],
+			[
+				"relate",
+				"related_query_name="
+			],
+			[
+				"related",
+				"related_name="
+			],
+			[
 				"is",
 				"isinstance"
 			],
@@ -260,6 +272,22 @@
 		"selected_items":
 		[
 			[
+				"upgrade",
+				"Package Control: Upgrade All Packages"
+			],
+			[
+				"update",
+				"Help: Check for Updates"
+			],
+			[
+				"set html",
+				"Set Syntax: HTML"
+			],
+			[
+				"togg",
+				"Terminus: Toggle Panel"
+			],
+			[
 				"terminus open ",
 				"Terminus: Toggle Panel"
 			],
@@ -285,10 +313,6 @@
 			],
 			[
 				"toggl",
-				"Terminus: Toggle Panel"
-			],
-			[
-				"togg",
 				"Terminus: Toggle Panel"
 			],
 			[
@@ -378,10 +402,6 @@
 			[
 				"package control: ",
 				"Package Control: Upgrade Package"
-			],
-			[
-				"update",
-				"Help: Check for Updates"
 			],
 			[
 				"pieces: logi",
@@ -613,10 +633,16 @@
 	},
 	"expanded_folders":
 	[
+		"/Users/dmp593/Code/personal/realm",
+		"/Users/dmp593/Code/personal/realm/houses"
 	],
 	"file_history":
 	[
+		"/Users/dmp593/Code/personal/realm/houses/models/houses.py",
+		"/Users/dmp593/Code/personal/realm/_frontend/src/templates/houses/house_detail.html",
+		"/Users/dmp593/Code/personal/realm/houses/migrations/0005_alter_countrytax_options_housetype_parent.py",
 		"/Users/dmp593/Code/personal/realm/houses/views.py",
+		"/Users/dmp593/Code/personal/realm/_frontend/src/templates/houses/components/form_house_list_filters.html",
 		"/Users/dmp593/Code/personal/realm/_frontend/webpack.config.js",
 		"/Users/dmp593/Code/personal/realm/_frontend/src/sitemap.xml",
 		"/Users/dmp593/Code/personal/realm/sitemap.xml",
@@ -635,8 +661,6 @@
 		"/Users/dmp593/Code/personal/realm/houses/admin.py",
 		"/Users/dmp593/Code/personal/realm/houses/forms.py",
 		"/Users/dmp593/Code/personal/realm/houses/models/__init__.py",
-		"/Users/dmp593/Code/personal/realm/houses/models/houses.py",
-		"/Users/dmp593/Code/personal/realm/_frontend/src/templates/houses/house_detail.html",
 		"/Users/dmp593/Code/personal/realm/houses/models/locations.py",
 		"/Users/dmp593/Code/personal/realm/houses/models.py",
 		"/Users/dmp593/Code/personal/realm/realm/settings.py",
@@ -753,6 +777,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"description",
+			"Não,Não",
+			"{% for type in types %}",
 			"px",
 			"upper_bound",
 			".type",

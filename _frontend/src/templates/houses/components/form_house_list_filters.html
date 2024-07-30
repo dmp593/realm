@@ -39,6 +39,9 @@
             <option disabled value="" {% if not request.GET.type %}selected{% endif %}>Tipo</option>
             {% for type in types %}
             <option value="{{ type.pk }}" {% if request.GET.type == type.pk|stringformat:'s' %}selected{% endif %}>{{ type.name }}</option>
+            {% for child in type.children.all %}
+            <option value="{{ child.pk }}" {% if request.GET.type == child.pk|stringformat:'s' %}selected{% endif %}>&nbsp;&nbsp;&nbsp;&nbsp;{{ child.name }}</option>
+            {% endfor %}
             {% endfor %}
         </select>
         <select id="typology-select" name="type" class="p-2 border border-gray-300 rounded">

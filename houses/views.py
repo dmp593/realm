@@ -88,7 +88,7 @@ class HouseListView(ListView):
         context['municipalities'] = models.Municipality.objects.all()
         context['parishes'] = models.Parish.objects.all()
         context['locales'] = models.Locale.objects.all()
-        context['types'] = models.HouseType.objects.all()
+        context['types'] = models.HouseType.objects.filter(parent__isnull=True).all()
         context['typologies'] = models.HouseTypology.objects.all()
 
         return context
