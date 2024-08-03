@@ -272,8 +272,24 @@
 		"selected_items":
 		[
 			[
+				"pieces:",
+				"Pieces: Reload Plugin"
+			],
+			[
+				"pieces: ",
+				"Pieces: Open Pieces Settings"
+			],
+			[
 				"upgrade",
 				"Package Control: Upgrade All Packages"
+			],
+			[
+				"terminus: open",
+				"Terminus: Open Default Shell in Tab (View)"
+			],
+			[
+				"termin",
+				"Terminus: Toggle Panel"
 			],
 			[
 				"update",
@@ -293,10 +309,6 @@
 			],
 			[
 				"tog",
-				"Terminus: Toggle Panel"
-			],
-			[
-				"termin",
 				"Terminus: Toggle Panel"
 			],
 			[
@@ -320,10 +332,6 @@
 				"Terminus: Toggle Panel"
 			],
 			[
-				"pieces: ",
-				"Pieces: Launch Onboarding"
-			],
-			[
 				"Pieces:",
 				"Pieces: About"
 			],
@@ -342,10 +350,6 @@
 			[
 				"pieces: setting",
 				"Pieces: Open Pieces Settings"
-			],
-			[
-				"pieces:",
-				"Pieces: Ask about the current project"
 			],
 			[
 				"package control ins",
@@ -638,11 +642,13 @@
 	],
 	"file_history":
 	[
+		"/Users/dmp593/Code/personal/realm/houses/views.py",
+		"/Users/dmp593/Code/personal/realm/_frontend/src/templates/houses/house_list.html",
+		"/Users/dmp593/Code/personal/realm/_frontend/src/templates/houses/components/form_house_list_filters.html",
+		"/Users/dmp593/Code/personal/realm/houses/templates/houses/house_detail.html",
 		"/Users/dmp593/Code/personal/realm/houses/models/houses.py",
 		"/Users/dmp593/Code/personal/realm/_frontend/src/templates/houses/house_detail.html",
 		"/Users/dmp593/Code/personal/realm/houses/migrations/0005_alter_countrytax_options_housetype_parent.py",
-		"/Users/dmp593/Code/personal/realm/houses/views.py",
-		"/Users/dmp593/Code/personal/realm/_frontend/src/templates/houses/components/form_house_list_filters.html",
 		"/Users/dmp593/Code/personal/realm/_frontend/webpack.config.js",
 		"/Users/dmp593/Code/personal/realm/_frontend/src/sitemap.xml",
 		"/Users/dmp593/Code/personal/realm/sitemap.xml",
@@ -777,6 +783,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"type",
 			"description",
 			"Não,Não",
 			"{% for type in types %}",
@@ -997,6 +1004,26 @@
 		"selected_items":
 		[
 			[
+				"views",
+				"houses/views.py"
+			],
+			[
+				"form_house_list_filters",
+				"_frontend/src/templates/houses/components/form_house_list_filters.html"
+			],
+			[
+				"house_l",
+				"_frontend/src/templates/houses/house_list.html"
+			],
+			[
+				"house_de",
+				"houses/templates/houses/house_detail.html"
+			],
+			[
+				"house",
+				"houses/models/houses.py"
+			],
+			[
 				"cust",
 				"houses/templatetags/custom_formats.py"
 			],
@@ -1121,12 +1148,16 @@
 	},
 	"select_project":
 	{
-		"height": 0.0,
+		"height": 501.0,
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"",
+				"~/Code/setwin/mywise/mywise.sublime-project"
+			]
 		],
-		"width": 0.0
+		"width": 380.0
 	},
 	"select_symbol":
 	{

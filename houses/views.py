@@ -1,6 +1,7 @@
 from typing import Any
 
 from django.core.paginator import Paginator
+from django.db.models import Max, Min, query
 from django.db.models.base import Model
 from django.db.models.query import QuerySet
 from django.db.models import Q
@@ -8,6 +9,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic import ListView
 
 from houses import models
+from houses.utils import str2decimal
 
 
 class HouseListView(ListView):
@@ -32,12 +34,21 @@ class HouseListView(ListView):
                 if qs.exists():
                     return qs
 
+        min_price = str2decimal(self.request.GET.get('min_price'))
+        max_price = str2decimal(self.request.GET.get('max_price'))
+
         district_id = self.request.GET.get('district')
         municipality_id = self.request.GET.get('municipality')
         parish_id = self.request.GET.get('parish')
         locale_id = self.request.GET.get('locale')
         typology_id = self.request.GET.get('typology')
         type_id = self.request.GET.get('type')
+
+        if min_price:
+            queryset = queryset.filter(price_in_euros__gte=min_price)
+
+        if max_price:
+            queryset = queryset.filter(price_in_euros__lte=max_price)
 
         if district_id:
             queryset = queryset.filter(locale__parish__municipality__district_id=district_id)
@@ -84,6 +95,10 @@ class HouseListView(ListView):
         context['houses'] = houses
 
         # Fetch districts, municipalities, parishes, typologies, and types
+
+        context['min_price'] = self.get_queryset().aggregate(min=Min('price_in_euros'))['min']
+        context['max_price'] = self.get_queryset().aggregate(max=Max('price_in_euros'))['max']
+
         context['districts'] = models.District.objects.all()
         context['municipalities'] = models.Municipality.objects.all()
         context['parishes'] = models.Parish.objects.all()

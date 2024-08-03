@@ -11,45 +11,71 @@
     
     <!-- Advanced Filters -->
     <div x-show="showAdvancedFilters" class="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <select id="district-select" name="district" class="p-2 border border-gray-300 rounded">
-            <option disabled value="" {% if not request.GET.district %}selected{% endif %}>Distrito</option>
-            {% for district in districts %}
-            <option value="{{ district.pk }}" {% if request.GET.district == district.pk|stringformat:'s' %}selected{% endif %}>{{ district.name }}</option>
-            {% endfor %}
-        </select>
-        <select id="municipality-select" name="municipality" class="p-2 border border-gray-300 rounded">
-            <option disabled value="" {% if not request.GET.municipality %}selected{% endif %}>Município</option>
-            {% for municipality in municipalities %}
-            <option value="{{ municipality.pk }}" {% if request.GET.municipality == municipality.pk|stringformat:'s' %}selected{% endif %} data-district="{{ municipality.district.pk }}">{{ municipality.name }}</option>
-            {% endfor %}
-        </select>
-        <select id="parish-select" name="parish" class="p-2 border border-gray-300 rounded">
-            <option disabled value="" {% if not request.GET.parish %}selected{% endif %}>Freguesia</option>
-            {% for parish in parishes %}
-            <option value="{{ parish.pk }}" {% if request.GET.parish == parish.pk|stringformat:'s' %}selected{% endif %} data-municipality="{{ parish.municipality.pk }}">{{ parish.name }}</option>
-            {% endfor %}
-        </select>
-        <select id="locale-select" name="locale" class="p-2 border border-gray-300 rounded">
-          <option disabled value="" {% if not request.GET.locale %}selected{% endif %}>Zona</option>
-          {% for locale in locales %}
-          <option value="{{ locale.pk }}" {% if request.GET.locale == locale.pk|stringformat:'s' %}selected{% endif %} data-parish="{{ locale.parish.pk }}">{{ locale.name }}</option>
-          {% endfor %}
-      </select>
-        <select id="type-select" name="type" class="p-2 border border-gray-300 rounded">
-            <option disabled value="" {% if not request.GET.type %}selected{% endif %}>Tipo</option>
-            {% for type in types %}
-            <option value="{{ type.pk }}" {% if request.GET.type == type.pk|stringformat:'s' %}selected{% endif %}>{{ type.name }}</option>
-            {% for child in type.children.all %}
-            <option value="{{ child.pk }}" {% if request.GET.type == child.pk|stringformat:'s' %}selected{% endif %}>&nbsp;&nbsp;&nbsp;&nbsp;{{ child.name }}</option>
-            {% endfor %}
-            {% endfor %}
-        </select>
-        <select id="typology-select" name="type" class="p-2 border border-gray-300 rounded">
-          <option disabled value=""  {% if not request.GET.typology %}selected{% endif %}>Tipologia</option>
-          {% for typology in typologies %}
-          <option value="{{ typology.pk }}" {% if request.GET.typology == typology.pk|stringformat:'s' %}selected{% endif %}>{{ typology.name }}</option>
-          {% endfor %}
-      </select>
+        <div>
+            <label for="min-price" class="block text-sm font-medium text-gray-700">Preço Mínimo</label>
+            <input type="number" id="min-price" name="min_price" placeholder="Preço Mínimo" class="p-2 border border-gray-300 rounded w-full" value="{{ request.GET.min_price|default_if_none:'' }}" min="{{ min_price }}" max="{{ max_price }}">
+        </div>
+        <div>
+            <label for="max-price" class="block text-sm font-medium text-gray-700">Preço Máximo</label>
+            <input type="number" id="max-price" name="max_price" placeholder="Preço Máximo" class="p-2 border border-gray-300 rounded w-full" value="{{ request.GET.max_price|default_if_none:'' }}" min="{{ min_price }}" max="{{ max_price }}">
+        </div>
+        <div>
+            <label for="district" class="block text-sm font-medium text-gray-700">Distrito</label>
+            <select id="district-select" name="district" class="p-2 border border-gray-300 rounded w-full">
+                <option disabled value="" {% if not request.GET.district %}selected{% endif %}>Distrito</option>
+                {% for district in districts %}
+                <option value="{{ district.pk }}" {% if request.GET.district == district.pk|stringformat:'s' %}selected{% endif %}>{{ district.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="municipality" class="block text-sm font-medium text-gray-700">Município</label>
+            <select id="municipality-select" name="municipality" class="p-2 border border-gray-300 rounded w-full">
+                <option disabled value="" {% if not request.GET.municipality %}selected{% endif %}>Município</option>
+                {% for municipality in municipalities %}
+                <option value="{{ municipality.pk }}" {% if request.GET.municipality == municipality.pk|stringformat:'s' %}selected{% endif %} data-district="{{ municipality.district.pk }}">{{ municipality.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="parish" class="block text-sm font-medium text-gray-700">Freguesia</label>
+            <select id="parish-select" name="parish" class="p-2 border border-gray-300 rounded w-full">
+                <option disabled value="" {% if not request.GET.parish %}selected{% endif %}>Freguesia</option>
+                {% for parish in parishes %}
+                <option value="{{ parish.pk }}" {% if request.GET.parish == parish.pk|stringformat:'s' %}selected{% endif %} data-municipality="{{ parish.municipality.pk }}">{{ parish.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="Zona" class="block text-sm font-medium text-gray-700">Zona</label>
+            <select id="locale-select" name="locale" class="p-2 border border-gray-300 rounded w-full">
+              <option disabled value="" {% if not request.GET.locale %}selected{% endif %}>Zona</option>
+              {% for locale in locales %}
+              <option value="{{ locale.pk }}" {% if request.GET.locale == locale.pk|stringformat:'s' %}selected{% endif %} data-parish="{{ locale.parish.pk }}">{{ locale.name }}</option>
+              {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="type" class="block text-sm font-medium text-gray-700">Tipo</label>
+            <select id="type-select" name="type" class="p-2 border border-gray-300 rounded  w-full">
+                <option disabled value="" {% if not request.GET.type %}selected{% endif %}>Tipo</option>
+                {% for type in types %}
+                <option value="{{ type.pk }}" {% if request.GET.type == type.pk|stringformat:'s' %}selected{% endif %}>{{ type.name }}</option>
+                {% for child in type.children.all %}
+                <option value="{{ child.pk }}" {% if request.GET.type == child.pk|stringformat:'s' %}selected{% endif %}>&nbsp;&nbsp;&nbsp;&nbsp;{{ child.name }}</option>
+                {% endfor %}
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="typology" class="block text-sm font-medium text-gray-700">Tipologia</label>
+            <select id="typology-select" name="typology" class="p-2 border border-gray-300 rounded w-full">
+              <option disabled value=""  {% if not request.GET.typology %}selected{% endif %}>Tipologia</option>
+              {% for typology in typologies %}
+              <option value="{{ typology.pk }}" {% if request.GET.typology == typology.pk|stringformat:'s' %}selected{% endif %}>{{ typology.name }}</option>
+              {% endfor %}
+            </select>
+        </div>
     </div>
     
     <button id="reset-filters" type="reset" class="col-span-1 md:col-span-1 bg-purple-500 text-white py-2 rounded hover:bg-purple-700">Limpar</button>

@@ -9,9 +9,9 @@ from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage
 
-from houses.models import House, HouseFile
-from houses.models.pricing import PricingTier
+from houses import models
 from houses.widgets import FilePreviewWidget, FilePreviewInlineWidget
+
 
 LEN_MEDIA_URL = len(settings.MEDIA_URL)
 
@@ -29,7 +29,7 @@ class HouseForm(forms.ModelForm):
     discount_in_euros = DecimalToIntegerField(min_value=0, required=False)
 
     class Meta:
-        model = House
+        model = models.House
         fields = '__all__'
 
 
@@ -38,7 +38,7 @@ class HouseFileForm(forms.ModelForm):
     tmp_file = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
-        model = HouseFile
+        model = models.HouseFile
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
@@ -74,5 +74,5 @@ class PricingTierForm(forms.ModelForm):
     gross_cost_in_euros = DecimalToIntegerField(min_value=0, required=True)
 
     class Meta:
-        model = PricingTier
+        model = models.PricingTier
         fields = '__all__'
