@@ -1,6 +1,5 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
 # Daniel Pinto <dmp593@gmail.com>, 2024.
 #
 #, fuzzy
@@ -8,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-19 11:10+0000\n"
-"PO-Revision-Date: 2024-07-19 01:55+0000\n"
+"POT-Creation-Date: 2024-09-15 13:05+0000\n"
+"PO-Revision-Date: 2024-09-15 00:00+0000\n"
 "Last-Translator: Daniel Mendes Pinto <dmp593@gmail.com>\n"
-"Language-Team: Portuguese Team <LL@li.org>\n"
+"Language-Team: Portuguese Team <dmp593@gmail.com>\n"
 "Language: Portuguese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +35,7 @@ msgstr "Token de Acesso da Página do Facebook"
 
 #: facebook/models.py:17
 msgid "scope"
-msgstr "escopo"
+msgstr "âmbito"
 
 #: facebook/models.py:22
 msgid "access token"
@@ -46,222 +45,325 @@ msgstr "token de acesso"
 msgid "expiry"
 msgstr "expiração"
 
-#: facebook/models.py:30
+#: facebook/models.py:32
 msgid "facebook access token"
 msgstr "token de acesso do facebook"
 
-#: facebook/models.py:31
+#: facebook/models.py:33
 msgid "facebook access tokens"
 msgstr "tokens de acesso do facebook"
 
-#: houses/admin.py:114
+#: houses/admin.py:127
 msgid "Post on Facebook"
 msgstr "Publicar no Facebook"
 
-#: houses/admin.py:138
+#: houses/admin.py:151
 msgid "Something failed while publishing to Facebook. Please check your feed."
-msgstr ""
-"Ocorreu um erro ao publicar no Facebook. Por favor, verifique o seu feed."
+msgstr "Ocorreu um erro ao publicar no Facebook. Por favor, verifique o seu feed."
 
-#: houses/models.py:36 houses/models.py:51 houses/models.py:75
-#: houses/models.py:99 houses/models.py:128 houses/models.py:161
-#: houses/models.py:179 houses/models.py:202 houses/models.py:225
+#: houses/models/houses.py:41
+msgid "parent type"
+msgstr "tipo de pai"
+
+#: houses/models/houses.py:49 houses/models/houses.py:67
+#: houses/models/houses.py:90 houses/models/houses.py:113
+#: houses/models/locations.py:12 houses/models/locations.py:27
+#: houses/models/locations.py:51 houses/models/locations.py:75
+#: houses/models/locations.py:104
 msgid "name"
 msgstr "nome"
 
-#: houses/models.py:43 houses/models.py:57
-msgid "country"
-msgstr "país"
-
-#: houses/models.py:44
-msgid "countries"
-msgstr "países"
-
-#: houses/models.py:64 houses/models.py:81
-msgid "district"
-msgstr "distrito"
-
-#: houses/models.py:65
-msgid "districts"
-msgstr "distritos"
-
-#: houses/models.py:88 houses/models.py:105
-msgid "municipality"
-msgstr "concelho"
-
-#: houses/models.py:89
-msgid "municipalities"
-msgstr "concelhos"
-
-#: houses/models.py:112 houses/models.py:134
-msgid "parish"
-msgstr "freguesia"
-
-#: houses/models.py:113
-msgid "parishes"
-msgstr "freguesias"
-
-#: houses/models.py:141 houses/models.py:276
-msgid "locale"
-msgstr "localidade"
-
-#: houses/models.py:142
-msgid "locales"
-msgstr "localidades"
-
-#: houses/models.py:168
+#: houses/models/houses.py:56
 msgid "house type"
 msgstr "tipo de casa"
 
-#: houses/models.py:169
+#: houses/models/houses.py:57
 msgid "houses types"
 msgstr "tipos de casas"
 
-#: houses/models.py:184 houses/models.py:207 houses/models.py:230
-#: houses/models.py:411 houses/models.py:470
+#: houses/models/houses.py:72 houses/models/houses.py:95
+#: houses/models/houses.py:118 houses/models/houses.py:348
+#: houses/models/houses.py:407
 msgid "order"
 msgstr "ordem"
 
-#: houses/models.py:191
+#: houses/models/houses.py:79
 msgid "house typology"
 msgstr "tipologia da casa"
 
-#: houses/models.py:192
+#: houses/models/houses.py:80
 msgid "houses typologies"
 msgstr "tipologias das casas"
 
-#: houses/models.py:214
+#: houses/models/houses.py:102
 msgid "house condition"
 msgstr "condição da casa"
 
-#: houses/models.py:215
+#: houses/models/houses.py:103
 msgid "house conditions"
 msgstr "condições da casa"
 
-#: houses/models.py:237 houses/models.py:376
+#: houses/models/houses.py:125 houses/models/houses.py:313
 msgid "energy certificate"
 msgstr "certificado energético"
 
-#: houses/models.py:238
+#: houses/models/houses.py:126
 msgid "energy certificates"
 msgstr "certificados energéticos"
 
-#: houses/models.py:246
+#: houses/models/houses.py:134
 msgid "title"
 msgstr "título"
 
-#: houses/models.py:251 houses/models.py:452
+#: houses/models/houses.py:139 houses/models/houses.py:389
 msgid "description"
 msgstr "descrição"
 
-#: houses/models.py:257
+#: houses/models/houses.py:145
 msgid "address"
 msgstr "morada"
 
-#: houses/models.py:265
+#: houses/models/houses.py:153
 msgid "Not a valid postal-code. Pattern must be: XXXX-XXX"
 msgstr "Código postal inválido. O padrão deve ser: XXXX-XXX"
 
-#: houses/models.py:269
+#: houses/models/houses.py:157
 msgid "postal code"
 msgstr "código postal"
 
-#: houses/models.py:283
+#: houses/models/houses.py:164 houses/models/locations.py:117
+msgid "locale"
+msgstr "localidade"
+
+#: houses/models/houses.py:171
 msgid "type"
 msgstr "tipo"
 
-#: houses/models.py:290
+#: houses/models/houses.py:178
 msgid "price in euros"
 msgstr "preço em euros"
 
-#: houses/models.py:298
+#: houses/models/houses.py:186
 msgid "discount in euros"
 msgstr "desconto em euros"
 
-#: houses/models.py:306
+#: houses/models/houses.py:194
 msgid "typology"
 msgstr "tipologia"
 
-#: houses/models.py:314
+#: houses/models/houses.py:202
 msgid "condition"
 msgstr "condição"
 
-#: houses/models.py:325
+#: houses/models/houses.py:213
 msgid "gross private area in square meters"
 msgstr "área bruta privativa em m²"
 
-#: houses/models.py:336
+#: houses/models/houses.py:224
 msgid "net internal area in square meters"
 msgstr "área interna líquida em m²"
 
-#: houses/models.py:345
+#: houses/models/houses.py:233
 msgid "construction year"
 msgstr "ano de construção"
 
-#: houses/models.py:354
+#: houses/models/houses.py:242
 msgid "number of rooms"
 msgstr "número de quartos"
 
-#: houses/models.py:363
+#: houses/models/houses.py:251
 msgid "number of bathrooms"
 msgstr "número de casas de banho"
 
-#: houses/models.py:368
+#: houses/models/houses.py:257
 msgid "has garage"
 msgstr "tem garagem"
 
-#: houses/models.py:381
+#: houses/models/houses.py:263
+msgid "garage included in price"
+msgstr "garagem incluída no preço"
+
+#: houses/models/houses.py:269
+msgid "has pool"
+msgstr "tem piscina"
+
+#: houses/models/houses.py:275
+msgid "has terrace"
+msgstr "tem terraço"
+
+#: houses/models/houses.py:281
+msgid "has balcony"
+msgstr "tem varanda"
+
+#: houses/models/houses.py:287
+msgid "has garden"
+msgstr "tem jardim"
+
+#: houses/models/houses.py:293
+msgid "floor level"
+msgstr "piso"
+
+#: houses/models/houses.py:299
+msgid "has lift"
+msgstr "tem elevador"
+
+#: houses/models/houses.py:305
+msgid "is adapted for people with reduced mobility"
+msgstr "está adaptado a pessoas com mobilidade reduzida"
+
+#: houses/models/houses.py:318
 msgid "highlighted"
 msgstr "destacado"
 
-#: houses/models.py:386
+#: houses/models/houses.py:323
 msgid "reserved"
 msgstr "reservado"
 
-#: houses/models.py:391
+#: houses/models/houses.py:328
 msgid "active"
 msgstr "ativo"
 
-#: houses/models.py:397
+#: houses/models/houses.py:334
 msgid "sold at"
 msgstr "vendido a"
 
-#: houses/models.py:405
+#: houses/models/houses.py:342
 msgid "sold for"
 msgstr "vendido por"
 
-#: houses/models.py:428 houses/models.py:438
+#: houses/models/houses.py:365 houses/models/houses.py:375
 msgid "house"
 msgstr "casa"
 
-#: houses/models.py:429
+#: houses/models/houses.py:366
 msgid "houses"
 msgstr "casas"
 
-#: houses/models.py:446
+#: houses/models/houses.py:383
 msgid "file"
 msgstr "ficheiro"
 
-#: houses/models.py:458
+#: houses/models/houses.py:395
 msgid "filename"
 msgstr "nome do ficheiro"
 
-#: houses/models.py:464
+#: houses/models/houses.py:401
 msgid "content type"
 msgstr "tipo de conteúdo"
 
-#: houses/models.py:477
+#: houses/models/houses.py:414
 msgid "house file"
 msgstr "ficheiro da casa"
 
-#: houses/models.py:478
+#: houses/models/houses.py:415
 msgid "house files"
 msgstr "ficheiros das casas"
 
-#: realm/settings.py:156
-msgid "English"
-msgstr "Inglês"
+#: houses/models/locations.py:19 houses/models/locations.py:33
+#: houses/models/pricing.py:11
+msgid "country"
+msgstr "país"
 
-#: realm/settings.py:157
-msgid "Portuguese"
-msgstr "Português"
+#: houses/models/locations.py:20
+msgid "countries"
+msgstr "países"
+
+#: houses/models/locations.py:40 houses/models/locations.py:57
+msgid "district"
+msgstr "distrito"
+
+#: houses/models/locations.py:41
+msgid "districts"
+msgstr "distritos"
+
+#: houses/models/locations.py:64 houses/models/locations.py:81
+msgid "municipality"
+msgstr "concelho"
+
+#: houses/models/locations.py:65
+msgid "municipalities"
+msgstr "concelhos"
+
+#: houses/models/locations.py:88 houses/models/locations.py:110
+msgid "parish"
+msgstr "freguesia"
+
+#: houses/models/locations.py:89
+msgid "parishes"
+msgstr "freguesias"
+
+#: houses/models/locations.py:118
+msgid "locales"
+msgstr "localidades"
+
+#: houses/models/pricing.py:15
+msgid "tax rate"
+msgstr "taxa de imposto"
+
+#: houses/models/pricing.py:21 houses/models/pricing.py:33
+msgid "country tax"
+msgstr "taxa do país"
+
+#: houses/models/pricing.py:22
+msgid "country taxes"
+msgstr "taxas do país"
+
+#: houses/models/pricing.py:41
+msgid "lower bound"
+msgstr "mínimo"
+
+#: houses/models/pricing.py:49
+msgid "upper bound"
+msgstr "máximo"
+
+#: houses/models/pricing.py:56
+msgid "discount rate"
+msgstr "taxa de desconto"
+
+#: houses/models/pricing.py:64
+msgid "value in euros"
+msgstr "valor em euros"
+
+#: houses/models/pricing.py:72
+msgid "multiplier"
+msgstr "multiplicador"
+
+#: houses/models/pricing.py:83
+msgid "fee"
+msgstr "taxa"
+
+#: houses/models/pricing.py:93
+msgid "commission"
+msgstr "comissão"
+
+#: houses/models/pricing.py:103
+msgid "base price"
+msgstr "preço base"
+
+#: houses/models/pricing.py:115
+msgid "pricing group"
+msgstr "grupo de preços"
+
+#: houses/models/pricing.py:116
+msgid "pricing groups"
+msgstr "grupos de preços"
+
+#: houses/models/pricing.py:122 houses/models/pricing.py:138
+msgid "price"
+msgstr "preço"
+
+#: houses/models/pricing.py:131 houses/models/pricing.py:147
+msgid "currency"
+msgstr "moeda"
+
+#: houses/models/pricing.py:163
+msgid "fixed price"
+msgstr "preço fixo"
+
+#: houses/models/pricing.py:174 houses/models/pricing.py:191
+msgid "house pricing"
+msgstr "preço da casa"
+
+#: houses/models/pricing.py:175
+msgid "house pricings"
+msgstr "preços das casas"

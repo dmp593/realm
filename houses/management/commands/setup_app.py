@@ -80,6 +80,8 @@ class Command(BaseCommand):
             call_command('loaddata', 'houses/types')
             call_command('loaddata', 'houses/typologies')
             call_command('loaddata', 'houses/energies-certificates')
+            call_command('loaddata', 'houses/countries-taxes')
+            call_command('loaddata', 'houses/pricing-tiers')
         except CommandError as e:
             raise CommandError(f'Error loading initial data: {str(e)}') from e
 

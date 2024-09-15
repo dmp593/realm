@@ -1,0 +1,10 @@
+[
+    {
+        "model": "houses.countrytax",
+        "pk": 1,
+        "fields": {
+            "country": 1,
+            "tax_rate": 23
+        }
+    }
+]

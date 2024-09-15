@@ -34,17 +34,23 @@
             <tr class="w-full bg-pink-500 text-white">
               <th class="py-2 px-4 border-b">De</th>
               <th class="py-2 px-4 border-b">Até</th>
-              <th class="py-2 px-4 border-b">Preço s/ IVA</th>
+              <th class="py-2 px-4 border-b border-l">Preço s/ IVA</th>
               <th class="py-2 bg-pink-900 px-4 border-b">Preço c/ IVA</th>
             </tr>
           </thead>
           <tbody>
             {% for tier in pricing_tiers %}
             <tr class="text-center" x-show="selectedCountry === '{{ tier.country_tax.country.name }}'">
-              <td class="py-2 px-4 border-b">{{ tier.lower_bound|default:""|format_number }}{% if tier.lower_bound %}€{% endif %}</td>
-              <td class="py-2 px-4 border-b">{{ tier.upper_bound|default:""|format_number }}{% if tier.upper_bound %}€{% endif %}</td>
-              <td class="py-2 px-4 border-b">{{ tier.gross_cost_in_euros|format_number }}€</td>
-              <td class="py-2 px-4 border-b">{{ tier.net_cost_in_euros|format_number }}€</td>
+              <td class="py-2 px-4 border-b">{{ tier.lower_bound|default:"-"|format_number }}{% if tier.lower_bound %}€{% endif %}</td>
+              <td class="py-2 px-4 border-b">{{ tier.upper_bound|default:"-"|format_number }}{% if tier.upper_bound %}€{% endif %}</td>
+              
+              {% if tier.is_negotiable %}
+              <td colspan="2" class="py-2 px-4 border font-bold">(Contacte-me)</td>
+              {% else %}
+              <td class="py-2 px-4 border-b border-l">{{ tier.gross_cost_in_euros|default:"(Contacte-me)"|format_number }}{% if tier.gross_cost_in_euros %}€{% endif %}</td>
+              <td class="py-2 px-4 border-b">{{ tier.net_cost_in_euros|default:"(Contacte-me)"|format_number }}{% if tier.net_cost_in_euros %}€{% endif %}</td>
+              {% endif %}
+
             </tr>
             {% endfor %}
           </tbody>

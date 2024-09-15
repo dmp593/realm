@@ -133,4 +133,4 @@ class SellingPricingTierListView(ListView):
     queryset = models.PricingTier.objects.all()
     template_name = 'houses/house_selling.html'
     context_object_name = 'pricing_tiers'
-    ordering = ['country_tax', 'gross_cost_in_euros']
+    ordering = ['country_tax', 'lower_bound']

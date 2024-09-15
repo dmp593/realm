@@ -9,7 +9,7 @@
     },
     {
         "model": "houses.housecondition",
-        "pk": 1,
+        "pk": 2,
         "fields": {
             "name": "Novo",
             "order": 1
@@ -17,7 +17,7 @@
     },
     {
         "model": "houses.housecondition",
-        "pk": 2,
+        "pk": 3,
         "fields": {
             "name": "Semi-Novo",
             "order": 2
@@ -25,7 +25,7 @@
     },
     {
         "model": "houses.housecondition",
-        "pk": 3,
+        "pk": 4,
         "fields": {
             "name": "Usado",
             "order": 3
@@ -33,7 +33,7 @@
     },
     {
         "model": "houses.housecondition",
-        "pk": 4,
+        "pk": 5,
         "fields": {
             "name": "Por Restaurar",
             "order": 4

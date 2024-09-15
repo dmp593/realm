@@ -1,0 +1,52 @@
+[
+    {
+        "model": "houses.pricingtier",
+        "pk": 1,
+        "fields": {
+            "country_tax": 1,
+            "lower_bound": null,
+            "upper_bound": 99999,
+            "gross_cost_in_euros": 3000
+        }
+    },
+    {
+        "model": "houses.pricingtier",
+        "pk": 2,
+        "fields": {
+            "country_tax": 1,
+            "lower_bound": 100000,
+            "upper_bound": 169999,
+            "gross_cost_in_euros": 5000
+        }
+    },
+    {
+        "model": "houses.pricingtier",
+        "pk": 3,
+        "fields": {
+            "country_tax": 1,
+            "lower_bound": 170000,
+            "upper_bound": 229999,
+            "gross_cost_in_euros": 7000
+        }
+    },
+    {
+        "model": "houses.pricingtier",
+        "pk": 4,
+        "fields": {
+            "country_tax": 1,
+            "lower_bound": 230000,
+            "upper_bound": 399000,
+            "gross_cost_in_euros": 9000
+        }
+    },
+    {
+        "model": "houses.pricingtier",
+        "pk": 5,
+        "fields": {
+            "country_tax": 1,
+            "lower_bound": 400000,
+            "upper_bound": null,
+            "gross_cost_in_euros": null
+        }
+    }
+]
